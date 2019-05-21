@@ -1,0 +1,21 @@
+diff a/CESA2019/Assembly-CSharp.csproj b/CESA2019/Assembly-CSharp.csproj	(rejected hunks)
+@@ -1,14 +1,18 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props')" />
+   <PropertyGroup>
+     <LangVersion>latest</LangVersion>
++    <NuGetPackageImportStamp>
++    </NuGetPackageImportStamp>
+   </PropertyGroup>
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+     <ProductVersion>10.0.20506</ProductVersion>
+     <SchemaVersion>2.0</SchemaVersion>
+-    <RootNamespace></RootNamespace>
++    <RootNamespace>
++    </RootNamespace>
+     <ProjectGuid>{B5E54993-1B9E-B3E3-1952-564D592AFA49}</ProjectGuid>
+     <OutputType>Library</OutputType>
+     <AppDesignerFolder>Properties</AppDesignerFolder>
