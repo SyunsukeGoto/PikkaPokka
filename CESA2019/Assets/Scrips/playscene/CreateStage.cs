@@ -72,7 +72,10 @@ namespace Momoya
         [SerializeField]
         private float span = 5.0f;
 
-        bool enemyFlag = false;
+        bool enemyFlag;
+        [SerializeField]
+        NavMeshSurface navMeshSurface; //ナビメッシュ
+      
         [SerializeField]
         TransCameraPos camera;
 
@@ -97,6 +100,8 @@ namespace Momoya
             BuildStage(); //オブジェクトを作る
             time = 0.0f;
 
+            enemyFlag = false;
+            navMeshSurface.BuildNavMesh();
         }
 
         // Update is called once per frame
@@ -104,18 +109,13 @@ namespace Momoya
         {
             //特定のタイムが経過後敵を生成する
             time += Time.deltaTime;
-            if(time > span && !enemyFlag)
+            if(time > span && enemyFlag == false)
             {
+                enemyFlag = true;
                 CreateEnemy();
                 time = 0.0f; 
-                enemyFlag = true;
+          
              
-            }
-
-            //エネミーのフラグをオンの時生成したオブジェクトのポジションをデバッグで表示
-            if(enemyFlag)
-            {
-                Debug.Log(test.transform.position);
             }
            
             
@@ -127,12 +127,12 @@ namespace Momoya
         {
             GameObject go = GameObject.Instantiate(enemy) as GameObject;
             go.GetComponent<Makoto.Enemy>()._player = player;
-            go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<Momoya.PlayerController>()._starMove;
+            go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
 
             go.transform.position = startPlayerPos;
        
             Debug.Log("作った！" + go.transform.position);
-            test = go;
+   
         }
 
         //ファイル読み込み
