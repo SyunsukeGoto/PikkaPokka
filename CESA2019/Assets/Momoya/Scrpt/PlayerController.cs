@@ -133,7 +133,7 @@ namespace Momoya
         public StateJump _stateJump = new StateJump();                          //ジャンプ状態
         public StateDash _stateDash = new StateDash();                          //ダッシュ状態
         public StateStrike _stateStrike = new StateStrike();                    //叩く状態
-        public StateConfusion _stateConfusion = new StateConfusion();           //混乱状態
+        //public StateConfusion _stateConfusion = new StateConfusion();           //混乱状態
         public StateHoal _stateHoal = new StateHoal();                          //穴状態
         public StateFall _stateFall = new StateFall();                          //転び状態
         public StateGameOver _stateGameOver = new StateGameOver();              //ゲームオーバー状態
@@ -188,7 +188,7 @@ namespace Momoya
             _stateJump.execDelegate = Jump;
             _stateDash.execDelegate = Dash;
             _stateStrike.execDelegate = Strike;
-            _stateConfusion.execDelegate = Confusion;
+            //_stateConfusion.execDelegate = Confusion;
             _stateHoal.execDelegate = Hoal;
             _stateFall.execDelegate = Fall;
             _stateGameOver.execDelegate = GameOver;
@@ -698,8 +698,8 @@ namespace Momoya
                 _decisionHammerState = _nowHammerState;
                 _nowHammerState = (int)HammerState.NONE;
                 //ステートをふらふらに
-                _stateProcessor.State = _stateConfusion;
-                
+                //_stateProcessor.State = _stateConfusion;
+                _stateProcessor.State = _stateDefault;
             }
 
             //if (_decisionHammerState != (int)HammerState.NONE)
