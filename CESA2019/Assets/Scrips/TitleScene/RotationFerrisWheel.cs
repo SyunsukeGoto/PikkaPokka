@@ -5,18 +5,15 @@
 /// 
 /// <author>	後藤　駿介
 //__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 ///-----------------------------------------------------------------------------
 /// 
 /// </brief> 観覧車回転クラス
 ///
 ///-----------------------------------------------------------------------------
-
 public class RotationFerrisWheel : MonoBehaviour
 {
     private float _zAngle;
