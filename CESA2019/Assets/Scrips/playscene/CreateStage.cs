@@ -79,6 +79,8 @@ namespace Momoya
         [SerializeField]
         TransCameraPos camera;
 
+        List<Vector3> _enemyPosList = new List<Vector3>(); //エネミーのポジションを把握するリスト
+
         GameObject test;
 
         // Start is called before the first frame update
@@ -125,13 +127,15 @@ namespace Momoya
         /// </summary>
         void CreateEnemy()
         {
-            GameObject go = GameObject.Instantiate(enemy) as GameObject;
-            go.GetComponent<Makoto.Enemy>()._player = player;
-            go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
-
-            go.transform.position = startPlayerPos;
+            for(int i = 0; i <_enemyPosList.Count; i++)
+            {
+                GameObject go = GameObject.Instantiate(enemy) as GameObject;
+                go.GetComponent<Makoto.Enemy>()._player = player;
+                go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                go.transform.position = _enemyPosList[i];
+            }
        
-            Debug.Log("作った！" + go.transform.position);
+           // Debug.Log("作った！" + go.transform.position);
    
         }
 
@@ -173,7 +177,7 @@ namespace Momoya
         {
             for (int i = _objectDataList.Count - 1; i >= 0; i--)
             {
-                if (_objectDataList[i] != -1)
+                if (_objectDataList[i] != -1 && _objectDataList[i] != (int)GroundType.Enemy)
                 {
                     GameObject go = Instantiate(_gameObj[_objectDataList[i]]);
                     go.transform.position = this.transform.position;
@@ -187,6 +191,13 @@ namespace Momoya
                     }
                    
                 }
+                else if(_objectDataList[i] == (int)GroundType.Enemy)
+                {
+                    _enemyPosList.Add(transform.position);
+                }
+
+
+
                 if ((i) % _searchWidth != 0)
                 {
                     transform.position = new Vector3(this.transform.position.x + _width, this.transform.position.y, this.transform.position.z);

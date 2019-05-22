@@ -338,7 +338,7 @@ MonoBehaviour:
   _width: 1.6
   _objFileName: ObjectData
   _stageFileName: StageData
-  _stageNumber: 5
+  _stageNumber: 4
   _gameObj:
   - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
   - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
@@ -357,7 +357,7 @@ MonoBehaviour:
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   enemy: {fileID: 6920692828140726796, guid: 88f2fad642451a54881e40d0543a7b4b, type: 3}
   time: 0
-  span: 5
+  span: 0
   navMeshSurface: {fileID: 592602247}
   camera: {fileID: 1761917396}
 --- !u!114 &592602247
