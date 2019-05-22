@@ -184,7 +184,9 @@ namespace Momoya
                         camera.target = go;
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
-                       
+                        
+
+
                     }
                 }
                 if ((i) % _searchWidth != 0)

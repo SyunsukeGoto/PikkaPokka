@@ -10,6 +10,8 @@ TagManager:
   - Grass
   - Gravelroad
   - Goal
+  - CrushableBox
+  - Crushablebox
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ namespace Momoya
             NONE,           // なし
             WEAK,           // 弱
             NOMAL,          // 中
-            STRENGTH,       // 狂
+            STRENGTH,       // 強
         }
 
         enum FloorType
@@ -123,7 +123,8 @@ namespace Momoya
         private bool _holeFlag;//穴落ちフラグ
 
         bool _rotationFlag; //回転フラグ
-
+        bool _strikeMode;   //たたく状態
+        public GameObject crushableBox; //壊せる箱
         Camera _camera;
 
 
@@ -133,12 +134,12 @@ namespace Momoya
         public StateJump _stateJump = new StateJump();                          //ジャンプ状態
         public StateDash _stateDash = new StateDash();                          //ダッシュ状態
         public StateStrike _stateStrike = new StateStrike();                    //叩く状態
-        //public StateConfusion _stateConfusion = new StateConfusion();           //混乱状態
+        public StateConfusion _stateConfusion = new StateConfusion();           //混乱状態
         public StateHoal _stateHoal = new StateHoal();                          //穴状態
         public StateFall _stateFall = new StateFall();                          //転び状態
         public StateGameOver _stateGameOver = new StateGameOver();              //ゲームオーバー状態
         public StateGoal _stateGoal = new StateGoal();                          //ゴール状態
-
+        public StateBreakBox _stateBreakBox = new StateBreakBox();              //箱を壊す状態
         //////////デバッグ用
         //////////デバッグ用
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
@@ -177,7 +178,7 @@ namespace Momoya
             _goalRevaGachaCount = 0;
             _nowRevaGachaCount = 0;
             _rotationFlag = false;
-
+            _strikeMode = false;
             _camera = Camera.main; //メインのカメラを取得
 
             //初期ステートをdefaultにする
@@ -188,7 +189,8 @@ namespace Momoya
             _stateJump.execDelegate = Jump;
             _stateDash.execDelegate = Dash;
             _stateStrike.execDelegate = Strike;
-            //_stateConfusion.execDelegate = Confusion;
+            _stateBreakBox.execDelegate = BreakBox;
+            _stateConfusion.execDelegate = Confusion;
             _stateHoal.execDelegate = Hoal;
             _stateFall.execDelegate = Fall;
             _stateGameOver.execDelegate = GameOver;
@@ -421,12 +423,22 @@ namespace Momoya
             {
                 _hammerPower = _hammerPowerLimit;
             }
-            if (_hammerPower > 5)
-                _nowHammerState = (int)HammerState.WEAK;
-            if (_hammerPower > 10)
-                _nowHammerState = (int)HammerState.NOMAL;
-            if (_hammerPower > 15)
-                _nowHammerState = (int)HammerState.STRENGTH;
+
+            if(_strikeMode == false)
+            {
+                if (_hammerPower > 5)
+                    _nowHammerState = (int)HammerState.WEAK;
+                if (_hammerPower > 10)
+                    _nowHammerState = (int)HammerState.NOMAL;
+                if (_hammerPower > 15)
+                    _nowHammerState = (int)HammerState.STRENGTH;
+            }
+            else
+            {
+                _nowHammerState = (int)HammerState.NONE;
+            }
+
+  
            
             
 
@@ -558,7 +570,7 @@ namespace Momoya
         //止まっているかチェックする関数
         public bool CheckStop()
         {
-            Debug.Log(_vec);
+          //  Debug.Log(_vec);
             Vector2 tmp = new Vector2(_vec.x, _vec.z);
             //止まっていたらtrueを返す
             if (Mathf.Abs(tmp.magnitude) <= 0.1f)
@@ -697,9 +709,20 @@ namespace Momoya
                 _hammerPower = 0.0f;
                 _decisionHammerState = _nowHammerState;
                 _nowHammerState = (int)HammerState.NONE;
-                //ステートをふらふらに
-                //_stateProcessor.State = _stateConfusion;
-                _stateProcessor.State = _stateDefault;
+                //たたき状態フラグがfalseならふらふら状態へ
+                if (_strikeMode == false)
+                {
+                   _stateProcessor.State = _stateConfusion;
+                }
+                else
+                {
+                    //trueなら箱を壊すステートへ
+                    _stateProcessor.State = _stateBreakBox;
+                }
+
+                
+
+                //_stateProcessor.State = _stateDefault;
             }
 
             //if (_decisionHammerState != (int)HammerState.NONE)
@@ -709,6 +732,14 @@ namespace Momoya
             //    _time = _time < 90 ? 0f : _time;
             //}
 
+        }
+        //箱を壊す
+        public void BreakBox()
+        {
+            crushableBox.GetComponent<CrushableBox>().DethCall(10);
+            _strikeMode = false;
+            //デフォルト状態へ  
+            _stateProcessor.State = _stateDefault;
         }
 
         public void Confusion()
@@ -845,6 +876,7 @@ namespace Momoya
                 case "Swamp": _environmentSpeed = _floorType[(int)FloorType.Swamp]; break; //沼地の速度
                 case "Gravelroad": _environmentSpeed = _floorType[(int)FloorType.Gravelroad]; _fallCheckFlag = true; break; //砂利道の速度
                 case "Goal": _stateProcessor.State = _stateGoal; break;
+             //   case "CrushableBox": _strikeMode = true; crushableBox  =  collision.gameObject; Debug.Log("箱発見"); break;
             }
             if (collision.gameObject.layer == 9)
             {
@@ -865,12 +897,15 @@ namespace Momoya
                 case "Swamp": break; //沼地の速度
                 case "Gravelroad": _fallCheckFlag = false; break; //砂利道の速度
                 case "Goal": break;
+              //  case "CrushableBox": _strikeMode = false; crushableBox = null;  break;
             }
             if (collision.gameObject.layer == 9)
             {
                 _flag = false;
             }
         }
+
+
         //当たり判定穴などの触れた瞬間に発動するのをチェック
         public void OnCollisionEnter(Collision collision)
         {
@@ -891,6 +926,18 @@ namespace Momoya
         
 
         }
-    
+        //たたき状態を分けるプロパティ
+        public bool StrikeMode
+        {
+            get { return _strikeMode; }
+            set { _strikeMode = value; }
+        }
+        //たたき壊せる箱のプロパティ
+        public GameObject CrushableBox
+        {
+            get { return crushableBox; }
+            set { crushableBox = value; }
+        }
+
     }
 }
