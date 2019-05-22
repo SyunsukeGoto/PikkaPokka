@@ -59,7 +59,7 @@ namespace Goto
         [SerializeField]
         private GameObject _playerControllerObject;
         private Momoya.PlayerController _playerController;
-        
+        private bool _finishFlag;
         /// <summary>
         /// 初期化処理
         /// </summary>
@@ -70,7 +70,8 @@ namespace Goto
             _radius = 0f;
             _time = 0f;
             _playerController = _playerControllerObject.GetComponent<Momoya.PlayerController>();
-            _lightRange = LightRange.NONE;     
+            _lightRange = LightRange.NONE;
+            _finishFlag = false;     
         }
         
         /// <summary>
@@ -135,8 +136,9 @@ namespace Goto
         /// </summary>
         void StarMovement()
         {
-            if (_starflag.IsFlag((uint)StarFlag.GENERATE_STATE))
+            if (_starflag.IsFlag((uint)StarFlag.GENERATE_STATE) && !_finishFlag)
             {
+              
                 _time++;
                 if (_time > STAR_LIFE)
                 {
@@ -154,6 +156,7 @@ namespace Goto
 
                 for (int i = 0; i < _starObject.Length; i++)
                 {
+                    _starObject[i].GetComponent<Rigidbody>().useGravity = false;
                     int angle = i * (360 / 5);
                     float x = Mathf.Cos((angle + _starAngle) * Mathf.Deg2Rad) / _radius;
                     float z = Mathf.Sin((angle + _starAngle) * Mathf.Deg2Rad) / _radius;
@@ -162,7 +165,8 @@ namespace Goto
 
                     if(_shineRange <= 0f)
                     {
-                        Destroy(_starObject[i]);
+                        _starObject[i].GetComponent<Rigidbody>().useGravity = true;
+                        _starObject[i] = null;
                         
                     }
                 }
