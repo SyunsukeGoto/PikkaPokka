@@ -654,7 +654,7 @@ namespace Momoya
         //ジャンプ状態
         public void Jump()
         {
-            _rg.AddForce(Vector3.up * _nowJumpPower);
+           // _rg.AddForce(Vector3.up * _nowJumpPower);
             //ジャンプ後defaultに戻す
             _stateProcessor.State = _stateDefault;
         }

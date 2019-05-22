@@ -26,10 +26,10 @@ namespace Momoya
         public enum GroundType
         {
             GroundNone = -1, //何もなし
-            GroundNormal,  //ノーマル床
-            GroundGravelroad,//砂砂利
-            GroundGrass,   //草床
-            GroundSwamp, //沼床
+            Wall,  //壁
+            Player,//プレイヤー
+            Goal,   //ゴール
+            Enemy, //敵
             GroundHoleSmall, //小穴
             GroundHoleMedium, //中穴
             GroundHoleBig, //大穴
@@ -178,16 +178,14 @@ namespace Momoya
                     GameObject go = Instantiate(_gameObj[_objectDataList[i]]);
                     go.transform.position = this.transform.position;
                     //プレイヤーの位置とオブジェクトを記憶
-                    if(_objectDataList[i] == (int)GroundType.GroundGrass)
+                    if(_objectDataList[i] == (int)GroundType.Player)
                     {
                         player = go;
                         camera.target = go;
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
-                        
-
-
                     }
+                   
                 }
                 if ((i) % _searchWidth != 0)
                 {
@@ -223,7 +221,7 @@ namespace Momoya
 
             }
 
-            transform.position = new Vector3(startPos.x, this.transform.position.y + 1.0f, startPos.z);
+            transform.position = new Vector3(startPos.x, this.transform.position.y + 0.5f, startPos.z);
         }
 
         //widthを探す関数
