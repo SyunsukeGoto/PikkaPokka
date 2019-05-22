@@ -144,13 +144,14 @@ namespace Momoya
         //////////デバッグ用
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
-        private float _playerAngle = 0.0f;
+        private float _playerAngle ;
 
         // Use this for initialization
         void Start()
         {
-          
 
+            _playerAngle = -180;
+            Debug.Log(_playerAngle);
             //プレイヤーの初期設定
             _rg = GetComponent<Rigidbody>(); //リジットボディの取得
             _startPos = _rg.position;        //初期位置の設定
@@ -551,6 +552,7 @@ namespace Momoya
                 transform.localRotation = Quaternion.Euler(0, _playerAngle, 0);
             }
 
+           
             //// カメラの方向から、X-Z平面の単位ベクトルを取得
             //Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
@@ -736,10 +738,10 @@ namespace Momoya
         //箱を壊す
         public void BreakBox()
         {
-            crushableBox.GetComponent<CrushableBox>().DethCall(10);
-            _strikeMode = false;
-            //デフォルト状態へ  
-            _stateProcessor.State = _stateDefault;
+                crushableBox.GetComponent<CrushableBox>().DethCall(10);
+                _strikeMode = false;
+                //デフォルト状態へ  
+                _stateProcessor.State = _stateDefault;
         }
 
         public void Confusion()
