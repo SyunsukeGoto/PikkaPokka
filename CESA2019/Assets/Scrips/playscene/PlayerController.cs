@@ -39,7 +39,6 @@ namespace Momoya
             Swamp,  //沼地
             Gravelroad,//砂利道
 
-
             Num
         }
 
@@ -234,8 +233,7 @@ namespace Momoya
             if (_fallCheckFlag == true && ((Mathf.Abs(Input.GetAxis("Vertical")) >= 0.3f) || (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f)))
             {
                 _fallCheckTimer += Time.deltaTime;
-
-
+                
                 if (_fallCheckTimer > _fallCheckCount)
                 {
                     int fallNum = UnityEngine.Random.Range(0, 100);
@@ -939,6 +937,12 @@ namespace Momoya
         {
             get { return crushableBox; }
             set { crushableBox = value; }
+        }
+
+        public float Angle
+        {
+           get { return _playerAngle; }
+          
         }
 
     }
