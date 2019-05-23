@@ -338,7 +338,7 @@ MonoBehaviour:
   _width: 1.6
   _objFileName: ObjectData
   _stageFileName: StageData
-  _stageNumber: 1
+  _stageNumber: 7
   _gameObj:
   - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
   - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
