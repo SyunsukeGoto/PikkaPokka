@@ -144,7 +144,8 @@ namespace Momoya
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
         private float _playerAngle ;
-
+        private float _hor;
+        private float _ver;
         // Use this for initialization
         void Start()
         {
@@ -255,54 +256,46 @@ namespace Momoya
         public void Move()
         {
             float angle = 2.0f;
+            float dethPoint = 0.3f;
             Debug.Log("_vec = _camera.transform.forward * _nowSpeed; = " + _camera.transform.forward * _nowSpeed);
-            if (Input.GetKey(_moveKey[(int)MoveDirection.UP]))
-            {
 
-                _vec = _camera.transform.forward * _nowSpeed;
-                
-                //_vec.z = _nowSpeed;
+            //HorizontalとVerticalの取得
+            _hor = Input.GetAxis("Horizontal");
+            _ver = Input.GetAxis("Vertical");
+            Debug.Log("インプットホライズン" + _hor);
+            Debug.Log("インプットバーティカル" + _ver);
+
+            //絶対値0.3より低いなら動かないようにする
+            if (Mathf.Abs(_hor) < 0.3f)
+            {
+                _hor = 0.0f;
+            }
+            if (Mathf.Abs(_ver) < 0.3f)
+            {
+                _ver = 0.0f;
             }
 
+            if (_ver >= dethPoint)
+            {
+                _vec = _camera.transform.forward * _nowSpeed;
+            }
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.DOWN]))
+            if (_ver <= -dethPoint)
             {
                 _vec = -_camera.transform.forward * _nowSpeed;
-                //_vec.z = -_nowSpeed;
             }
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.RIGHT]))
+            if (_hor >= dethPoint)
             {
                 _playerAngle += angle;
-                //_vec.x = _nowSpeed;
+
             }
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.LEFT]))
+            if (_hor <= -dethPoint)
             {
                 _playerAngle -= angle;
-                // _vec.x = -_nowSpeed;
+
             }
-            /////////ここより下は停止用処理
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.UP]))
-            //{
-            //    _vec.z *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.DOWN]))
-            //{
-            //    _vec.z *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.RIGHT]))
-            //{
-            //    _vec.x *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.LEFT]))
-            //{
-            //    _vec.x *= 0.0f;
-            //}
             _vec.x *= 0.95f;
             _vec.z *= 0.95f;
             _rotationFlag = true;
