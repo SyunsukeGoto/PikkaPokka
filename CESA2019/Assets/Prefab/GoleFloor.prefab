@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1730522173332362580}
   - component: {fileID: 189851303143724883}
   - component: {fileID: 2620885629540086642}
+  - component: {fileID: 2636696645681712318}
   m_Layer: 9
   m_Name: GoleFloor
   m_TagString: Goal
@@ -91,3 +92,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2636696645681712318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727752628824407677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82e7169273d2a498950d733b28676c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 0}

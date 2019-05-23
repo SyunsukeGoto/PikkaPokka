@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8918041294818745072}
   - component: {fileID: 8918041294818745075}
   - component: {fileID: 4474309257280435894}
+  - component: {fileID: 4847813126965692801}
   m_Layer: 0
   m_Name: GreenBlock
   m_TagString: Grass
@@ -108,3 +109,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4847813126965692801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918041294818745074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82e7169273d2a498950d733b28676c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 0}
