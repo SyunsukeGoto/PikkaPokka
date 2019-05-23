@@ -76,8 +76,7 @@ namespace Momoya
         [SerializeField]
         NavMeshSurface navMeshSurface; //ナビメッシュ
       
-        [SerializeField]
-        TransCameraPos camera;
+    
 
         List<Vector3> _enemyPosList = new List<Vector3>(); //エネミーのポジションを把握するリスト
 
@@ -185,7 +184,7 @@ namespace Momoya
                     if(_objectDataList[i] == (int)GroundType.Player)
                     {
                         player = go;
-                        camera.target = go;
+                    
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
                     }

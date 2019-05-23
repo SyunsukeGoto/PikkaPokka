@@ -359,7 +359,6 @@ MonoBehaviour:
   time: 0
   span: 0
   navMeshSurface: {fileID: 592602247}
-  camera: {fileID: 0}
 --- !u!114 &592602247
 MonoBehaviour:
   m_ObjectHideFlags: 0
