@@ -171,6 +171,8 @@ namespace Momoya
             }
 
         }
+
+
         //作成関数
         public void BuildStage()
         {
