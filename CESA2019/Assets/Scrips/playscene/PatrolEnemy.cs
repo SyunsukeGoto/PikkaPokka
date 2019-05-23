@@ -31,12 +31,21 @@ public class PatrolEnemy : MonoBehaviour
 
     [SerializeField, Header("ダメージを受けるか")]
     private bool _isDamaged;
+    
+    [SerializeField, Header("精子")]
+    private bool _active;
+
+    public bool Active
+    {
+        set { _active = value; }
+    }
 
     // 現在向かっている巡回ポイントのナンバー
     private int _currentPoint;
 
     // 現在のステート
     private State _currentState;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,25 +56,36 @@ public class PatrolEnemy : MonoBehaviour
 
         _currentState = State.Patrol;
 
+        _active = true;
+
         _nma.SetDestination(_patrolPoint[_currentPoint].transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(_currentState)
+        if (_active)
         {
-            case State.Patrol:
-                Patrol();
-                break;
-            case State.Chase:
-                Chase();
-                break;
+            switch (_currentState)
+            {
+                case State.Patrol:
+                    Patrol();
+                    break;
+                case State.Chase:
+                    Chase();
+                    break;
+            }
+        }
+        else
+        {
+            _nma.SetDestination(transform.position);
         }
     }
 
     private void Patrol()
     {
+        _nma.SetDestination(_patrolPoint[_currentPoint].transform.position);
+
         Vector3 v = _patrolPoint[_currentPoint].transform.position - transform.position;
         v.y = 0;
 
@@ -79,8 +99,6 @@ public class PatrolEnemy : MonoBehaviour
             {
                 _currentPoint++;
             }
-
-            _nma.SetDestination(_patrolPoint[_currentPoint].transform.position);
         }
 
         if(_isChase)
@@ -105,7 +123,10 @@ public class PatrolEnemy : MonoBehaviour
     {
         if(_isDamaged)
         {
-
+            if(other.tag == "Attack")
+            {
+                Active = false;
+            }
         }
     }
 }
