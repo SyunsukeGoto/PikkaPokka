@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 640874745163396935}
   - component: {fileID: 640874745163396936}
   - component: {fileID: 2999498315769022069}
+  - component: {fileID: 5153477362872151310}
   m_Layer: 0
   m_Name: BlueBlock
   m_TagString: Untagged
@@ -108,3 +109,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5153477362872151310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640874745163396937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2fb8da8f642b34b88896f1f62c9c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 2324714363028220462, guid: f956aba5d03c2f2418af04a12cc5f169,
+    type: 3}
+  m_block: {fileID: 2324714363028220462, guid: f956aba5d03c2f2418af04a12cc5f169, type: 3}
+  m_state: 0

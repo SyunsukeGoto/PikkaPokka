@@ -14,16 +14,18 @@ public class BlockControl : MapObjectBace
     /// <param name="col"></param>
     private void OnCollisionEnter(Collision col)
     {
-        if (!m_state && col.gameObject.tag == "hammer")
-        {
-            var pos = transform;
-            // 状態変化
-            Destroy(m_inctanceObject);
-            // 現在位置の設定
-            m_inctanceObject = Instantiate<GameObject>(m_block);
-            m_inctanceObject.transform.position = pos.position;
-            // 生成済 
-            m_state = true;
+        // ハンマーをもらう条件
+        if (!m_state && col.gameObject.tag == "Hammer") {
+            if(col.gameObject.GetComponent<HammerController>().GetHammerState() != Momoya.PlayerController.HammerState.NONE) { 
+                var pos = transform;
+                // 状態変化
+                Destroy(m_inctanceObject);
+                // 現在位置の設定
+                m_inctanceObject = Instantiate<GameObject>(m_block);
+                m_inctanceObject.transform.position = pos.position;
+                // 生成済 
+                m_state = true;
+           }
         }
     }
 }

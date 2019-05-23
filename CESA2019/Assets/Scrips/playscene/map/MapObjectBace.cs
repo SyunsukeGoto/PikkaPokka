@@ -8,7 +8,7 @@ abstract public class MapObjectBace : MonoBehaviour
     public GameObject m_prefab;
     // 自身の実体
     protected GameObject m_inctanceObject = null;
-
+    
     /// <summary>
     /// オブジェクトの生成
     /// </summary>
