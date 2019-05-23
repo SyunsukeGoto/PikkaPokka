@@ -95,6 +95,15 @@ namespace Momoya
             }
         }
 
+        //箱を壊す状態のクラス
+        public class StateBreakBox: PlayerState
+        {
+            public override string GetStateName()
+            {
+                return "Player Is BreakBox";
+            }
+        }
+
         public class StateConfusion : PlayerState
         {
             public override string GetStateName()
