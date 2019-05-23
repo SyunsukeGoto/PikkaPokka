@@ -126,7 +126,7 @@ namespace Momoya
         public GameObject crushableBox; //壊せる箱
         [SerializeField]
         private FollowingCamera _camera;
-
+        Transform current;//位置frame前のトランスフォーム
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -172,6 +172,7 @@ namespace Momoya
             _importantPoint = (int)_hammerPowerLimit / _hammerLevelLimit;
             _nowHammerState = (int)HammerState.NONE;
             _decisionHammerState = (int)HammerState.NONE;
+            _anime.Idle();
 
             _fallFlag = false;
             _fallCheckFlag = false;
@@ -181,7 +182,7 @@ namespace Momoya
             _nowRevaGachaCount = 0;
             _rotationFlag = false;
             _strikeMode = false;
-         
+            current = this.transform;
             //初期ステートをdefaultにする
             _stateProcessor.State = _stateDefault;
             //委譲の設定
@@ -201,7 +202,7 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
-
+            current = this.transform;
             PlayerCtrl();
             //DebugCtrl(); //デバッグ用
 
@@ -264,12 +265,10 @@ namespace Momoya
             //HorizontalとVerticalの取得
 
             Vector3 dirVec = new Vector3(_ver, 0.0f, _hor);
-            dirVec.Normalize();
+   
 
 
-            _vec = dirVec * _nowSpeed * Time.deltaTime;
-
-
+            _vec = dirVec * _nowSpeed;
             _rotationFlag = true;
             _anime.Walk(); //歩かせる
         }
@@ -483,12 +482,11 @@ namespace Momoya
         }
         public void PlayerCtrl()
         {
-            float dx = Input.GetAxis("Horizontal");
-            float dy = Input.GetAxis("Vertical");
-            _hor = dx;
-            _ver = dy;
+             _hor = Input.GetAxisRaw("Horizontal");
+             _ver = Input.GetAxisRaw("Vertical");
+            
 
-            Debug.Log("インプットホライズン" + _hor);
+         //   Debug.Log("インプットホライズン" + _hor);
          //   Debug.Log("インプットバーティカル" + _ver);
            
          
@@ -524,18 +522,18 @@ namespace Momoya
                 //_playerAngle = SetAngle();
                 // 移動方向に回転
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_camera.Angle * _vec), 1.0f);
-
-                // 移動
-                transform.position += _camera.Angle * _vec;
-
+              
+            }
+            else
+            {
+                
             }
             // Debug.Log("現在位置" + transform.position);
-            
 
-            _vec.x *= 0.95f;
-            _vec.z *= 0.95f;
-            _ver *= 0.95f;
-            _hor *= 0.95f;
+            // 移動
+            transform.GetComponent<Rigidbody>().velocity = _camera.Angle * _vec;
+            _vec *= 0.8f;
+
         }
 
         //止まっているかチェックする関数
@@ -574,8 +572,8 @@ namespace Momoya
                 _stateProcessor.State = _stateStrike;
             }
 
-            //絶対値が0.3より大きかったら歩き状態へ
-            if(Mathf.Abs(_hor) >= 0.5f || Mathf.Abs(_ver) >= 0.5f)
+            //絶対値が0.8より大きかったら歩き状態へ
+            if(Mathf.Abs(_hor) >= 0.8f || Mathf.Abs(_ver) >= 0.8f)
             {
                 _stateProcessor.State = _stateWalk;
             }
@@ -836,6 +834,8 @@ namespace Momoya
             _levelText.text = _hammerLevel.ToString();  //現在のレベル
         }
 
+        
+
         //当たり判定(stay)床に対しての効果
         public void OnCollisionStay(Collision collision)
         {
@@ -915,5 +915,9 @@ namespace Momoya
           
         }
 
+
+
     }
+
+    
 }
