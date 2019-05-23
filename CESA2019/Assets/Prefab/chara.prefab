@@ -1556,6 +1556,7 @@ MonoBehaviour:
   _mediumHoleCount: 20
   _bigHoleCount: 0
   crushableBox: {fileID: 0}
+  _camera: {fileID: 8259441894627478420}
   _chargeText: {fileID: 0}
   _levelText: {fileID: 0}
 --- !u!54 &3125565203938628331

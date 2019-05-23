@@ -124,7 +124,8 @@ namespace Momoya
         bool _rotationFlag; //回転フラグ
         bool _strikeMode;   //たたく状態
         public GameObject crushableBox; //壊せる箱
-        Camera _camera;
+        [SerializeField]
+        private FollowingCamera _camera;
 
 
         //ステートの宣言
@@ -144,7 +145,8 @@ namespace Momoya
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
         private float _playerAngle ;
-
+        private float _hor;
+        private float _ver;
         // Use this for initialization
         void Start()
         {
@@ -179,8 +181,7 @@ namespace Momoya
             _nowRevaGachaCount = 0;
             _rotationFlag = false;
             _strikeMode = false;
-            _camera = Camera.main; //メインのカメラを取得
-
+         
             //初期ステートをdefaultにする
             _stateProcessor.State = _stateDefault;
             //委譲の設定
@@ -200,11 +201,12 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
+
             PlayerCtrl();
             //DebugCtrl(); //デバッグ用
 
             //Debug.Log(_nowHammerState.ToString());
-            Debug.Log(_decisionHammerState.ToString());
+        //    Debug.Log(_decisionHammerState.ToString());
             if (_nowHammerState == (int)HammerState.NONE)
             {
                 _decisionHammerState = (int)HammerState.NONE;
@@ -219,11 +221,12 @@ namespace Momoya
             //現在どのステートか確認するためのデバッグ処理
             if (_stateProcessor.State.GetStateName() != _beforeStateName)
             {
-                //Debug.Log(" Now State:" + _stateProcessor.State.GetStateName());
+               
                 _beforeStateName = _stateProcessor.State.GetStateName();
 
             }
-
+            Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
+       
             _stateProcessor.Execute();//実行関数
         }
 
@@ -255,56 +258,18 @@ namespace Momoya
         public void Move()
         {
             float angle = 2.0f;
-            Debug.Log("_vec = _camera.transform.forward * _nowSpeed; = " + _camera.transform.forward * _nowSpeed);
-            if (Input.GetKey(_moveKey[(int)MoveDirection.UP]))
-            {
+            float dethPoint = 0.3f;
+            //  Debug.Log("_vec = _camera.transform.forward * _nowSpeed; = " + _camera.transform.forward * _nowSpeed);
 
-                _vec = _camera.transform.forward * _nowSpeed;
-                
-                //_vec.z = _nowSpeed;
-            }
+            //HorizontalとVerticalの取得
+
+            Vector3 dirVec = new Vector3(_ver, 0.0f, _hor);
+            dirVec.Normalize();
 
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.DOWN]))
-            {
-                _vec = -_camera.transform.forward * _nowSpeed;
-                //_vec.z = -_nowSpeed;
-            }
+            _vec = dirVec * _nowSpeed * Time.deltaTime;
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.RIGHT]))
-            {
-                _playerAngle += angle;
-                //_vec.x = _nowSpeed;
-            }
 
-            if (Input.GetKey(_moveKey[(int)MoveDirection.LEFT]))
-            {
-                _playerAngle -= angle;
-                // _vec.x = -_nowSpeed;
-            }
-            /////////ここより下は停止用処理
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.UP]))
-            //{
-            //    _vec.z *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.DOWN]))
-            //{
-            //    _vec.z *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.RIGHT]))
-            //{
-            //    _vec.x *= 0.0f;
-            //}
-
-            //if (Input.GetKeyUp(_moveKey[(int)MoveDirection.LEFT]))
-            //{
-            //    _vec.x *= 0.0f;
-            //}
-            _vec.x *= 0.95f;
-            _vec.z *= 0.95f;
             _rotationFlag = true;
             _anime.Walk(); //歩かせる
         }
@@ -484,12 +449,12 @@ namespace Momoya
         {
             _currentRevaGachaState = _revaGachaState;
 
-            if (Input.GetAxis("Vertical") >= 0.3f)
+            if (Input.GetAxisRaw("Vertical") >= 0.3f)
             {
                 _revaGachaState = MoveDirection.UP;
             }
 
-            if (Input.GetAxis("Vertical") <= -0.3f)
+            if (Input.GetAxisRaw("Vertical") <= -0.3f)
             {
                 _revaGachaState = MoveDirection.DOWN;
             }
@@ -499,12 +464,12 @@ namespace Momoya
                 _revaGachaState = MoveDirection.RIGHT;
             }
 
-            if (Input.GetAxis("Horizontal") <= -3.0f)
+            if (Input.GetAxisRaw("Horizontal") <= -3.0f)
             {
                 _revaGachaState = MoveDirection.LEFT;
             }
 
-            if (Mathf.Abs(Input.GetAxis("Vertical")) <= 0.3f && Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.3f)
+            if (Mathf.Abs(Input.GetAxisRaw("Vertical")) <= 0.3f && Mathf.Abs(Input.GetAxisRaw("Horizontal")) <= 0.3f)
             {
                 _revaGachaState = MoveDirection.NONE;
             }
@@ -518,6 +483,16 @@ namespace Momoya
         }
         public void PlayerCtrl()
         {
+            float dx = Input.GetAxis("Horizontal");
+            float dy = Input.GetAxis("Vertical");
+            _hor = dx;
+            _ver = dy;
+
+            Debug.Log("インプットホライズン" + _hor);
+         //   Debug.Log("インプットバーティカル" + _ver);
+           
+         
+
             FallCheck();
             //転びflagがtrueなら転び状態へ
             if (_fallFlag == true)
@@ -530,8 +505,8 @@ namespace Momoya
                 _stateProcessor.State = _stateHoal;
             }
 
-            //速度を足す
-            _rg.velocity = new Vector3(_vec.x * _environmentSpeed, _rg.velocity.y, _vec.z * _environmentSpeed);
+            ////速度を足す
+            //_rg.velocity = new Vector3(_vec.x * _environmentSpeed, _rg.velocity.y, _vec.z * _environmentSpeed);
 
             //落下ポイントよりポジションが低ければ初期位置に戻す
             if (_rg.position.y < DropdownPoint)
@@ -547,33 +522,29 @@ namespace Momoya
                 //プレイヤーの角度を取得
                 //_playerAngle = Mathf.Lerp(_playerAngle, SetAngle(),0.2f);
                 //_playerAngle = SetAngle();
-                transform.localRotation = Quaternion.Euler(0, _playerAngle, 0);
+                // 移動方向に回転
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_camera.Angle * _vec), 1.0f);
+
+                // 移動
+                transform.position += _camera.Angle * _vec;
+
             }
+            // Debug.Log("現在位置" + transform.position);
+            
 
-           
-            //// カメラの方向から、X-Z平面の単位ベクトルを取得
-            //Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-            //// 方向キーの入力値とカメラの向きから、移動方向を決定
-            //Vector3 moveForward = cameraForward * Input.GetAxis("Vertical") + _camera.transform.right * Input.GetAxis("Horizontal");
-            //_vec.y = 0;
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_vec), Time.deltaTime * 1.2f);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_camera.transform.rotation.y *  _vec), 1.0f);
-            //transform.position += _camera.transform.rotation.y * _vec;
-            ////プレイヤーの角度を回転に渡す
-            //
-            //transform.localRotation = Quaternion.Euler(0, _playerAngle, 0);
-            // キャラクターの向きを進行方向に
-
+            _vec.x *= 0.95f;
+            _vec.z *= 0.95f;
+            _ver *= 0.95f;
+            _hor *= 0.95f;
         }
 
         //止まっているかチェックする関数
         public bool CheckStop()
         {
           //  Debug.Log(_vec);
-            Vector2 tmp = new Vector2(_vec.x, _vec.z);
+            Vector2 tmp = new Vector2(_hor, _ver);
             //止まっていたらtrueを返す
-            if (Mathf.Abs(tmp.magnitude) <= 0.1f)
+            if (Mathf.Abs(tmp.magnitude) <= 0.3f)
             {
                 return true;
             }
@@ -603,15 +574,14 @@ namespace Momoya
                 _stateProcessor.State = _stateStrike;
             }
 
-            //移動キーのどれかが押されたら移動状態に切り替える
-            for (int i = 0; i < (int)MoveDirection.NUM - 1; i++)
+            //絶対値が0.3より大きかったら歩き状態へ
+            if(Mathf.Abs(_hor) >= 0.5f || Mathf.Abs(_ver) >= 0.5f)
             {
-                if(Input.GetKey(_moveKey[i]))
-                {
-                    _stateProcessor.State = _stateWalk;
-                }
-                           
+                _stateProcessor.State = _stateWalk;
             }
+           
+                    
+   
             _rotationFlag = false;
             _anime.Idle();
         }
