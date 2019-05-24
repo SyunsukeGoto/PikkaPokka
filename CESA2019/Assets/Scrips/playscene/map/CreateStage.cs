@@ -11,9 +11,9 @@ namespace Momoya
     public class CreateStage : MonoBehaviour
     {
         //列挙型の宣言
-        public enum ObjectType
+        public enum IObjectType
         {
-            FloorNone = -1,     //何にもなし
+            FloorNone = -1,//何にもなし
             FloorWhite001, //白床001
             FloorBlue001,  //青床001
             FloorRed001,   //赤床001
@@ -23,13 +23,25 @@ namespace Momoya
             Num
         }
 
+        public enum MObjectType
+        {
+            NONE = -1,     //何にもなし
+            Player, //白床001
+            Enemy,  //青床001
+            FloorRed001,   //赤床001
+            FloorGreen001, //緑床001
+            FloorBlack001, //黒床001
+
+            Num
+        }
+
         public enum GroundType
         {
-            GroundNone = -1, //何もなし
-            Wall,  //壁
-            Player,//プレイヤー
+            NONE = -1, //何もなし
+            Player,  //壁
+            Enemy,//プレイヤー
             Goal,   //ゴール
-            Enemy, //敵
+            HOGE, //敵
             GroundHoleSmall, //小穴
             GroundHoleMedium, //中穴
             GroundHoleBig, //大穴
@@ -38,6 +50,7 @@ namespace Momoya
             Num
         }
 
+        
 
 
 
@@ -49,19 +62,25 @@ namespace Momoya
         private int _searchWidth;
 
         [SerializeField]
-        private string _objFileName = "ObjectData"; //ファイルの名前(オブジェクトよう)
+        private string _iObjFileName = "IObjectData"; //ファイルの名前(動かないオブジェクトよう)
+        [SerializeField]
+        private string _mObjFileName = "MObjectData"; //ファイルの名前(動くオブジェクトよう)
         [SerializeField]
         private string _stageFileName = "StageData"; //ファイルの名前(スーテジ用)
         [SerializeField]
-        private int _stageNumber = 1; //ステージ番号
+        private int   _stageNumber = 1; //ステージ番号
         private string _openFilenameExtension;
-        private string _objFilePath; //オブジェクト用ファイルパス
+        private string _MobjFilePath; //オブジェクト用ファイルパス
+        private string _IobjFilePath; //オブジェクト用ファイルパス
         private string _stageFilePath; //オブジェクト用ファイルパス         
         [SerializeField]
-        private GameObject[] _gameObj = new GameObject[(int)ObjectType.Num]; //オブジェクトを入れる
+        private GameObject[] _mGameObj = new GameObject[(int)MObjectType.Num]; //オブジェクトを入れる
+        [SerializeField]
+        private GameObject[] _iGameObj = new GameObject[(int)IObjectType.Num];//地面用の生成オブジェクト
         [SerializeField]
         private GameObject[] _floorObj = new GameObject[(int)GroundType.Num];//地面用の生成オブジェクト
-        private List<int> _objectDataList; //オブジェクトデータリスト
+        private List<int> _mObjectDataList; //オブジェクトデータリスト
+        private List<int> _iObjectDataList; //オブジェクトデータリスト
         private List<int> _stageDataList;  //ステージデータリスト
         [SerializeField]
         private GameObject enemy; //敵
@@ -90,15 +109,18 @@ namespace Momoya
             _searchWidth = 0;
             _openFilenameExtension = ".csv";
 
-            _objFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _objFileName  + _stageNumber+ _openFilenameExtension;
+            _MobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _mObjFileName  + _stageNumber+ _openFilenameExtension;
+            _IobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _iObjFileName  +  _stageNumber + _openFilenameExtension;
             _stageFilePath = Application.dataPath+ "/StreamingAssets" + @"\Data\StageData\" + _stageFileName + _stageNumber +_openFilenameExtension;
 
-            _objectDataList = new List<int>(); //データリスト作成  
+            _mObjectDataList = new List<int>(); //データリスト作成
+            _iObjectDataList = new List<int>();  
             _stageDataList = new List<int>();  //データリスト作成
             ReadFile();//ファイルを読み込む
             SearchWidth();
             BuildFloor(); //床を作る
-            BuildStage(); //オブジェクトを作る
+            BuildMObject(); //動くオブジェクトを作る
+            BuildIObject();//動かないオブジェクトを作る
             time = 0.0f;
 
             enemyFlag = false;
@@ -115,7 +137,6 @@ namespace Momoya
                 enemyFlag = true;
                 CreateEnemy();
                 time = 0.0f; 
-          
              
             }
            
@@ -126,12 +147,14 @@ namespace Momoya
         /// </summary>
         void CreateEnemy()
         {
+            GameObject Enemys = new GameObject();
             for(int i = 0; i <_enemyPosList.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(enemy) as GameObject;
                 go.GetComponent<Makoto.Enemy>()._player = player;
                 go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
                 go.transform.position = _enemyPosList[i];
+                go.transform.parent = Enemys.transform;
             }
        
            // Debug.Log("作った！" + go.transform.position);
@@ -142,23 +165,23 @@ namespace Momoya
         public void ReadFile()
         {
             // _csvData.Clear();
-
-            int objData;
             //　一括で取得
-            string[] objTexts = File.ReadAllText(_objFilePath).Split(new char[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var text in objTexts)
+            string[] mObjTexts = File.ReadAllText(_MobjFilePath).Split(new char[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var text in mObjTexts)
             {
                 int tmp = 0;
                 Int32.TryParse(text, out tmp);
 
-                _objectDataList.Add(tmp);
+                _mObjectDataList.Add(tmp);
             }
-            objData = _objectDataList.Count;
 
-            //デバッグ
-            for (int i = 0; i < objData; i++)
+            string[] iObjTexts = File.ReadAllText(_IobjFilePath).Split(new char[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var text in iObjTexts)
             {
-                Debug.Log(_objectDataList[i]);
+                int tmp = 0;
+                Int32.TryParse(text, out tmp);
+
+                _iObjectDataList.Add(tmp);
             }
 
             string[] stageTexts = File.ReadAllText(_stageFilePath).Split(new char[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -170,20 +193,45 @@ namespace Momoya
                 _stageDataList.Add(tmp);
             }
 
+            for(int i =0;i < _iObjectDataList.Count;i++)
+            {
+                Debug.Log("オブジェクトデータ" + _iObjectDataList[i]);
+            }
         }
 
+        public void BuildIObject()
+        {
+            for (int i = _iObjectDataList.Count - 1; i >= 0; i--)
+            {
+                if (_iObjectDataList[i] != -1 )
+                {
+                    GameObject go = _iGameObj[_iObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
+
+                }
+
+                if ((i) % _searchWidth != 0)
+                {
+                    transform.position = new Vector3(this.transform.position.x + _width, this.transform.position.y, this.transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(startPos.x, this.transform.position.y, this.transform.position.z - _width);
+                }
+
+            }
+        }
 
         //作成関数
-        public void BuildStage()
+        public void BuildMObject()
         {
-            for (int i = _objectDataList.Count - 1; i >= 0; i--)
+            for (int i = _mObjectDataList.Count - 1; i >= 0; i--)
             {
-                if (_objectDataList[i] != -1 && _objectDataList[i] != (int)GroundType.Enemy)
+                if (_mObjectDataList[i] != -1 && _mObjectDataList[i] != (int)MObjectType.Enemy)
                 {
-                    GameObject go = _gameObj[_objectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
+                    GameObject go = _mGameObj[_mObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
                     //go.transform.position = this.transform.position;
                     //プレイヤーの位置とオブジェクトを記憶
-                    if(_objectDataList[i] == (int)GroundType.Player)
+                    if(_mObjectDataList[i] == (int)MObjectType.Player)
                     {
                         player = go;
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
@@ -191,7 +239,7 @@ namespace Momoya
                     }
                    
                 }
-                else if(_objectDataList[i] == (int)GroundType.Enemy)
+                else if(_mObjectDataList[i] == (int)MObjectType.Enemy)
                 {
                     _enemyPosList.Add(transform.position);
                 }
@@ -208,7 +256,7 @@ namespace Momoya
                 }
 
             }
-            
+            transform.position = new Vector3(startPos.x, this.transform.position.y , startPos.z);
         }
 
         //床を作る関数
@@ -241,7 +289,7 @@ namespace Momoya
             //widthがオブジェクトデータの総数になるまで回し続ける
             while (true)
             {
-                if (_searchWidth * _searchWidth == _objectDataList.Count)
+                if (_searchWidth * _searchWidth == _mObjectDataList.Count)
                 {
                     //同じだったら抜ける
                     break;

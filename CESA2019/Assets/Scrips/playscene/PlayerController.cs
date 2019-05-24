@@ -74,8 +74,7 @@ namespace Momoya
         private KeyCode _dashKey;                                        //ダッシュキー    
         [SerializeField]
         private KeyCode _jumpKey;                                        //ジャンプキー
-      
-
+ 
         private string _beforeStateName;                                 //変更前のステート名
         public StateProcessor _stateProcessor = new StateProcessor();    //プロセッサー
         //ハンマーに必要な変数
