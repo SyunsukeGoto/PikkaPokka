@@ -111,6 +111,9 @@ public class PatrolEnemy : MonoBehaviour
         {
             _nma.SetDestination(transform.position);
         }
+
+        new GameObject();
+
     }
 
     // 巡回
