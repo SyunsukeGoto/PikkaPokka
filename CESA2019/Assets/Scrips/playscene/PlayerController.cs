@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 /////////////
 using Momoya;
 using Momoya.PlayerState;
@@ -127,6 +128,11 @@ namespace Momoya
         [SerializeField]
         private FollowingCamera _camera;
         Transform current;//位置frame前のトランスフォーム
+
+        [SerializeField]
+        private string _gameClearSceneName;
+        [SerializeField]
+        private string _gameOverSceneName;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -809,14 +815,15 @@ namespace Momoya
         /// </summary>
         public void GameOver()
         {
-
+            SceneManager.LoadScene(_gameOverSceneName);
         }
         /// <summary>
         /// ゴールの関数
         /// </summary>
         public void StageGoal()
         {
-
+            
+            SceneManager.LoadScene(_gameClearSceneName);
         }
 
         public float SetAngle()
