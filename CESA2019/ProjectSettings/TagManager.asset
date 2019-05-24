@@ -12,6 +12,7 @@ TagManager:
   - Goal
   - CrushableBox
   - Crushablebox
+  - Hammer
   layers:
   - Default
   - TransparentFX
@@ -25,9 +26,9 @@ TagManager:
   - Floor
   - Bloom
   - 
-  - 
-  - 
-  - 
+  - Obstacle
+  - Player
+  - Search
   - 
   - 
   - 
