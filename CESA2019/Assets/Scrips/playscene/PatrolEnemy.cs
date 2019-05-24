@@ -95,6 +95,8 @@ namespace Makoto
             _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
         }
 
+      
+
         // Update is called once per frame
         void Update()
         {

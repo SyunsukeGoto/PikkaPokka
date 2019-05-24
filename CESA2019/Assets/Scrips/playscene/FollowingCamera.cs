@@ -46,13 +46,14 @@ public class FollowingCamera : MonoBehaviour
     private float mouseYSensitivity = 5.0f;
     [SerializeField]
     private float scrollSensitivity = 5.0f;
-
+    [SerializeField]
+    private float _rotationSpped = 1.0f;
     void LateUpdate()
     {
-        if (Input.GetMouseButton(1))
-        {
-            updateAngle(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        }
+
+        azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
+        Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
+        //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
         updateDistance(Input.GetAxis("Mouse ScrollWheel"));
 
         var lookAtPos = target.transform.position + offset;
@@ -77,7 +78,7 @@ public class FollowingCamera : MonoBehaviour
 
     void updatePosition(Vector3 lookAtPos)
     {
-        var da = (-player.Angle + 270)* Mathf.Deg2Rad;
+        var da = (azimuthalAngle)* Mathf.Deg2Rad;
         var dp = polarAngle * Mathf.Deg2Rad;
         transform.position = new Vector3(
             lookAtPos.x + distance * Mathf.Sin(dp) * Mathf.Cos(da),
