@@ -23,7 +23,7 @@ public class RotationFerrisWheel : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _zAngle = 1f;   
+        _zAngle = 0.5f;   
     }
 
     /// <summary>
