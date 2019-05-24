@@ -74,8 +74,7 @@ namespace Momoya
         private KeyCode _dashKey;                                        //ダッシュキー    
         [SerializeField]
         private KeyCode _jumpKey;                                        //ジャンプキー
-        [SerializeField]
-        private KeyCode _strikeKey;                                      //ハンマーで殴るキー
+      
 
         private string _beforeStateName;                                 //変更前のステート名
         public StateProcessor _stateProcessor = new StateProcessor();    //プロセッサー
@@ -382,7 +381,7 @@ namespace Momoya
         void ChargeHammerPower()
         {
             //ハンアーキーを押されたら
-            if (Input.GetKey(_strikeKey))
+            if (Input.GetButton("Z"))
             {
                 _hammerPower += Time.deltaTime * _hammerChargSpeed;
             }
@@ -573,7 +572,7 @@ namespace Momoya
 
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetKeyDown(_strikeKey))
+            if (Input.GetButtonDown("Z"))
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -613,7 +612,7 @@ namespace Momoya
             }
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetKeyDown(_strikeKey))
+            if (Input.GetButtonDown("Z"))
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -653,7 +652,7 @@ namespace Momoya
             }
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetKeyDown(_strikeKey))
+            if (Input.GetButtonDown("Z"))
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -670,33 +669,37 @@ namespace Momoya
         public void Strike()
         {
             _dashSpeed = Speedlimit;
-           // Move();//歩く
-
-            //ハンマーパワーをチャージ
-            ChargeHammerPower();
-
-            //ハンマーキーを離したら
-            if (Input.GetKeyUp(_strikeKey))
+            // Move();//歩く
+            if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false)
             {
-                _hammerLevel = LevelCheck( _importantPoint, (int)_hammerPower);
-                //パワーを0にする
-                _hammerPower = 0.0f;
-                _decisionHammerState = _nowHammerState;
-                _nowHammerState = (int)HammerState.NONE;
-                //たたき状態フラグがfalseならふらふら状態へ
-                if (_strikeMode == false)
-                {
-                   _stateProcessor.State = _stateConfusion;
-                }
-                else
-                {
-                    //trueなら箱を壊すステートへ
-                    _stateProcessor.State = _stateBreakBox;
-                }
+                //ハンマーパワーをチャージ
+                ChargeHammerPower();
 
-                
+                //ハンマーキーを離したら
+                if (Input.GetButtonUp("Z"))
+                {
+                    _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
+                    //パワーを0にする
+                    _hammerPower = 0.0f;
+                    _decisionHammerState = _nowHammerState;
+                    _nowHammerState = (int)HammerState.NONE;
+                    //たたき状態フラグがfalseならdefault状態へ
+                    if (_strikeMode == false)
+                    {
+                        _stateProcessor.State = _stateDefault;
+                    }
+                    else
+                    {
+                        //trueなら箱を壊すステートへ
+                        _stateProcessor.State = _stateBreakBox;
+                    }
+
+                }  
 
                 //_stateProcessor.State = _stateDefault;
+            }else
+            {
+                _stateProcessor.State = _stateDefault;
             }
 
             //if (_decisionHammerState != (int)HammerState.NONE)
@@ -738,7 +741,7 @@ namespace Momoya
                 }
 
                 //ハンマキーーを押されたらハンマー状態へ
-                if (Input.GetKeyDown(_strikeKey))
+                if (Input.GetButtonDown("Z"))
                 {
                     _stateProcessor.State = _stateStrike;
                 }
