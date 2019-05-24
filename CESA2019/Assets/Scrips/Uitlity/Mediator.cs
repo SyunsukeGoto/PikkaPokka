@@ -14,6 +14,6 @@ using UnityEngine;
 // あいうえお
 public class Mediator : MonoBehaviour
 {
-
+    
    
 }
