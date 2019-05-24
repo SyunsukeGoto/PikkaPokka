@@ -30,8 +30,6 @@ namespace Goto
         public enum LightRange
         {
             NONE,
-            WEAK,
-            NOMAL,
             STRENGTH,
         }
 
@@ -95,30 +93,10 @@ namespace Goto
                 // フラグが立っていなかったら
                 if (!_starflag.IsFlag((uint)StarFlag.GENERATE_STATE))
                 {
-                    switch (_playerController.GetHammerState())
-                    {
-                        case (int)Momoya.PlayerController.HammerState.WEAK:
-                            _shineRange = 1.5f;
-                            _radius = 3.5f;
-                            _lightRange = LightRange.WEAK;
-                            break;
 
-                        case (int)Momoya.PlayerController.HammerState.NOMAL:
-                            _shineRange = 2.5f;
-                            _radius = 2.5f;
-                            _lightRange = LightRange.NOMAL;
-                            break;
-
-                        case (int)Momoya.PlayerController.HammerState.STRENGTH:
-                            _shineRange = 3.5f;
-                            _radius = 1.5f;
-                            _lightRange = LightRange.STRENGTH;
-                            break;
-
-                        default:
-                            _lightRange = LightRange.NONE;
-                            break;
-                    }
+                    _shineRange = 3.5f;
+                    _radius = 1.5f;
+                    _lightRange = LightRange.STRENGTH;
 
                     for (int i = 0; i < _starObject.Length; i++)
                     {
@@ -138,7 +116,6 @@ namespace Goto
         {
             if (_starflag.IsFlag((uint)StarFlag.GENERATE_STATE) && !_finishFlag)
             {
-              
                 _time++;
                 if (_time > STAR_LIFE)
                 {
@@ -180,19 +157,15 @@ namespace Goto
 
         public float GetLightRangeRadius()
         {
-            switch(_lightRange)
+            if (_lightRange != LightRange.NONE)
             {
-                case LightRange.NONE:
-                    return 0.0f;
-                case LightRange.WEAK:
-                    return 1.0f;
-                case LightRange.NOMAL:
-                    return 1.5f;
-                case LightRange.STRENGTH:
-                    return 2.0f;
+                return 2f;
             }
+            else
+            {
+                return 0f;
 
-            return 0.0f;
+            }
         }
     }
 }
