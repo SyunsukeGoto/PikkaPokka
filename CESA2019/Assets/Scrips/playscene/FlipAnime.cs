@@ -32,7 +32,7 @@ public class FlipAnime : MonoBehaviour
 
         if (_time > _interval)
         {
-            if(_currentNum + 1 > _sprites.Length)
+            if(_currentNum + 1 >= _sprites.Length)
             {
                 _currentNum = 0;
             }
