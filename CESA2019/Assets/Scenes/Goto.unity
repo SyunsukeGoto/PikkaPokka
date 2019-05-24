@@ -336,21 +336,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _width: 1.6
-  _objFileName: ObjectData
+  _iObjFileName: IObjectData
+  _mObjFileName: MObjectData
   _stageFileName: StageData
-  _stageNumber: 7
-  _gameObj:
-  - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
+  _stageNumber: 0
+  _mGameObj:
   - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
-  - {fileID: 4727752628824407677, guid: 0fff8edebe6227241ada58c704cfa100, type: 3}
   - {fileID: 6920692828140726796, guid: 88f2fad642451a54881e40d0543a7b4b, type: 3}
-  - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
-  - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
+  - {fileID: 2578148503860108335, guid: a7f84799410090a43ae546255181a0eb, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  _iGameObj:
+  - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
+  - {fileID: 390917293714913340, guid: 15abc9dc19ccef44fb10cbad1febdcd2, type: 3}
+  - {fileID: 4727752628824407677, guid: 0fff8edebe6227241ada58c704cfa100, type: 3}
+  - {fileID: 7752023858772504992, guid: bbc8a4dec539e4b449f0178359eb95f8, type: 3}
+  - {fileID: 7752023858772504992, guid: bbc8a4dec539e4b449f0178359eb95f8, type: 3}
+  - {fileID: 7752023858772504992, guid: bbc8a4dec539e4b449f0178359eb95f8, type: 3}
+  - {fileID: 7752023858772504992, guid: bbc8a4dec539e4b449f0178359eb95f8, type: 3}
   _floorObj:
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   - {fileID: 3016171406873385175, guid: 279cd660161ef244a9889a7271144759, type: 3}
-  - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
-  - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}

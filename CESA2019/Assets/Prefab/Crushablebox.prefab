@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7752023858772504995}
   - component: {fileID: 7351278984546074513}
   - component: {fileID: 8988206025841877970}
+  - component: {fileID: 3858047883945302937}
   m_Layer: 0
   m_Name: Crushablebox
   m_TagString: CrushableBox
@@ -122,3 +123,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _star: {fileID: 2578148503860108335, guid: a7f84799410090a43ae546255181a0eb, type: 3}
+--- !u!114 &3858047883945302937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752023858772504992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82e7169273d2a498950d733b28676c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 0}
