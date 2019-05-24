@@ -31,6 +31,16 @@ namespace Makoto
             _anime.SetTrigger("Walk");
         }
 
+        public void SwingDown()
+        {
+            _anime.SetTrigger("SwingDown");
+        }
+
+        public void Masturbation()
+        {
+            _anime.SetTrigger("Masturbation");
+        }
+
         public void WeakAttack()
         {
             _anime.SetTrigger("WeakAttack");
