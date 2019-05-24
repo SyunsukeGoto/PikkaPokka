@@ -3,241 +3,248 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolEnemy : MonoBehaviour
+namespace Makoto
 {
-    private enum State
+    public class PatrolEnemy : MonoBehaviour
     {
-        Patrol, // 巡回
-        Chase,  // 追跡
-    }
-
-    [SerializeField, Range(0.0f, 100.0f),Header("移動速度")]
-    private float _speed;
-
-    [SerializeField, Header("プレイヤー")]
-    private GameObject _player;
-
-    [SerializeField, Header("光のやつ")]
-    private Goto.StarMove _starMove;
-
-    Goto.StarMove StarMove
-    {
-        set { _starMove = value; }
-    }
-
-    [SerializeField, Range(0.0f, 100.0f), Header("視界の距離")]
-    private float _searchRange;
-
-    [SerializeField, Range(0.0f, 360.0f), Header("視界の範囲")]
-    private float _searchAngle;
-
-    [SerializeField, Header("ナビメッシュエージェント")]
-    private NavMeshAgent _nma;
-
-    [SerializeField, Header("巡回ポイント")]
-    private GameObject[] _patrolPointA;
-    
-    [SerializeField, Header("巡回ポイント")]
-    private GameObject[] _patrolPointB;
-
-    [SerializeField, Header("追跡するか")]
-    private bool _isChase;
-
-    [SerializeField, Header("攻撃できるか")]
-    private bool _isAttack;
-
-    [SerializeField, Header("プレイヤーに反撃するか")]
-    private bool _isCounterAttack;
-
-    [SerializeField, Header("精子")]
-    private bool _active;
-
-    [SerializeField, Range(0.0f, 10.0f), Header("巡回状態に戻るまでの時間")]
-    private float _stateReturnTime;
-
-    private bool _bFlag;
-
-    public bool Active
-    {
-        set { _active = value; }
-    }
-
-    public bool IsAttack
-    {
-        get { return _isAttack; }
-    }
-
-    // 現在向かっている巡回ポイントのナンバー
-    private int _currentPoint;
-
-    // 現在のステート
-    private State _currentState;
-
-    private float _time;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _currentPoint = 0;
-
-        _currentState = State.Patrol;
-
-        _active = true;
-
-        _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _nma.speed = _speed;
-
-        if (_active)
+        public enum State
         {
-            switch (_currentState)
-            {
-                case State.Patrol:
-                    Patrol();
-                    Debug.Log("Patrol");
-                    break;
-                case State.Chase:
-                    Chase();
-                    Debug.Log("Chase");
-                    break;
-            }
-        }
-        else
-        {
-            _nma.SetDestination(transform.position);
+            Patrol, // 巡回
+            Chase,  // 追跡
         }
 
-        new GameObject();
+        [SerializeField, Range(0.0f, 100.0f), Header("移動速度")]
+        private float _speed;
 
-    }
+        [SerializeField, Header("プレイヤー")]
+        private GameObject _player;
 
-    // 巡回
-    private void Patrol()
-    {
-        Vector3 v;
-        if (!_bFlag)
+        [SerializeField, Header("光のやつ")]
+        private Goto.StarMove _starMove;
+
+        Goto.StarMove StarMove
         {
-            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
-
-            v = _patrolPointA[_currentPoint].transform.position - transform.position;
-            v.y = 0;
-
-            if (v.magnitude < 0.1f)
-            {
-                if (_currentPoint + 1 >= _patrolPointA.Length)
-                {
-                    _currentPoint = 0;
-                }
-                else
-                {
-                    _currentPoint++;
-                }
-            }
-        }
-        else
-        {
-            _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
-
-            v = _patrolPointB[_currentPoint].transform.position - transform.position;
-            v.y = 0;
-
-            if (v.magnitude < 0.1f)
-            {
-                if (_currentPoint + 1 >= _patrolPointB.Length)
-                {
-                    _currentPoint = 0;
-                }
-                else
-                {
-                    _currentPoint++;
-                }
-            }
+            set { _starMove = value; }
         }
 
-        if(_isChase)
-        {
-            if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
-            {
-                if (IsComeInSight())
-                {
-                    _nma.SetDestination(transform.position);
+        [SerializeField, Range(0.0f, 100.0f), Header("視界の距離")]
+        private float _searchRange;
 
-                    _currentState = State.Chase;
-                }
-            }
-        }
-    }
+        [SerializeField, Range(0.0f, 360.0f), Header("視界の範囲")]
+        private float _searchAngle;
 
-    // 追跡
-    private void Chase()
-    {
-        if(!IsComeInSight())
+        [SerializeField, Header("ナビメッシュエージェント")]
+        private NavMeshAgent _nma;
+
+        [SerializeField, Header("巡回ポイント")]
+        private GameObject[] _patrolPointA;
+
+        [SerializeField, Header("巡回ポイント")]
+        private GameObject[] _patrolPointB;
+
+        [SerializeField, Header("追跡するか")]
+        private bool _isChase;
+
+        [SerializeField, Header("攻撃できるか")]
+        private bool _isAttack;
+
+        [SerializeField, Header("プレイヤーに反撃するか")]
+        private bool _isCounterAttack;
+
+        [SerializeField, Header("精子")]
+        private bool _active;
+
+        [SerializeField, Range(0.0f, 10.0f), Header("巡回状態に戻るまでの時間")]
+        private float _stateReturnTime;
+
+        private bool _bFlag;
+
+        public bool Active
         {
-            _time += Time.deltaTime;
-        }
-        else
-        {
-            _time = 0;
+            set { _active = value; }
         }
 
-        if (_time >= _stateReturnTime)
+        public bool IsAttack
         {
+            get { return _isAttack; }
+        }
+
+        // 現在向かっている巡回ポイントのナンバー
+        private int _currentPoint;
+
+        // 現在のステート
+        private State _currentState;
+
+        private float _time;
+
+        public State CurrentState
+        {
+            get { return _currentState; }
+        }
+
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            _currentPoint = 0;
+
             _currentState = State.Patrol;
+
+            _active = true;
+
+            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+        }
+
+      
+
+        // Update is called once per frame
+        void Update()
+        {
+            _nma.speed = _speed;
+
+            if (_active)
+            {
+                switch (_currentState)
+                {
+                    case State.Patrol:
+                        Patrol();
+                        Debug.Log("Patrol");
+                        break;
+                    case State.Chase:
+                        Chase();
+                        Debug.Log("Chase");
+                        break;
+                }
+            }
+            else
+            {
+                _nma.SetDestination(transform.position);
+            }
+        }
+
+        // 巡回
+        private void Patrol()
+        {
+            Vector3 v;
+            if (!_bFlag)
+            {
+                _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+
+                v = _patrolPointA[_currentPoint].transform.position - transform.position;
+                v.y = 0;
+
+                if (v.magnitude < 0.1f)
+                {
+                    if (_currentPoint + 1 >= _patrolPointA.Length)
+                    {
+                        _currentPoint = 0;
+                    }
+                    else
+                    {
+                        _currentPoint++;
+                    }
+                }
+            }
+            else
+            {
+                _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
+
+                v = _patrolPointB[_currentPoint].transform.position - transform.position;
+                v.y = 0;
+
+                if (v.magnitude < 0.1f)
+                {
+                    if (_currentPoint + 1 >= _patrolPointB.Length)
+                    {
+                        _currentPoint = 0;
+                    }
+                    else
+                    {
+                        _currentPoint++;
+                    }
+                }
+            }
+
+            if (_isChase)
+            {
+                if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
+                {
+                    if (IsComeInSight())
+                    {
+                        _nma.SetDestination(transform.position);
+
+                        _currentState = State.Chase;
+                    }
+                }
+            }
+        }
+
+        // 追跡
+        private void Chase()
+        {
+            if (!IsComeInSight())
+            {
+                _time += Time.deltaTime;
+            }
+            else
+            {
+                _time = 0;
+            }
+
+            if (_time >= _stateReturnTime)
+            {
+                _currentState = State.Patrol;
+                _currentPoint = 0;
+            }
+            else
+            {
+                _nma.SetDestination(_player.transform.position);
+            }
+        }
+
+        // 視界内にプレイヤーが存在するかを調べる
+        private bool IsComeInSight()
+        {
+            Vector3 v = _player.transform.position - transform.position;
+
+            if (v.magnitude <= _searchRange)
+            {
+                float r = (transform.rotation.y + 45) * Mathf.Deg2Rad;
+
+                Vector3 v2 = new Vector3(Mathf.Cos(r), 0, Mathf.Sin(r));
+
+                float dot = Vector3.Dot(v.normalized, v2.normalized);
+
+                float rad = Mathf.Acos(dot);
+
+                if (rad < _searchAngle * Mathf.Deg2Rad)
+                {
+                    if (!Physics.Linecast(transform.position, _player.transform.position, LayerMask.GetMask("Obstacle")))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        // 巡回ポイントをBに変更する
+        public void BflagOn()
+        {
+            _bFlag = true;
             _currentPoint = 0;
         }
-        else
+
+        private void OnTriggerEnter(Collider other)
         {
-            _nma.SetDestination(_player.transform.position);
-        }
-    }
-
-    // 視界内にプレイヤーが存在するかを調べる
-    private bool IsComeInSight()
-    {
-        Vector3 v = _player.transform.position - transform.position;
-
-        if (v.magnitude <= _searchRange)
-        {
-            float r = (transform.rotation.y + 45) * Mathf.Deg2Rad;
-
-            Vector3 v2 = new Vector3(Mathf.Cos(r), 0, Mathf.Sin(r));
-
-            float dot = Vector3.Dot(v.normalized, v2.normalized);
-
-            float rad = Mathf.Acos(dot);
-
-            if (rad < _searchAngle * Mathf.Deg2Rad)
+            if (other.tag == "Attack")
             {
-                if (!Physics.Linecast(transform.position, _player.transform.position, LayerMask.GetMask("Obstacle")))
+                Active = false;
+
+                if (_isCounterAttack)
                 {
-                    return true;
+                    // プレイヤーの体力を減らす
                 }
-            }
-        }
-        return false;
-    }
-
-    // 巡回ポイントをBに変更する
-    public void BflagOn()
-    {
-        _bFlag = true;
-        _currentPoint = 0;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Attack")
-        {
-            Active = false;
-
-            if(_isCounterAttack)
-            {
-                // プレイヤーの体力を減らす
             }
         }
     }
