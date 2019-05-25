@@ -1559,7 +1559,8 @@ MonoBehaviour:
   crushableBox: {fileID: 0}
   _camera: {fileID: 8259441894627478420}
   _gameClearSceneName: ClearScene
-  _gameOverSceneName: 
+  _gameOverSceneName: GameOverScene
+  _playerHP: 50
   _chargeText: {fileID: 0}
   _levelText: {fileID: 0}
 --- !u!54 &3125565203938628331
