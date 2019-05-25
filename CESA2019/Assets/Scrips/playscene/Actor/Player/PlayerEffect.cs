@@ -13,7 +13,7 @@ public class PlayerEffect : MonoBehaviour
 {
 
     [SerializeField]
-    private HitEffect _hitEffect = null;
+    private HitEffect _hitEffect = null;    // ハンマーエフェクト
 
     private Momoya.PlayerController _playerController;
 
@@ -27,6 +27,7 @@ public class PlayerEffect : MonoBehaviour
     {
         // ヒットエフェクトを再生
         // 0はHammerStateのNONE
+        // ハンマーの先端からエフェクトが出るようになっています
         Momoya.PlayerController.HammerState none = Momoya.PlayerController.HammerState.NONE;
         if (_playerController.DecisionHammerState != (int)none)
         {
