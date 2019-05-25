@@ -42,13 +42,15 @@ Shader "Effect/Custom/Outline"
 
 		Tags 
 		{ 
-			"RenderType"="Opaque" 
+			"RenderType"="Transparent" 
 			"IgnoreProjector"="True"
+			"Queue"="Transparent"
 		}
 
 		// アウトラインを適用するパス
         Pass
         {
+			Blend SrcAlpha OneMinusSrcAlpha
 			Cull Front
 			//Cull Off
 
