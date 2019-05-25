@@ -155,10 +155,14 @@ namespace Momoya
                 go.GetComponent<Makoto.Enemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
                 go.transform.position = _enemyPosList[i];
                 go.transform.parent = Enemys.transform;
+
+                // Actor: Tamamura Shuuki
+                // Add: 観測者に生成されたことを伝える
+                ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Makoto.Enemy>());
             }
-       
-           // Debug.Log("作った！" + go.transform.position);
-   
+
+            // Debug.Log("作った！" + go.transform.position);
+
         }
 
         //ファイル読み込み
@@ -236,6 +240,10 @@ namespace Momoya
                         player = go;
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
+
+                        // Actor: Tamamura Shuuki
+                        // Add: 観測者に生成されたことを伝える
+                        ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Player>());
                     }
                    
                 }

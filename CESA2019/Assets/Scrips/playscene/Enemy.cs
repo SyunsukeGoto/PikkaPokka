@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Makoto
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Actor
     {
         [SerializeField, Header("移動速度")]
         private float _speed;
@@ -47,6 +47,8 @@ namespace Makoto
         {
             Debug.Log("誕生!" + this.transform.position);
             _nma.enabled = true;
+
+            _type = ActorType.ENEMY;   // アクタータイプはエネミーに
         }
 
         // Update is called once per frame
