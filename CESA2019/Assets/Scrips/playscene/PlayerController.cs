@@ -931,12 +931,18 @@ namespace Momoya
           
         }
 
+        // Actor: Tamamura Shuuki
+        // Add: プロパティ項目の追加
+        #region プロパティ
+        public int DecisionHammerState
+        {
+            get { return _decisionHammerState; }
+        }
+        #endregion
         public void SubHP(int subNum = 10)
         {
             _playerHP -= subNum;
         }
 
     }
-
-    
 }

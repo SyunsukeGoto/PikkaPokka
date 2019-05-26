@@ -16,7 +16,7 @@ public class Terribly : MonoBehaviour
     private Material _material = null;
 
     [SerializeField, Range(0, 30)]
-    private int _iteration = 0;
+    private int _iteration = 1;
 
     [SerializeField, Range(0, 1)]
     private float _intensity = 0.1f;
@@ -54,6 +54,7 @@ public class Terribly : MonoBehaviour
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
+
         var width = source.width;
         var height = source.height;
         var currentSource = source;
@@ -61,7 +62,7 @@ public class Terribly : MonoBehaviour
         var i = 0;
         RenderTexture currentDest = null;
 
-        
+
         // ダウンサンプリング
         for (; i < _iteration; i++)
         {
@@ -96,7 +97,11 @@ public class Terribly : MonoBehaviour
         Graphics.Blit(currentSource, destination, _material, 1);
         _material.SetFloat("_Intensity", _intensity);
         Graphics.Blit(currentSource, destination, _material, 2);
-        RenderTexture.ReleaseTemporary(currentSource);
+
+        if (_iteration > 0)
+        {
+            RenderTexture.ReleaseTemporary(currentSource);
+        }
     }
 
     // ---------------------------------------------------
@@ -142,6 +147,12 @@ public class Terribly : MonoBehaviour
     public void Stop()
     {
         // ドキドキ関数を空にする
-        _terribly = (() => { return true; });
+        _terribly = (() => {
+            _intensity = 1;
+            _calmDown = false;
+            _iteration = 0;
+            _intensity = Mathf.Lerp(_intensity, 0, Time.deltaTime);
+            return true;
+        });
     }
 }
