@@ -153,6 +153,7 @@ namespace Momoya
         private float _playerAngle ;
         private float _hor;
         private float _ver;
+        public float _top, _left, _down, _right; //移動制限
         // Use this for initialization
         void Start()
         {
@@ -493,12 +494,12 @@ namespace Momoya
         {
              _hor = Input.GetAxisRaw("Horizontal");
              _ver = Input.GetAxisRaw("Vertical");
-            
 
+            Movementrestriction();
          //   Debug.Log("インプットホライズン" + _hor);
          //   Debug.Log("インプットバーティカル" + _ver);
-           
-         
+
+
 
             FallCheck();
             //転びflagがtrueなら転び状態へ
@@ -912,6 +913,29 @@ namespace Momoya
         
 
         }
+
+        //移動制限
+        void Movementrestriction()
+        {
+            if(transform.position.x > _left)
+            {
+                transform.position = new Vector3(_left, transform.position.y, transform.position.z);
+            }
+            if (transform.position.x < _right)
+            {
+                transform.position = new Vector3(_right, transform.position.y, transform.position.z);
+            }
+            if (transform.position.z < _top)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, _top);
+
+            }
+            if (transform.position.z > _down)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, _down);
+            }
+        }
+
         //たたき状態を分けるプロパティ
         public bool StrikeMode
         {

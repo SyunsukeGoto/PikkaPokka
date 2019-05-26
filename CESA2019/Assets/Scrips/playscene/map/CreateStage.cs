@@ -100,7 +100,8 @@ namespace Momoya
         List<Vector3> _enemyPosList = new List<Vector3>(); //エネミーのポジションを把握するリスト
 
         GameObject test;
-
+        GameObject _setPlayer;
+        public float _top, _left, _down, _right; //移動制限
         // Start is called before the first frame update
         void Start()
         {
@@ -136,6 +137,10 @@ namespace Momoya
             {
                 enemyFlag = true;
                 CreateEnemy();
+                _setPlayer.GetComponent<PlayerController>()._left = _left;
+                _setPlayer.GetComponent<PlayerController>()._right = _right;
+                _setPlayer.GetComponent<PlayerController>()._top = _top;
+                _setPlayer.GetComponent<PlayerController>()._down = _down;
                 time = 0.0f; 
              
             }
@@ -230,6 +235,20 @@ namespace Momoya
         {
             for (int i = _mObjectDataList.Count - 1; i >= 0; i--)
             {
+                if(i == _mObjectDataList.Count -1)
+                {
+                    _down = transform.position.z + 0.5f;
+                    _right = transform.position.x - 0.5f;
+                }
+
+                if(i == 0)
+                {
+                    _top = transform.position.z - 0.5f;
+                    _left = transform.position.x + 0.5f;
+                  
+                }
+
+
                 if (_mObjectDataList[i] != -1 && _mObjectDataList[i] != (int)MObjectType.Enemy)
                 {
                     GameObject go = _mGameObj[_mObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
@@ -238,7 +257,8 @@ namespace Momoya
                     if(_mObjectDataList[i] == (int)MObjectType.Player)
                     {
                         player = go;
-                       // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
+                        _setPlayer = go;
+                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
 
                         // Actor: Tamamura Shuuki
@@ -277,6 +297,8 @@ namespace Momoya
                     GameObject go = Instantiate(_floorObj[_stageDataList[i]]);
                     go.transform.position = this.transform.position;
                 }
+
+
                 if ((i) % _searchWidth != 0)
                 {
                     transform.position = new Vector3(this.transform.position.x + _width, this.transform.position.y, this.transform.position.z);
