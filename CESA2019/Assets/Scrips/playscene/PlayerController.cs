@@ -682,7 +682,7 @@ namespace Momoya
                 //ハンマーキーを離したら
                 if (Input.GetButtonUp("Z"))
                 {
-                    _anime.StrengthAttack();
+                    _anime.Masturbation();
                     SubHP();//HPを減らす
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
