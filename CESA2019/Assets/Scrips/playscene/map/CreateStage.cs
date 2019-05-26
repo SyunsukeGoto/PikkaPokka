@@ -240,7 +240,7 @@ namespace Momoya
                         player = go;
                        // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
                         startPlayerPos = go.transform.position;
-
+                        go.GetComponent<PlayerController>()._createStage = this;
                         // Actor: Tamamura Shuuki
                         // Add: 観測者に生成されたことを伝える
                         ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Player>());
@@ -308,6 +308,11 @@ namespace Momoya
             }
 
 
+        }
+
+        public int GetStageNum
+        {
+            get { return _stageNumber; }
         }
     }
 
