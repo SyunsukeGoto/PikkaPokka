@@ -23,27 +23,22 @@ namespace Makoto
 
         public void Idle()
         {
-            _anime.SetTrigger("Idle");
+            _animator.SetTrigger("Idle");
         }
 
         public void Walk()
         {
-            _anime.SetTrigger("Walk");
+            _animator.SetTrigger("Walk");
         }
 
-        public void WeakAttack()
+        public void FrontSwing()
         {
-            _anime.SetTrigger("WeakAttack");
+            _animator.SetTrigger("FrontSwing");
         }
 
-        public void NomalAttack()
+        public void Masturbation()
         {
-            _anime.SetTrigger("NomalAttack");
-        }
-
-        public void StrengthAttack()
-        {
-            _anime.SetTrigger("StrengthAttack");
+            _animator.SetTrigger("Masturbation");
         }
     }
 }

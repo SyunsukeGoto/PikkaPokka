@@ -1534,7 +1534,7 @@ Animator:
   m_GameObject: {fileID: 3125565203938628340}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5d422094fe6619741925013b7f237884, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c391a266c507054f82c7e9d113ef1f6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1590,7 +1590,8 @@ MonoBehaviour:
   crushableBox: {fileID: 0}
   _camera: {fileID: 8259441894627478420}
   _gameClearSceneName: ClearScene
-  _gameOverSceneName: 
+  _gameOverSceneName: GameOverScene
+  _playerHP: 50
   _chargeText: {fileID: 0}
   _levelText: {fileID: 0}
 --- !u!54 &3125565203938628331

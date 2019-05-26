@@ -131,7 +131,9 @@ namespace Momoya
         private string _gameClearSceneName;
         [SerializeField]
         private string _gameOverSceneName;
-
+        [SerializeField]
+        private int _playerHP = 50; //プレイヤーのHP 
+        
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
         public StateWalk _stateWalk = new StateWalk();                          //歩き状態
@@ -209,7 +211,10 @@ namespace Momoya
             current = this.transform;
             PlayerCtrl();
             //DebugCtrl(); //デバッグ用
-
+            if(_playerHP <= 0)
+            {
+                _stateProcessor.State = _stateGameOver;
+            }
             //Debug.Log(_nowHammerState.ToString());
         //    Debug.Log(_decisionHammerState.ToString());
             if (_nowHammerState == (int)HammerState.NONE)
@@ -393,10 +398,10 @@ namespace Momoya
 
             if(_strikeMode == false)
             {
-                if (_hammerPower > 5)
-                    _nowHammerState = (int)HammerState.WEAK;
+                if (_hammerPower > 0)
+                    _nowHammerState = (int)HammerState.STRENGTH;
                 if (_hammerPower > 10)
-                    _nowHammerState = (int)HammerState.NOMAL;
+                    _nowHammerState = (int)HammerState.STRENGTH;
                 if (_hammerPower > 15)
                     _nowHammerState = (int)HammerState.STRENGTH;
             }
@@ -433,12 +438,12 @@ namespace Momoya
                 }
            }
             //アニメーター変更
-            switch (rLevel)
-            {
-                case (int)HammerState.WEAK: _anime.WeakAttack(); break;
-                case (int)HammerState.NOMAL: _anime.NomalAttack(); break;
-                case (int)HammerState.STRENGTH: _anime.StrengthAttack(); break;
-            }
+            //switch (rLevel)
+            //{
+            //    case (int)HammerState.WEAK: _anime.WeakAttack(); break;
+            //    case (int)HammerState.NOMAL: _anime.NomalAttack(); break;
+            //    case (int)HammerState.STRENGTH: _anime.StrengthAttack(); break;
+            //}
 
 
             return rLevel; 
@@ -677,6 +682,8 @@ namespace Momoya
                 //ハンマーキーを離したら
                 if (Input.GetButtonUp("Z"))
                 {
+                    _anime.StrengthAttack();
+                    SubHP();//HPを減らす
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
                     _hammerPower = 0.0f;
@@ -924,7 +931,6 @@ namespace Momoya
           
         }
 
-
         // Actor: Tamamura Shuuki
         // Add: プロパティ項目の追加
         #region プロパティ
@@ -933,5 +939,10 @@ namespace Momoya
             get { return _decisionHammerState; }
         }
         #endregion
+        public void SubHP(int subNum = 10)
+        {
+            _playerHP -= subNum;
+        }
+
     }
 }
