@@ -146,11 +146,14 @@ namespace Momoya
         public StateGameOver _stateGameOver = new StateGameOver();              //ゲームオーバー状態
         public StateGoal _stateGoal = new StateGoal();                          //ゴール状態
         public StateBreakBox _stateBreakBox = new StateBreakBox();              //箱を壊す状態
+        public CreateStage _createStage;                                        //クリエイトステージ
+
         //////////デバッグ用
         //////////デバッグ用
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
         private float _playerAngle ;
+        private float _currentAngle;//前のframeアングル
         private float _hor;
         private float _ver;
         // Use this for initialization
@@ -209,6 +212,7 @@ namespace Momoya
         void Update()
         {
             current = this.transform;
+            _currentAngle = _playerAngle;
             PlayerCtrl();
             //DebugCtrl(); //デバッグ用
             if(_playerHP <= 0)
@@ -274,12 +278,14 @@ namespace Momoya
             //HorizontalとVerticalの取得
 
             Vector3 dirVec = new Vector3(_ver, 0.0f, _hor);
-   
 
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_camera.Angle * _vec), 1.0f);
 
             _vec = dirVec * _nowSpeed;
             _rotationFlag = true;
             _anime.Walk(); //歩かせる
+
         }
 
         public void ConfusionMove(int confusionValue)
@@ -530,7 +536,7 @@ namespace Momoya
                 //_playerAngle = Mathf.Lerp(_playerAngle, SetAngle(),0.2f);
                 //_playerAngle = SetAngle();
                 // 移動方向に回転
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_camera.Angle * _vec), 1.0f);
+            
               
             }
             else
@@ -831,7 +837,7 @@ namespace Momoya
         /// </summary>
         public void StageGoal()
         {
-            
+            //セレクトシーン来たら実装
             SceneManager.LoadScene(_gameClearSceneName);
         }
 
