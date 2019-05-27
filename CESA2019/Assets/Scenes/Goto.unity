@@ -408,6 +408,10 @@ MonoBehaviour:
   time: 0
   span: 0
   navMeshSurface: {fileID: 592602247}
+  _top: 0
+  _left: 0
+  _down: 0
+  _right: 0
 --- !u!114 &592602247
 MonoBehaviour:
   m_ObjectHideFlags: 0
