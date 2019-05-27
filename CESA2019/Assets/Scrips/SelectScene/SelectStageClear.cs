@@ -101,8 +101,8 @@ public class SelectStageClear : MonoBehaviour
     {
         _verticalTrigger = _vertical;
         _horizontalTrigger = _horizontal;
-        _vertical = -Input.GetAxis("Vertical");
-        _horizontal = Input.GetAxis("Horizontal");
+        _vertical = -Input.GetAxisRaw("Vertical");
+        _horizontal = Input.GetAxisRaw("Horizontal");
         // カウントが2以下だったら
         if (_count < 2.0f)
         {
