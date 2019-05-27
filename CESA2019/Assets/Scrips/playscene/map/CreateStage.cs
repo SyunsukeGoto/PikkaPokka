@@ -109,9 +109,9 @@ namespace Momoya
             _searchWidth = 0;
             _openFilenameExtension = ".csv";
 
-            _MobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _mObjFileName  + _stageNumber+ _openFilenameExtension;
-            _IobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _iObjFileName  +  _stageNumber + _openFilenameExtension;
-            _stageFilePath = Application.dataPath+ "/StreamingAssets" + @"\Data\StageData\" + _stageFileName + _stageNumber +_openFilenameExtension;
+            _MobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _mObjFileName  + SharedData.GetStageNum() + _openFilenameExtension;
+            _IobjFilePath = Application.dataPath + "/StreamingAssets" + @"\Data\StageData\" + _iObjFileName +  SharedData.GetStageNum() + _openFilenameExtension;
+            _stageFilePath = Application.dataPath+ "/StreamingAssets" + @"\Data\StageData\" + _stageFileName + SharedData.GetStageNum() + _openFilenameExtension;
 
             _mObjectDataList = new List<int>(); //データリスト作成
             _iObjectDataList = new List<int>();  

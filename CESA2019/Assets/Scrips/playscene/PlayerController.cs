@@ -831,7 +831,12 @@ namespace Momoya
         /// </summary>
         public void StageGoal()
         {
-            
+            //ステージとステージ到達数が一緒ならステージ到達数を1追加
+            if(SharedData.GetStageNum() == SharedData.GetStageMaxNum())
+            {
+                SharedData.AddStageMaxNum();
+            }
+
             SceneManager.LoadScene(_gameClearSceneName);
         }
 
