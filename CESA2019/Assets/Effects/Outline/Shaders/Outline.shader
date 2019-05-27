@@ -50,6 +50,8 @@ Shader "Effect/Custom/Outline"
 		// アウトラインを適用するパス
         Pass
         {
+			ZTest Always
+
 			Blend SrcAlpha OneMinusSrcAlpha
 			Cull Front
 			//Cull Off
@@ -75,6 +77,7 @@ Shader "Effect/Custom/Outline"
 		// 通常のレンダリングパス
 		Pass
         {
+			
 			Cull Back
 
             CGPROGRAM
@@ -93,6 +96,8 @@ Shader "Effect/Custom/Outline"
                 return col;
             }
             ENDCG
+
+			ZTest Less
         }
     }
 }

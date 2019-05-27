@@ -22,7 +22,7 @@ Shader "Custom/DestructionCone"
 		#pragma geometry geom
 
         #include "UnityCG.cginc"
-		#include "Assets/../CGInclude/MyCG.cginc"
+		#include "Assets/CGInclude/MyCG.cginc"
 
         struct appdata
         {

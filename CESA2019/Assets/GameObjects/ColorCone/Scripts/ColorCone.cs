@@ -12,7 +12,7 @@ public class ColorCone : MonoBehaviour
 {
 
     [SerializeField]
-    private Material _destructionMaterial = null;  // コーン破壊用マテリアル
+    private MeshRenderer _destructionObj = null;  // コーン破壊用マテリアル
 
     private float _param;     // 破壊パラメータ
     private float _scale;
@@ -22,6 +22,8 @@ public class ColorCone : MonoBehaviour
 
     private void Start()
     {
+        
+
         _param = 0;
         _scale = 1;
 
@@ -30,10 +32,10 @@ public class ColorCone : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Destruction();
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    Destruction();
+        //}
 
         _destruction(); // 破壊を実行する
 
@@ -42,8 +44,8 @@ public class ColorCone : MonoBehaviour
         _scale = Mathf.Min(1, Mathf.Max(0, _scale));
 
         // マテリアルに適用
-        _destructionMaterial.SetFloat("_Destruction", _param);
-        _destructionMaterial.SetFloat("_Scale", _scale);
+        _destructionObj.material.SetFloat("_Destruction", _param);
+        _destructionObj.material.SetFloat("_Scale", _scale);
     }
 
     // --------------------------------------------------------------
