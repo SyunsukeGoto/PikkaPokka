@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Goto/Goto.unity
+    path: Assets/Scenes/Goto.unity
     guid: 14cf5d7a2401f464b8a8fe07dc2c4b36
+  - enabled: 1
+    path: Assets/Scenes/PlayerTestScene.unity
+    guid: a989e9f629eb0ef44b7f9c13bcff21e2
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 48c3063a1487cf247aa7318f69aaa683
+  - enabled: 1
+    path: Assets/Scenes/Select.unity
+    guid: 9a9888ea68dcaf24bb62999e6c125945
   m_configObjects: {}
