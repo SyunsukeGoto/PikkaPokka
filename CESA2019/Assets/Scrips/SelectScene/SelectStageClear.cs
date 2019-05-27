@@ -297,10 +297,10 @@ public class SelectStageClear : MonoBehaviour
             }
         }
         // スペースキーを押したら
-        else if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown("joystick button 0")))
+        else if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
         {
             // できるステージだったら
-            if (SharedData._stageMaxNum >= _selectNum + 1)
+            if (SharedData._stageMaxNum >= _selectNum+1)
             {
                 //  セレクトの状態を変える
                 _selectTmp = SeletState.StartSelect;
@@ -329,7 +329,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _StartButton.transform.localPosition
         + new Vector3(100, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
         {
             // 状態を変える
             _selectTmp = SeletState.StartScene;
@@ -352,7 +352,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _backTitleButton.transform.localPosition
         + new Vector3(60, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
         {
             // 状態を変える
             _selectTmp = SeletState.TitleScene;
@@ -375,7 +375,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _backSelectButton.transform.localPosition
         + new Vector3(60, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
         {
             // 状態を変える
             _selectTmp = SeletState.StageSelect;
