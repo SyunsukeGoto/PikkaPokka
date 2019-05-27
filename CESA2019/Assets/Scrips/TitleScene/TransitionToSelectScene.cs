@@ -36,7 +36,7 @@ namespace Goto
         /// </summary>
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 SceneManager.LoadScene(_selectSceneName);
             }

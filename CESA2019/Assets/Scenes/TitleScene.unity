@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5ee61cd5908824299febca10fcdba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectSceneName: Goto
+  _selectSceneName: Select
 --- !u!4 &548686426
 Transform:
   m_ObjectHideFlags: 0
