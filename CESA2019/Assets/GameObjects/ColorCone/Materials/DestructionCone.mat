@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Destruction: 1
+    - _Destruction: 0
     - _DetailNormalMapScale: 1
     - _DispersionFactor: 2
     - _DstBlend: 0
@@ -70,7 +70,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RotationFactor: 90
-    - _Scale: 0
+    - _Scale: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

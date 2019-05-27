@@ -847,7 +847,7 @@ namespace Momoya
         {
 
             //ステージとステージ到達数が一緒ならステージ到達数を1追加
-            if(SharedData.GetStageNum() == SharedData.GetStageMaxNum())
+            if(SharedData.GetStageNum() + 1 == SharedData.GetStageMaxNum())
             {
                 SharedData.AddStageMaxNum();
             }
