@@ -20,10 +20,24 @@ using UnityEngine;
 //----------------------------------------------------------------------
 static public class SharedData
 {
-
     // 共有ステージ番号
     static public int _stageNum = 0;
 
     // 共有ステージのクリア番号
-    static public int _stageMaxNum = 15;
+    static public int _stageMaxNum = 5;
+
+    //  共有ステージ番号の取得
+    static public int GetStageNum() { return _stageNum; }
+
+    // 共有ステージのクリア番号の取得
+    static public int GetStageMaxNum() { return _stageMaxNum; }
+
+    //  共有ステージ番号の代入
+    static public void SetStageNum(int stageNum) { _stageNum = stageNum; }
+
+    // 共有ステージのクリア番号の代入
+    static public void SetStageMaxNum(int stageMaxNum) { _stageMaxNum = stageMaxNum; }
+
+    // 共有ステージのクリア番号の増量
+    static public void AddStageMaxNum() { _stageMaxNum++; }
 }

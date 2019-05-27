@@ -287,10 +287,14 @@ public class SelectStageClear : MonoBehaviour
         // スペースキーを押したら
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            //  セレクトの状態を変える
-            _selectTmp = SeletState.StartSelect;
-            // フラグを変える
-            _hummerFlag = true;
+            // できるステージだったら
+            if (SharedData._stageMaxNum >= _selectNum + 1)
+            {
+                //  セレクトの状態を変える
+                _selectTmp = SeletState.StartSelect;
+                // フラグを変える
+                _hummerFlag = true;
+            }
         }
         // 上キーを押したら
         else if (Input.GetKeyDown(KeyCode.UpArrow))
