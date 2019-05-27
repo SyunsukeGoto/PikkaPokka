@@ -31,8 +31,10 @@ namespace Makoto
             StartCoroutine(GraduallyDown(currentHP, lastHP));
         }
 
-        public IEnumerator GraduallyDown(float currentHP, float lastHP)
+        private IEnumerator GraduallyDown(float currentHP, float lastHP)
         {
+            yield return new WaitForSeconds(1f);
+
             float value = 0f;
 
             for (int i = 0; i < _count; i++)
