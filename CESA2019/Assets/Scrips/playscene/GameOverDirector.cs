@@ -36,7 +36,7 @@ public class GameOverDirector : MonoBehaviour
 
         if(_time > _nextSceneTime)
         {
-            //SceneManager.LoadScene(_nextSceneName);
+            SceneManager.LoadScene(_nextSceneName);
         }
     }
 }

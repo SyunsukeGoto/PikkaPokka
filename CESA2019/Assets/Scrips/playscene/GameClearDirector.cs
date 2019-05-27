@@ -117,7 +117,7 @@ public class GameClearDirector : MonoBehaviour
 
         if (_time > _timeLimit)
         {
-            //SceneManager.LoadScene(_nextSceneName);
+            SceneManager.LoadScene(_nextSceneName);
         }
 
         Debug.Log("walk");

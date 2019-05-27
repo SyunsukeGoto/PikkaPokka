@@ -16962,8 +16962,8 @@ MonoBehaviour:
   _maxX: 0.1
   _minY: 5
   _maxY: 7
-  _nextSceneName: 
-  _nextSceneTime: 0
+  _nextSceneName: Select
+  _nextSceneTime: 5
 --- !u!4 &691281491
 Transform:
   m_ObjectHideFlags: 0
