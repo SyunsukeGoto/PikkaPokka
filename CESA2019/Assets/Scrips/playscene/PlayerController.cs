@@ -131,8 +131,15 @@ namespace Momoya
         private string _gameClearSceneName;
         [SerializeField]
         private string _gameOverSceneName;
-        [SerializeField]
-        private int _playerHP = 50; //プレイヤーのHP 
+        [SerializeField, Header("プレイヤーの最大HP")]
+        private int _playerMaxHP = 100;
+        private int _playerHP; //プレイヤーのHP 
+        [SerializeField, Header("ハンマーのダメージ")]
+        private int _hammerDamage = 5;
+        [SerializeField, Header("お化けのダメージ")]
+        private int _ghostDamage = 10;
+        [SerializeField, Header("HPゲージマネージャー")]
+        private Makoto.HPGaugeManager _hpGaugeManager;
         
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -160,7 +167,7 @@ namespace Momoya
         // Use this for initialization
         void Start()
         {
-
+            _playerHP = _playerMaxHP;
             _playerAngle = -180;
             Debug.Log(_playerAngle);
             //プレイヤーの初期設定
@@ -690,7 +697,7 @@ namespace Momoya
                 if (Input.GetButtonUp("Z"))
                 {
                     _anime.Masturbation();
-                    SubHP();//HPを減らす
+                    HammerDamage();//HPを減らす
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
                     _hammerPower = 0.0f;
@@ -959,6 +966,20 @@ namespace Momoya
         {
            get { return _playerAngle; }
           
+        }
+
+        public void HammerDamage()
+        {
+            int lastHP = _playerHP;
+            SubHP(_hammerDamage);
+            _hpGaugeManager.HPDown(_playerHP, lastHP, _playerMaxHP);
+        }
+
+        public void GhostDamage()
+        {
+            int lastHP = _playerHP;
+            SubHP(_ghostDamage);
+            _hpGaugeManager.HPDown(_playerHP, lastHP, _playerMaxHP);
         }
 
         // Actor: Tamamura Shuuki
