@@ -13,6 +13,7 @@ TagManager:
   - CrushableBox
   - Crushablebox
   - Hammer
+  - Enemy
   layers:
   - Default
   - TransparentFX

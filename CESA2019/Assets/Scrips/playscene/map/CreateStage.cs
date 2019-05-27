@@ -122,6 +122,7 @@ namespace Momoya
             BuildFloor(); //床を作る
             BuildMObject(); //動くオブジェクトを作る
             BuildIObject();//動かないオブジェクトを作る
+            
             time = 0.0f;
 
             enemyFlag = false;
