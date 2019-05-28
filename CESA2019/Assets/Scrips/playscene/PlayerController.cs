@@ -167,6 +167,7 @@ namespace Momoya
         [SerializeField]
         private float _speed = 1.0f;
         // Use this for initialization
+        private bool _canBreakFlag = false; //叩くことができるフラグ
         void Start()
         {
             _playerHP = _playerMaxHP;
