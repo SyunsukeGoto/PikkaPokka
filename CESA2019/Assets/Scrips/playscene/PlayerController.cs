@@ -170,7 +170,7 @@ namespace Momoya
 
         private float _frontTime = 0.0f;
         [SerializeField]
-        private float _floatSpan = 5.0f;
+        private float _floatSpan = 0.0f;
 
         [SerializeField]
         private float _speed = 1.0f;
