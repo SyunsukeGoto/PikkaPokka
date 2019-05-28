@@ -101,8 +101,8 @@ public class SelectStageClear : MonoBehaviour
     {
         _verticalTrigger = _vertical;
         _horizontalTrigger = _horizontal;
-        _vertical = -Input.GetAxisRaw("Vertical");
-        _horizontal = Input.GetAxisRaw("Horizontal");
+        _vertical = (int)-Input.GetAxisRaw("Vertical");
+        _horizontal = (int)Input.GetAxisRaw("Horizontal");
         // カウントが2以下だったら
         if (_count < 2.0f)
         {
@@ -297,7 +297,7 @@ public class SelectStageClear : MonoBehaviour
             }
         }
         // スペースキーを押したら
-        else if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
+        else if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
         {
             // できるステージだったら
             if (SharedData._stageMaxNum >= _selectNum+1)
@@ -329,7 +329,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _StartButton.transform.localPosition
         + new Vector3(100, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
         {
             // 状態を変える
             _selectTmp = SeletState.StartScene;
@@ -352,7 +352,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _backTitleButton.transform.localPosition
         + new Vector3(60, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
         {
             // 状態を変える
             _selectTmp = SeletState.TitleScene;
@@ -375,7 +375,7 @@ public class SelectStageClear : MonoBehaviour
         _hummer.transform.localPosition = _backSelectButton.transform.localPosition
         + new Vector3(60, 40, 0);
         // スペースキーを押したら
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 0")))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
         {
             // 状態を変える
             _selectTmp = SeletState.StageSelect;
