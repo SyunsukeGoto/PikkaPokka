@@ -697,7 +697,7 @@ namespace Momoya
                 if (Input.GetButtonUp("Z"))
                 {
                     _anime.Masturbation();
-                    HammerDamage();//HPを減らす
+                
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
                     _hammerPower = 0.0f;
@@ -706,6 +706,7 @@ namespace Momoya
                     //たたき状態フラグがfalseならdefault状態へ
                     if (_strikeMode == false)
                     {
+                        HammerDamage();//HPを減らす
                         _stateProcessor.State = _stateDefault;
                     }
                     else

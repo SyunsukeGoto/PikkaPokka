@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3125565203041263577}
   - component: {fileID: 3125565203041263576}
   - component: {fileID: 3125565203041263579}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 3125565203113834830}
   - component: {fileID: 3125565203113834825}
   - component: {fileID: 3125565203113834824}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,7 +1570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc56c675934207489fb87f02e12e73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 3125565203717140900}
 --- !u!114 &3125565203938628328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,7 +1883,7 @@ GameObject:
   - component: {fileID: 3125565204220834682}
   - component: {fileID: 3125565204220834680}
   - component: {fileID: 3125565204220834683}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3457,7 +3456,7 @@ GameObject:
   - component: {fileID: 1692348656959323982}
   - component: {fileID: 5458657787496288335}
   - component: {fileID: 2880193376017443973}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: CheckBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3516,6 +3515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HPCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337574902692225852, guid: f400c624227db1a4da6fab33c7dac890,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 703279110724064514, guid: f400c624227db1a4da6fab33c7dac890,
         type: 3}
@@ -3622,6 +3626,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2534791476881945721, guid: f400c624227db1a4da6fab33c7dac890,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907507978614002624, guid: f400c624227db1a4da6fab33c7dac890,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539868758074056940, guid: f400c624227db1a4da6fab33c7dac890,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995819229534557996, guid: f400c624227db1a4da6fab33c7dac890,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f400c624227db1a4da6fab33c7dac890, type: 3}
 --- !u!224 &1129525016170635954 stripped
@@ -3654,6 +3678,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 3715905660946213863, guid: 51183a036052fa545bf4947c7424ca55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3715905660946213848, guid: 51183a036052fa545bf4947c7424ca55,
         type: 3}
       propertyPath: _effectList.Array.data[0]
@@ -3669,6 +3698,20 @@ PrefabInstance:
       propertyPath: _effectList.Array.data[2]
       value: 
       objectReference: {fileID: 5583235558819109358}
+    - target: {fileID: 1901495787, guid: 51183a036052fa545bf4947c7424ca55, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791527550764347870, guid: 51183a036052fa545bf4947c7424ca55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599420911145961158, guid: 51183a036052fa545bf4947c7424ca55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3715905660946213849, guid: 51183a036052fa545bf4947c7424ca55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3767,6 +3810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DistanceCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730565984582972, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143730565984582967, guid: 15db2134bc0170f4fb510e24a15f1c9a,
         type: 3}
@@ -3883,6 +3931,21 @@ PrefabInstance:
       propertyPath: _mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3143730567459470157, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730566292721825, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730567222356543, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3143730567339372943, guid: 15db2134bc0170f4fb510e24a15f1c9a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3891,6 +3954,21 @@ PrefabInstance:
     - target: {fileID: 3143730567348343507, guid: 15db2134bc0170f4fb510e24a15f1c9a,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730567446671632, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730567339372936, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143730567348343516, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3911,6 +3989,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 38c467ce70d95464a90ceedb16a8988b, type: 3}
       propertyPath: m_Name
       value: HammerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 38c467ce70d95464a90ceedb16a8988b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38c467ce70d95464a90ceedb16a8988b, type: 3}
       propertyPath: m_LocalPosition.x
