@@ -692,9 +692,15 @@ namespace Momoya
         public void Strike()
         {
             _dashSpeed = Speedlimit;
-            // Move();//歩く
-            if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false || _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == true)
+            if (_strikeMode == true)
             {
+                _anime.FrontSwing();
+                //trueなら箱を壊すステートへ
+                _stateProcessor.State = _stateBreakBox;
+
+            }
+            // Move();//歩く
+
                 //ハンマーパワーをチャージ
                 ChargeHammerPower();
 
@@ -712,23 +718,18 @@ namespace Momoya
                     if (_strikeMode == false)
                     {
                         _anime.Masturbation();
+                    if( _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false)
+                    {
                         HammerDamage();//HPを減らす
+                    }
+                        
                         _stateProcessor.State = _stateDefault;
                     }
-                    else
-                    {
-                        _anime.FrontSwing();
-                        //trueなら箱を壊すステートへ
-                        _stateProcessor.State = _stateBreakBox;
-                    }
+
 
                 }  
 
-                //_stateProcessor.State = _stateDefault;
-            }else
-            {
-                _stateProcessor.State = _stateDefault;
-            }
+
 
             //if (_decisionHammerState != (int)HammerState.NONE)
             //{
