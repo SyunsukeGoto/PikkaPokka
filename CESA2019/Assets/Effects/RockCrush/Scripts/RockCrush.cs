@@ -21,12 +21,6 @@ public class RockCrush : MonoBehaviour
     // ---------------------------------------------
     private void Update()
     {
-#if (DEBUG == true)
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Execute();
-        }   
-#endif
     }
 
     // ---------------------------------------------

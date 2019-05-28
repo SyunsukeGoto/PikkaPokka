@@ -46,6 +46,18 @@ public class ActorManager
                 _onChasing = true;
             }
         }
+
+        // 敵のプレイヤー追跡状態を感知
+        // 時間が無いのでタグにします
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            Makoto.PatrolEnemy pn = enemy.GetComponent<Makoto.PatrolEnemy>();
+            if(pn.CurrentState == Makoto.PatrolEnemy.State.Chase)
+            {
+                _onChasing = true;
+            }
+        }
     }
 
     // ----------------------------------------------
