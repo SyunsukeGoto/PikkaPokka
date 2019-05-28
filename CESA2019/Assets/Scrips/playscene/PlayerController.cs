@@ -692,7 +692,7 @@ namespace Momoya
         {
             _dashSpeed = Speedlimit;
             // Move();//歩く
-            if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false)
+            if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false || _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == true)
             {
                 //ハンマーパワーをチャージ
                 ChargeHammerPower();
