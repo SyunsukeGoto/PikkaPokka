@@ -54,6 +54,9 @@ namespace Makoto
         [SerializeField, Header("精子")]
         private bool _active;
 
+        [SerializeField, Header("追跡中に光ったら巡回状態に戻る")]
+        private bool _penis;
+
         [SerializeField, Range(0.0f, 10.0f), Header("巡回状態に戻るまでの時間")]
         private float _stateReturnTime;
 
@@ -115,7 +118,6 @@ namespace Makoto
             
             if(_time > 2.0f && _moveFlag == false)
             {
-            
                 _moveFlag = true;
                 _time = 0;
             }
@@ -216,6 +218,14 @@ namespace Makoto
             else
             {
                 _time = 0;
+            }
+
+            if (_penis)
+            {
+                if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
+                {
+                    _time += _stateReturnTime;
+                }
             }
 
             if (_time >= _stateReturnTime)
