@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1785415377}
   - component: {fileID: 8939541867073334712}
   - component: {fileID: 5830067178155527437}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Minka_color
   m_TagString: CrushableBox
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 6284761692666612295}
   - component: {fileID: 5812008941907702256}
   - component: {fileID: 3370424558390059910}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}

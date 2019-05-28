@@ -223,6 +223,7 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
+            Debug.Log(Input.GetAxis("LT"));
             current = this.transform;
             _currentAngle = _playerAngle;
             PlayerCtrl();
@@ -403,7 +404,7 @@ namespace Momoya
         void ChargeHammerPower()
         {
             //ハンアーキーを押されたら
-            if (Input.GetButton("Z"))
+            if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
             {
                 _hammerPower += Time.deltaTime * _hammerChargSpeed;
             }
@@ -594,7 +595,7 @@ namespace Momoya
 
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetButtonDown("Z"))
+            if (Input.GetButtonDown("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -634,7 +635,7 @@ namespace Momoya
             }
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetButtonDown("Z"))
+            if (Input.GetButtonDown("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -674,7 +675,7 @@ namespace Momoya
             }
 
             //ジャンプキーを押されたらハンマー状態へ
-            if (Input.GetButtonDown("Z"))
+            if (Input.GetButtonDown("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
             {
                 _stateProcessor.State = _stateStrike;
             }
@@ -698,7 +699,7 @@ namespace Momoya
                 ChargeHammerPower();
 
                 //ハンマーキーを離したら
-                if (Input.GetButtonUp("Z"))
+                if (Input.GetButtonUp("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
                 {
               
                 
@@ -768,7 +769,7 @@ namespace Momoya
                 }
 
                 //ハンマキーーを押されたらハンマー状態へ
-                if (Input.GetButtonDown("Z"))
+                if (Input.GetButtonDown("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
                 {
                     _stateProcessor.State = _stateStrike;
                 }
