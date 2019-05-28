@@ -250,8 +250,15 @@ namespace Makoto
                 if (_isCounterAttack)
                 {
                     // プレイヤーの体力を減らす
+                    _player.GetComponent<Momoya.PlayerController>().GhostDamage();
                 }
             }
+        }
+
+        public void MoveStart()
+        {
+            _currentPoint = Random.Range(0, _patrolPointA.Length);
+            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
         }
     }
 }
