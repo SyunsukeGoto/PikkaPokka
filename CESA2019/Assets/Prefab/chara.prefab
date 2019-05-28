@@ -1216,6 +1216,7 @@ GameObject:
   - component: {fileID: 3125565203717140902}
   - component: {fileID: 8259441894627478420}
   - component: {fileID: 3435986823318814777}
+  - component: {fileID: 7938473378875719407}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1353,6 +1354,18 @@ MonoBehaviour:
   _iteration: 0
   _intensity: 0.1
   _beatInterval: 1
+--- !u!114 &7938473378875719407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125565203717140896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2618d6d0238b74a8542ce2313f6bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3125565203725121626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc56c675934207489fb87f02e12e73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 3125565203717140900}
 --- !u!114 &3125565203938628328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3724,6 +3738,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc17fff09c725094cb7fa3ac64f44770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &8264052383046392512 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4599420911145961152, guid: 51183a036052fa545bf4947c7424ca55,
+    type: 3}
+  m_PrefabInstance: {fileID: 5583235558033366016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &5583235558819109358 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1901495790, guid: 51183a036052fa545bf4947c7424ca55,
@@ -3733,12 +3753,6 @@ ParticleSystem:
 --- !u!198 &7273139148620822208 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2996233704662067904, guid: 51183a036052fa545bf4947c7424ca55,
-    type: 3}
-  m_PrefabInstance: {fileID: 5583235558033366016}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8264052383046392512 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4599420911145961152, guid: 51183a036052fa545bf4947c7424ca55,
     type: 3}
   m_PrefabInstance: {fileID: 5583235558033366016}
   m_PrefabAsset: {fileID: 0}
@@ -3869,12 +3883,12 @@ PrefabInstance:
       propertyPath: _mode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3143730567348343507, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+    - target: {fileID: 3143730567339372943, guid: 15db2134bc0170f4fb510e24a15f1c9a,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3143730567339372943, guid: 15db2134bc0170f4fb510e24a15f1c9a,
+    - target: {fileID: 3143730567348343507, guid: 15db2134bc0170f4fb510e24a15f1c9a,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
