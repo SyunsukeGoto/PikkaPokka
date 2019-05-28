@@ -141,6 +141,8 @@ namespace Momoya
         [SerializeField, Header("HPゲージマネージャー")]
         private Makoto.HPGaugeManager _hpGaugeManager;
         public DistanceIndicate _distance;
+        [SerializeField]
+        private Image _buttonImage;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -228,7 +230,14 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(Input.GetAxis("LT"));
+            if(_strikeMode)
+            {
+                _buttonImage.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                _buttonImage.color = new Color(1, 1, 1, 0);
+            }
             current = this.transform;
             _currentAngle = _playerAngle;
             PlayerCtrl();

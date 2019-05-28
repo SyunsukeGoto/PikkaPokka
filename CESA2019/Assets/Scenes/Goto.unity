@@ -465,7 +465,7 @@ MonoBehaviour:
   _stageFileName: StageData
   _stageNumber: 0
   _mGameObj:
-  - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
+  - {fileID: 1807043589894651712, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
