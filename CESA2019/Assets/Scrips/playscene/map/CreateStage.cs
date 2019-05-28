@@ -179,15 +179,29 @@ namespace Momoya
             time += Time.deltaTime;
             if(time > span && enemyFlag == false)
             {
+                for (int i = 0; i < _check1List.Count; i++)
+                {
+                    Debug.Log("全部" + _check1List[i].transform.position);
+                }
+
+
                 enemyFlag = true;
                 CreateEnemy();
                 _setPlayer.GetComponent<PlayerController>()._left = _left;
                 _setPlayer.GetComponent<PlayerController>()._right = _right;
                 _setPlayer.GetComponent<PlayerController>()._top = _top;
                 _setPlayer.GetComponent<PlayerController>()._down = _down;
-                time = 0.0f; 
-             
+              
+
+       
             }
+
+            if(time > span + 0.5f && enemyFlag == false)
+            {
+
+                time = 0.0f;
+            }
+
            
             
         }
@@ -211,8 +225,10 @@ namespace Momoya
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
                    
+
+
                 }
-                    
+             
             }
 
             //エネミー2にチェックポイントを入れる
@@ -227,7 +243,9 @@ namespace Momoya
                    
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                  
                 }
+       
             }
             //エネミー3にチェックポイントを入れる
             for (int i = 0; i < _enemy3List.Count; i++)
@@ -241,7 +259,10 @@ namespace Momoya
 
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                  
+
                 }
+               
             }
             //エネミー4にチェックポイントを入れる
 
@@ -256,7 +277,10 @@ namespace Momoya
               
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                  
                 }
+
+              
             }
 
             //エネミー5にチェックポイントを入れる
@@ -271,7 +295,9 @@ namespace Momoya
              
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                    
                 }
+               
             }
             //エネミー6にチェックポイントを入れる
             for (int i = 0; i < _enemy6List.Count; i++)
@@ -285,7 +311,9 @@ namespace Momoya
         
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                   
                 }
+               
             }
 
             //エネミー7にチェックポイントを入れる
@@ -300,7 +328,9 @@ namespace Momoya
                 
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                   
                 }
+          
             }
 
             //エネミー8にチェックポイントを入れる
@@ -315,7 +345,9 @@ namespace Momoya
                 
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                   
                 }
+               
             }
             //エネミー9にチェックポイントを入れる
             for (int i = 0; i < _enemy9List.Count; i++)
@@ -329,7 +361,9 @@ namespace Momoya
             
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._player = player;
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
+                   
                 }
+             
             }
 
             //for (int i = 0; i <_enemyPosList.Count; i++)
@@ -394,7 +428,7 @@ namespace Momoya
                 if (_iObjectDataList[i] != -1 )
                 {
                     GameObject go = _iGameObj[_iObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
-
+                    //go.transform.parent = transform;
                 }
 
                 if ((i) % _searchWidth != 0)

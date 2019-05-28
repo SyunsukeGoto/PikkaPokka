@@ -59,6 +59,7 @@ namespace Makoto
 
         private bool _bFlag;
 
+        private bool _moveFlag = false;
         public bool Active
         {
             set { _active = value; }
@@ -86,6 +87,7 @@ namespace Makoto
         // Start is called before the first frame update
         void Start()
         {
+            _nma.enabled = false;
             _currentPoint = 0;
 
             _currentState = State.Patrol;
@@ -106,83 +108,102 @@ namespace Makoto
         // Update is called once per frame
         void Update()
         {
-            _nma.speed = _speed;
-
-            if (_active)
+            if(_moveFlag == false)
             {
-                switch (_currentState)
-                {
-                    case State.Patrol:
-                        Patrol();
-                        Debug.Log("Patrol");
-                        break;
-                    case State.Chase:
-                        Chase();
-                        Debug.Log("Chase");
-                        break;
-                }
+                _nma.enabled = true;
             }
-            else
+            
+            if(_time > 2.0f && _moveFlag == false)
             {
-                _nma.SetDestination(transform.position);
+            
+                _moveFlag = true;
+                _time = 0;
+            }
+
+            _nma.speed = _speed;
+            if (_nma.pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                if (_active)
+                {
+                    switch (_currentState)
+                    {
+                        case State.Patrol:
+                            Patrol();
+                            Debug.Log("Patrol");
+                            break;
+                        case State.Chase:
+                            Chase();
+                            Debug.Log("Chase");
+                            break;
+                    }
+                }
+                else
+                {
+                    _nma.SetDestination(transform.position);
+                }
             }
         }
 
         // 巡回
         private void Patrol()
         {
-            Vector3 v;
-            if (!_bFlag)
-            {
-                _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+          
+                //navMeshAgentの操作
 
-                v = _patrolPointA[_currentPoint].transform.position - transform.position;
-                v.y = 0;
-
-                if (v.magnitude < 0.1f)
+                Vector3 v;
+                if (!_bFlag)
                 {
-                    if (_currentPoint + 1 >= _patrolPointA.Length)
+                    _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+
+                    v = _patrolPointA[_currentPoint].transform.position - transform.position;
+                    v.y = 0;
+
+                    if (v.magnitude < 0.1f)
                     {
-                        _currentPoint = 0;
-                    }
-                    else
-                    {
-                        _currentPoint++;
+                        if (_currentPoint + 1 >= _patrolPointA.Length)
+                        {
+                            _currentPoint = 0;
+                        }
+                        else
+                        {
+                            _currentPoint++;
+                        }
                     }
                 }
-            }
-            else
-            {
-                _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
-
-                v = _patrolPointB[_currentPoint].transform.position - transform.position;
-                v.y = 0;
-
-                if (v.magnitude < 0.1f)
+                else
                 {
-                    if (_currentPoint + 1 >= _patrolPointB.Length)
+                    _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
+
+                    v = _patrolPointB[_currentPoint].transform.position - transform.position;
+                    v.y = 0;
+
+                    if (v.magnitude < 0.1f)
                     {
-                        _currentPoint = 0;
-                    }
-                    else
-                    {
-                        _currentPoint++;
+                        if (_currentPoint + 1 >= _patrolPointB.Length)
+                        {
+                            _currentPoint = 0;
+                        }
+                        else
+                        {
+                            _currentPoint++;
+                        }
                     }
                 }
-            }
 
-            if (_isChase)
-            {
-                if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
+                if (_isChase)
                 {
-                    if (IsComeInSight())
+                    if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
                     {
-                        _nma.SetDestination(transform.position);
+                        if (IsComeInSight())
+                        {
+                            _nma.SetDestination(transform.position);
 
-                        _currentState = State.Chase;
+                            _currentState = State.Chase;
+                        }
                     }
                 }
-            }
+            
+            
         }
 
         // 追跡
