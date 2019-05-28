@@ -115,7 +115,7 @@ namespace Makoto
             
             if(_time > 2.0f && _moveFlag == false)
             {
-                MoveStart();
+            
                 _moveFlag = true;
                 _time = 0;
             }
