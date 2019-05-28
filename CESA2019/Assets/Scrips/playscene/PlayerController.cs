@@ -164,7 +164,10 @@ namespace Momoya
         private float _hor;
         private float _ver;
         public float _top, _left, _down, _right; //移動制限
+        [SerializeField]
+        private float _speed = 1.0f;
         // Use this for initialization
+        private bool _canBreakFlag = false; //叩くことができるフラグ
         void Start()
         {
             _playerHP = _playerMaxHP;
@@ -554,7 +557,7 @@ namespace Momoya
             // Debug.Log("現在位置" + transform.position);
 
             // 移動
-            transform.GetComponent<Rigidbody>().velocity = _camera.Angle * _vec;
+            transform.GetComponent<Rigidbody>().velocity = _camera.Angle * _vec * _speed;
             _vec *= 0.8f;
 
         }
@@ -697,7 +700,7 @@ namespace Momoya
                 if (Input.GetButtonUp("Z"))
                 {
                     _anime.Masturbation();
-                    HammerDamage();//HPを減らす
+                
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
                     _hammerPower = 0.0f;
@@ -706,6 +709,7 @@ namespace Momoya
                     //たたき状態フラグがfalseならdefault状態へ
                     if (_strikeMode == false)
                     {
+                        HammerDamage();//HPを減らす
                         _stateProcessor.State = _stateDefault;
                     }
                     else

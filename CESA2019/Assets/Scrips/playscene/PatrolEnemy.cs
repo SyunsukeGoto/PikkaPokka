@@ -17,10 +17,10 @@ namespace Makoto
         private float _speed;
 
         [SerializeField, Header("プレイヤー")]
-        private GameObject _player;
+        public GameObject _player;
 
         [SerializeField, Header("光のやつ")]
-        private Goto.StarMove _starMove;
+        public Goto.StarMove _starMove;
 
         Goto.StarMove StarMove
         {
@@ -34,13 +34,13 @@ namespace Makoto
         private float _searchAngle;
 
         [SerializeField, Header("ナビメッシュエージェント")]
-        private NavMeshAgent _nma;
+        public NavMeshAgent _nma;
 
         [SerializeField, Header("巡回ポイント")]
-        private GameObject[] _patrolPointA;
+        public GameObject[] _patrolPointA;
 
         [SerializeField, Header("巡回ポイント")]
-        private GameObject[] _patrolPointB;
+        public GameObject[] _patrolPointB;
 
         [SerializeField, Header("追跡するか")]
         private bool _isChase;
@@ -54,11 +54,15 @@ namespace Makoto
         [SerializeField, Header("精子")]
         private bool _active;
 
+        [SerializeField, Header("追跡中に光ったら巡回状態に戻る")]
+        private bool _penis;
+
         [SerializeField, Range(0.0f, 10.0f), Header("巡回状態に戻るまでの時間")]
         private float _stateReturnTime;
 
         private bool _bFlag;
 
+        private bool _moveFlag = false;
         public bool Active
         {
             set { _active = value; }
@@ -86,6 +90,7 @@ namespace Makoto
         // Start is called before the first frame update
         void Start()
         {
+            _nma.enabled = false;
             _currentPoint = 0;
 
             _currentState = State.Patrol;
@@ -93,6 +98,12 @@ namespace Makoto
             _active = true;
 
             _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+
+            for(int i = 0; i< _patrolPointA.Length;i++)
+            {
+                Debug.Log("入ったやつ" +_patrolPointA[i].transform.position);
+            }
+            
         }
 
       
@@ -100,83 +111,101 @@ namespace Makoto
         // Update is called once per frame
         void Update()
         {
-            _nma.speed = _speed;
-
-            if (_active)
+            if(_moveFlag == false)
             {
-                switch (_currentState)
-                {
-                    case State.Patrol:
-                        Patrol();
-                        Debug.Log("Patrol");
-                        break;
-                    case State.Chase:
-                        Chase();
-                        Debug.Log("Chase");
-                        break;
-                }
+                _nma.enabled = true;
             }
-            else
+            
+            if(_time > 2.0f && _moveFlag == false)
             {
-                _nma.SetDestination(transform.position);
+                _moveFlag = true;
+                _time = 0;
+            }
+
+            _nma.speed = _speed;
+            if (_nma.pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                if (_active)
+                {
+                    switch (_currentState)
+                    {
+                        case State.Patrol:
+                            Patrol();
+                            Debug.Log("Patrol");
+                            break;
+                        case State.Chase:
+                            Chase();
+                            Debug.Log("Chase");
+                            break;
+                    }
+                }
+                else
+                {
+                    _nma.SetDestination(transform.position);
+                }
             }
         }
 
         // 巡回
         private void Patrol()
         {
-            Vector3 v;
-            if (!_bFlag)
-            {
-                _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+          
+                //navMeshAgentの操作
 
-                v = _patrolPointA[_currentPoint].transform.position - transform.position;
-                v.y = 0;
-
-                if (v.magnitude < 0.1f)
+                Vector3 v;
+                if (!_bFlag)
                 {
-                    if (_currentPoint + 1 >= _patrolPointA.Length)
+                    _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+
+                    v = _patrolPointA[_currentPoint].transform.position - transform.position;
+                    v.y = 0;
+
+                    if (v.magnitude < 0.1f)
                     {
-                        _currentPoint = 0;
-                    }
-                    else
-                    {
-                        _currentPoint++;
+                        if (_currentPoint + 1 >= _patrolPointA.Length)
+                        {
+                            _currentPoint = 0;
+                        }
+                        else
+                        {
+                            _currentPoint++;
+                        }
                     }
                 }
-            }
-            else
-            {
-                _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
-
-                v = _patrolPointB[_currentPoint].transform.position - transform.position;
-                v.y = 0;
-
-                if (v.magnitude < 0.1f)
+                else
                 {
-                    if (_currentPoint + 1 >= _patrolPointB.Length)
+                    _nma.SetDestination(_patrolPointB[_currentPoint].transform.position);
+
+                    v = _patrolPointB[_currentPoint].transform.position - transform.position;
+                    v.y = 0;
+
+                    if (v.magnitude < 0.1f)
                     {
-                        _currentPoint = 0;
-                    }
-                    else
-                    {
-                        _currentPoint++;
+                        if (_currentPoint + 1 >= _patrolPointB.Length)
+                        {
+                            _currentPoint = 0;
+                        }
+                        else
+                        {
+                            _currentPoint++;
+                        }
                     }
                 }
-            }
 
-            if (_isChase)
-            {
-                if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
+                if (_isChase)
                 {
-                    if (IsComeInSight())
+                    if (!_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
                     {
-                        _nma.SetDestination(transform.position);
+                        if (IsComeInSight())
+                        {
+                            _nma.SetDestination(transform.position);
 
-                        _currentState = State.Chase;
+                            _currentState = State.Chase;
+                        }
                     }
                 }
-            }
+            
+            
         }
 
         // 追跡
@@ -189,6 +218,14 @@ namespace Makoto
             else
             {
                 _time = 0;
+            }
+
+            if (_penis)
+            {
+                if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE))
+                {
+                    _time += _stateReturnTime;
+                }
             }
 
             if (_time >= _stateReturnTime)
@@ -244,8 +281,15 @@ namespace Makoto
                 if (_isCounterAttack)
                 {
                     // プレイヤーの体力を減らす
+                    _player.GetComponent<Momoya.PlayerController>().GhostDamage();
                 }
             }
+        }
+
+        public void MoveStart()
+        {
+            _currentPoint = Random.Range(0, _patrolPointA.Length);
+            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
         }
     }
 }

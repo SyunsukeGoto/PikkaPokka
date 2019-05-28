@@ -466,20 +466,24 @@ MonoBehaviour:
   _stageNumber: 0
   _mGameObj:
   - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
-  - {fileID: 6920692828140726796, guid: 88f2fad642451a54881e40d0543a7b4b, type: 3}
-  - {fileID: 2578148503860108335, guid: a7f84799410090a43ae546255181a0eb, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
+  - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
   _iGameObj:
   - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
   - {fileID: 390917293714913340, guid: 15abc9dc19ccef44fb10cbad1febdcd2, type: 3}
@@ -521,7 +525,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2151446327
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -607,10 +611,40 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649002920}
-  m_CullTransparentMesh: 0
---- !u!114 &649002924
-MonoBehaviour:
+  m_GameObject: {fileID: 1377011736}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1377011738
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

@@ -3,6 +3,7 @@
 // Actor: Tamamura Shuuki
 //
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class ActorManager
 {
 
     private List<Actor> _actorList;
+
+    private bool _onChasing;  // お化けがプレイヤーを追跡中
 
 
     public void Initialize()
@@ -26,11 +29,35 @@ public class ActorManager
             foreach (var actor in actorList){ AddActor(actor);}
             return true;
         });
+
+        _onChasing = false;
     }
 
     public void Update()
     {
-        Debug.Log("アクター数" + _actorList.Count.ToString());
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if(_onChasing)
+            {
+                _onChasing = false;
+            }
+            else
+            {
+                _onChasing = true;
+            }
+        }
+
+        // 敵のプレイヤー追跡状態を感知
+        // 時間が無いのでタグにします
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            Makoto.PatrolEnemy pn = enemy.GetComponent<Makoto.PatrolEnemy>();
+            if(pn.CurrentState == Makoto.PatrolEnemy.State.Chase)
+            {
+                _onChasing = true;
+            }
+        }
     }
 
     // ----------------------------------------------
@@ -43,9 +70,25 @@ public class ActorManager
     }
 
     #region プロパティ
-    public List<Actor> ActorList
+    // ----------------------------------------------
+    // アクタータイプで指定したアクターデータを返す
+    // type: アクタータイプ 
+    // ----------------------------------------------
+    public Actor GetActor(ActorType type)
     {
-        get { return _actorList; }
+        foreach (var actor in _actorList)
+        {
+            if (actor.Type == type)
+            {
+                return actor;
+            }
+        }
+        return null;
+    }
+
+    public bool OnChasing
+    {
+        get { return _onChasing; }
     }
     #endregion
 }

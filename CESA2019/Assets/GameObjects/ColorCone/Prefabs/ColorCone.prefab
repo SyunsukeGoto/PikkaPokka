@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 105996771113615555}
   - component: {fileID: 7195782578308360688}
   - component: {fileID: 3447740857758900314}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ColorCone
   m_TagString: CrushableBox
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 4, z: 2}
+  m_Size: {x: 2.75, y: 4, z: 2.75}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &5270525329006945172
 GameObject:
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1122330986175980099}
   - component: {fileID: 4439058489824878692}
   - component: {fileID: 8022632629931258079}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Cone000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 3300182970623219665}
   - component: {fileID: 4681968713807298075}
   - component: {fileID: 1120810066091279681}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Cone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 7695391920067954562}
   - component: {fileID: 4230564700927912730}
   - component: {fileID: 5281150671512901456}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: DestructionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

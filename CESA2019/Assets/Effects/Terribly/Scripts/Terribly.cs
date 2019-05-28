@@ -29,6 +29,8 @@ public class Terribly : MonoBehaviour
 
     private Func<bool> _terribly;   // どきどき関数
 
+    private float _time;
+
 
     private void Start()
     {
@@ -37,17 +39,20 @@ public class Terribly : MonoBehaviour
         _calmDown = false;
         _iteration = 0;
 
+        _time = 0;
+
         _terribly = (() => {return true;});
     }
 
     private void Update()
     {
-#if DEBUG == true
-        if(Input.GetKeyDown(KeyCode.Space))
+        // 5秒ごとに落着き状態に移行する
+        _time = Time.deltaTime;
+        if (_time >= 5)
         {
-            Play();
+            Stop();
+            _time = 0;
         }
-#endif
 
         _terribly();    // ドキドキする
     }
@@ -148,10 +153,9 @@ public class Terribly : MonoBehaviour
     {
         // ドキドキ関数を空にする
         _terribly = (() => {
-            _intensity = 1;
             _calmDown = false;
             _iteration = 0;
-            _intensity = Mathf.Lerp(_intensity, 0, Time.deltaTime);
+            _intensity = Mathf.Lerp(_intensity, 1, Time.deltaTime);
             return true;
         });
     }
