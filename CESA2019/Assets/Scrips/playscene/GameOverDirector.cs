@@ -34,6 +34,11 @@ public class GameOverDirector : MonoBehaviour
     {
         _time += Time.deltaTime;
 
+        if(Input.GetButton("Z"))
+        {
+            _time += _nextSceneTime;
+        }
+
         if(_time > _nextSceneTime)
         {
             SceneManager.LoadScene(_nextSceneName);
