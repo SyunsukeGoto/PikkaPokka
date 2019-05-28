@@ -5958,7 +5958,7 @@ MonoBehaviour:
   _gameOverSceneName: GameOverScene
   _playerMaxHP: 100
   _hammerDamage: 5
-  _ghostDamage: 10
+  _ghostDamage: 100
   _hpGaugeManager: {fileID: 1807043589653019605}
   _distance: {fileID: 1807043590172833384}
   _buttonImage: {fileID: 1807043591382216481}
@@ -5969,6 +5969,7 @@ MonoBehaviour:
   _left: 0
   _down: 0
   _right: 0
+  _floatSpan: 5
   _speed: 1
 --- !u!54 &1807043589894651771
 Rigidbody:
