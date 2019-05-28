@@ -17,10 +17,10 @@ namespace Makoto
         private float _speed;
 
         [SerializeField, Header("プレイヤー")]
-        private GameObject _player;
+        public GameObject _player;
 
         [SerializeField, Header("光のやつ")]
-        private Goto.StarMove _starMove;
+        public Goto.StarMove _starMove;
 
         Goto.StarMove StarMove
         {
@@ -34,13 +34,13 @@ namespace Makoto
         private float _searchAngle;
 
         [SerializeField, Header("ナビメッシュエージェント")]
-        private NavMeshAgent _nma;
+        public NavMeshAgent _nma;
 
         [SerializeField, Header("巡回ポイント")]
-        private GameObject[] _patrolPointA;
+        public GameObject[] _patrolPointA;
 
         [SerializeField, Header("巡回ポイント")]
-        private GameObject[] _patrolPointB;
+        public GameObject[] _patrolPointB;
 
         [SerializeField, Header("追跡するか")]
         private bool _isChase;
@@ -93,6 +93,12 @@ namespace Makoto
             _active = true;
 
             _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+
+            for(int i = 0; i< _patrolPointA.Length;i++)
+            {
+                Debug.Log("入ったやつ" +_patrolPointA[i].transform.position);
+            }
+            
         }
 
       
