@@ -1022,6 +1022,14 @@ namespace Momoya
             _hpGaugeManager.HPDown(_playerHP, lastHP, _playerMaxHP);
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == "Enemy")
+            {
+                GhostDamage();
+            }
+        }
+
         // Actor: Tamamura Shuuki
         // Add: プロパティ項目の追加
         #region プロパティ
