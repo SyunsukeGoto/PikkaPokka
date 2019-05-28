@@ -52,6 +52,16 @@ public class FollowingCamera : MonoBehaviour
     {
 
         azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
+
+        if(Input.GetButton("LB"))
+        {
+            azimuthalAngle += 3;
+        }
+        else if(Input.GetButton("RB"))
+        {
+            azimuthalAngle -= 3;
+        }
+
         Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
         //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
         updateDistance(Input.GetAxis("Mouse ScrollWheel"));

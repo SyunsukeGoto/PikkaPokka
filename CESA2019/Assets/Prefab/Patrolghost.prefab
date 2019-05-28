@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c630a16d81a98f047820a2f5adcfb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 2
   _player: {fileID: 0}
   _starMove: {fileID: 0}
   _searchRange: 7
-  _searchAngle: 120
+  _searchAngle: 100
   _nma: {fileID: 706072575}
   _patrolPointA: []
   _patrolPointB: []
@@ -210,7 +210,7 @@ MonoBehaviour:
   _isCounterAttack: 1
   _active: 0
   _penis: 0
-  _stateReturnTime: 1
+  _stateReturnTime: 2
 --- !u!114 &7148214264677138549
 MonoBehaviour:
   m_ObjectHideFlags: 0
