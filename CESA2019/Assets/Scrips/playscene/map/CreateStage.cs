@@ -95,7 +95,8 @@ namespace Momoya
         bool enemyFlag;
         [SerializeField]    
         NavMeshSurface navMeshSurface; //ナビメッシュ
-     
+        
+        
 
         List<Vector3> _enemyPosList = new List<Vector3>(); //エネミーのポジションを把握するリスト
 
@@ -123,6 +124,8 @@ namespace Momoya
         List<GameObject> _check8List;
         List<GameObject> _check9List;
 
+        Vector3 _checkStartPos;
+        Vector3 _checkFnishPos;//終始ポイント
 
         // Start is called before the first frame update
         void Start()
@@ -313,7 +316,8 @@ namespace Momoya
                     go.transform.GetComponent<Makoto.PatrolEnemy>()._starMove = player.GetComponent<PlayerController>()._starMove;
                    
                 }
-               
+
+   
             }
 
             //エネミー7にチェックポイントを入れる
@@ -380,6 +384,10 @@ namespace Momoya
             //}
 
             // Debug.Log("作った！" + go.transform.position);
+            _checkStartPos.y = 0.0f;
+            _checkFnishPos.y = 0.0f;
+            player.transform.GetComponent<PlayerController>()._distance.StartPos = _checkStartPos;
+            player.transform.GetComponent<PlayerController>()._distance.GoalPos = _checkFnishPos;
 
         }
 
@@ -425,9 +433,21 @@ namespace Momoya
         {
             for (int i = _iObjectDataList.Count - 1; i >= 0; i--)
             {
+
+                
+
                 if (_iObjectDataList[i] != -1 )
                 {
                     GameObject go = _iGameObj[_iObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
+                    if (_iObjectDataList[i] == 1)
+                    {
+                        _checkStartPos = go.transform.position;
+                    }
+
+                    if (_iObjectDataList[i] == 2)
+                    {
+                        _checkFnishPos = go.transform.position;
+                    }
                     //go.transform.parent = transform;
                 }
 
@@ -452,6 +472,7 @@ namespace Momoya
                 {
                     _down = transform.position.z + 0.5f;
                     _right = transform.position.x - 0.5f;
+                   
                 }
 
                 if(i == 0)
@@ -469,6 +490,7 @@ namespace Momoya
                     //プレイヤーの位置とオブジェクトを記憶
                     if(_mObjectDataList[i] == 0)
                     {
+                        
                         player = go;
                         _setPlayer = go;
                         // startPlayerPos = new Vector3(30.0f, 0.5f ,- 30.0f);
