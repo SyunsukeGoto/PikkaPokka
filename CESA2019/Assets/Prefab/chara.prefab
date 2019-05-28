@@ -1617,6 +1617,7 @@ MonoBehaviour:
   _left: 0
   _down: 0
   _right: 0
+  _speed: 1
 --- !u!54 &3125565203938628331
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3439,7 +3440,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4136394599511978342}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f45d30701a0ff743a7672bbb43bf40b, type: 3}
   m_Name: 
