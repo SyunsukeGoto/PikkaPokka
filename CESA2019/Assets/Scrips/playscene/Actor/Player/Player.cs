@@ -3,6 +3,8 @@
 // Actor: Tamamura Shuuki
 //
 
+using UnityEngine;
+
 
 public class Player : Actor
 {

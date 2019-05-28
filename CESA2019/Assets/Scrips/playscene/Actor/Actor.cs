@@ -18,7 +18,7 @@ public enum ActorType
 // 基底クラス
 public abstract class Actor : MonoBehaviour
 {
-
+    
     protected string _name;
     protected ActorType _type;
 

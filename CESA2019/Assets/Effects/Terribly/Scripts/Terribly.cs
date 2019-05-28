@@ -148,10 +148,9 @@ public class Terribly : MonoBehaviour
     {
         // ドキドキ関数を空にする
         _terribly = (() => {
-            _intensity = 1;
             _calmDown = false;
             _iteration = 0;
-            _intensity = Mathf.Lerp(_intensity, 0, Time.deltaTime);
+            _intensity = Mathf.Lerp(_intensity, 1, Time.deltaTime);
             return true;
         });
     }
