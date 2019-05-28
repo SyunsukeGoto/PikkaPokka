@@ -162,8 +162,8 @@ MonoBehaviour:
   _speed: 5
   _player: {fileID: 0}
   _starMove: {fileID: 0}
-  _searchRange: 5
-  _searchAngle: 90
+  _searchRange: 7
+  _searchAngle: 120
   _nma: {fileID: 3473019476779455446}
   _patrolPointA: []
   _patrolPointB: []
@@ -171,4 +171,5 @@ MonoBehaviour:
   _isAttack: 0
   _isCounterAttack: 1
   _active: 0
-  _stateReturnTime: 0
+  _penis: 0
+  _stateReturnTime: 1
