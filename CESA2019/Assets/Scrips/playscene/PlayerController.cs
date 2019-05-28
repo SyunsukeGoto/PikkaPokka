@@ -165,6 +165,11 @@ namespace Momoya
         private float _hor;
         private float _ver;
         public float _top, _left, _down, _right; //移動制限
+
+        private float _frontTime = 0.0f;
+        [SerializeField]
+        private float _floatSpan = 5.0f;
+
         [SerializeField]
         private float _speed = 1.0f;
         // Use this for initialization
@@ -742,10 +747,16 @@ namespace Momoya
         //箱を壊す
         public void BreakBox()
         {
+            _frontTime += Time.deltaTime;
+            if(_frontTime > _floatSpan)
+            {
                 crushableBox.GetComponent<CrushableBox>().DethCall(10);
                 _strikeMode = false;
                 //デフォルト状態へ  
+                _frontTime = 0.0f;
                 _stateProcessor.State = _stateDefault;
+            }
+
         }
 
         public void Confusion()
@@ -962,6 +973,11 @@ namespace Momoya
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, _down);
             }
+        }
+
+        void waitTimer(float breakTime)
+        {
+            
         }
 
         //たたき状態を分けるプロパティ
