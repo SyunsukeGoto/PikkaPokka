@@ -31,13 +31,21 @@ public class CeackBreakObject : MonoBehaviour
                 _player.GetComponent<Momoya.PlayerController>().CrushableBox = crushableBox;
 
             }
-            else
+
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "CrushableBox")
             {
+
                 _player.GetComponent<Momoya.PlayerController>().StrikeMode = false;
                 _player.GetComponent<Momoya.PlayerController>().CrushableBox = null;
                 crushableBox = null;
+
             }
         }
-        }
+
+    }
 
 }

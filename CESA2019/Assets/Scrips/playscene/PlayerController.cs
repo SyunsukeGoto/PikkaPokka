@@ -140,7 +140,8 @@ namespace Momoya
         private int _ghostDamage = 10;
         [SerializeField, Header("HPゲージマネージャー")]
         private Makoto.HPGaugeManager _hpGaugeManager;
-        
+        public DistanceIndicate _distance;
+
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
         public StateWalk _stateWalk = new StateWalk();                          //歩き状態
@@ -699,7 +700,7 @@ namespace Momoya
                 //ハンマーキーを離したら
                 if (Input.GetButtonUp("Z"))
                 {
-                    _anime.Masturbation();
+              
                 
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
                     //パワーを0にする
@@ -709,11 +710,13 @@ namespace Momoya
                     //たたき状態フラグがfalseならdefault状態へ
                     if (_strikeMode == false)
                     {
+                        _anime.Masturbation();
                         HammerDamage();//HPを減らす
                         _stateProcessor.State = _stateDefault;
                     }
                     else
                     {
+                        _anime.FrontSwing();
                         //trueなら箱を壊すステートへ
                         _stateProcessor.State = _stateBreakBox;
                     }
