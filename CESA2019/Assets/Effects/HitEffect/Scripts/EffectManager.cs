@@ -17,20 +17,6 @@ public class EffectManager : MonoBehaviour
 
     private void Update()
     {
-#if (DEBUG)
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            _hitEffect.Play(1);
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            _hitEffect.Play(2);
-        }
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            _hitEffect.Play(3);
-        }
-#endif
     }
 
     void PlayHitEffect(int force)
