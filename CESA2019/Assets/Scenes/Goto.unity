@@ -465,7 +465,7 @@ MonoBehaviour:
   _stageFileName: StageData
   _stageNumber: 0
   _mGameObj:
-  - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
+  - {fileID: 1807043589894651712, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
@@ -545,9 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649002921}
-  - component: {fileID: 649002923}
   - component: {fileID: 649002922}
-  - component: {fileID: 649002924}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -612,50 +610,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377011736}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1377011738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649002920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56c8f278a0783b44822ac83def65d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tutorialText: {fileID: 341354101}
+  m_CullTransparentMesh: 0
 --- !u!1 &734544464
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377011738}
   - component: {fileID: 1377011737}
+  - component: {fileID: 649002923}
   m_Layer: 0
   m_Name: MapLight
   m_TagString: Untagged
