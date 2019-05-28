@@ -48,7 +48,7 @@ namespace Momoya
         bool _starFlag;//星が出ているか確認するフラグ
 
         [SerializeField]
-        const float MoveSpeed = 5.0f; //動くスピード
+        const float MoveSpeed = 2.5f; //動くスピード
 
         const float Speedlimit = 3.0f;
         const float DropdownPoint = -5.0f; //落下ポイント

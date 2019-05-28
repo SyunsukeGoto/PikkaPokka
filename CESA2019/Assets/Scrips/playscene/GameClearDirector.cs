@@ -115,6 +115,11 @@ public class GameClearDirector : MonoBehaviour
 
         _camera.transform.position -= new Vector3(0, 0, _speed) * Time.deltaTime;
 
+        if(Input.GetButtonDown("Z"))
+        {
+            _time += _timeLimit;
+        }
+
         if (_time > _timeLimit)
         {
             SceneManager.LoadScene(_nextSceneName);
