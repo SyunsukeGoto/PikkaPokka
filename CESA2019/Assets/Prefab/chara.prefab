@@ -5969,7 +5969,7 @@ MonoBehaviour:
   _left: 0
   _down: 0
   _right: 0
-  _floatSpan: 5
+  _floatSpan: 0.8
   _speed: 1
 --- !u!54 &1807043589894651771
 Rigidbody:
