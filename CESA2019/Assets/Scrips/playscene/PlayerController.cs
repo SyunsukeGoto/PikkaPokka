@@ -719,8 +719,8 @@ namespace Momoya
                 ChargeHammerPower();
 
                 //ハンマーキーを離したら
-                if (Input.GetButtonUp("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
-                {
+                //if (Input.GetButtonUp("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
+                //{
               
                 
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
@@ -741,7 +741,7 @@ namespace Momoya
                     }
 
 
-                }  
+               // }  
 
 
 
@@ -876,7 +876,7 @@ namespace Momoya
         {
 
             //ステージとステージ到達数が一緒ならステージ到達数を1追加
-            if(SharedData.GetStageNum() + 1 == SharedData.GetStageMaxNum())
+            if(SharedData.GetStageNum()  == SharedData.GetStageMaxNum())
             {
                 SharedData.AddStageMaxNum();
             }
