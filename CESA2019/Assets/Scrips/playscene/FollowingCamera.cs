@@ -91,7 +91,8 @@ public class FollowingCamera : MonoBehaviour
             updatePosition(lookAtPos);
             transform.LookAt(lookAtPos);
 
-            if(Input.GetKeyDown(KeyCode.Q))
+            // テスト用
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 _mode = Mode.Clear;
                 _star._flag = true;
