@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode, DisallowMultipleComponent]
 public class FollowingCamera : MonoBehaviour
@@ -25,6 +26,19 @@ public class FollowingCamera : MonoBehaviour
     [SerializeField]
     private Momoya.PlayerController player;
 
+    public enum Mode
+    {
+        Default,    // 通常
+        Clear,      // クリア
+    }
+
+    private Mode _mode = Mode.Default;
+
+    public Mode MODE
+    {
+        set { _mode = value; }
+    }
+
     public Quaternion Angle
     {
         get { return Quaternion.Euler(0, -azimuthalAngle, 0); }
@@ -48,27 +62,57 @@ public class FollowingCamera : MonoBehaviour
     private float scrollSensitivity = 5.0f;
     [SerializeField]
     private float _rotationSpped = 1.0f;
+
+    [SerializeField]
+    private TestCrateStar _star;
+
+    private float _time = 0.0f;
+
     void LateUpdate()
     {
-
-        azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
-
-        if(Input.GetButton("LB"))
+        if (_mode == Mode.Default)
         {
-            azimuthalAngle += 3;
+            azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
+
+            if (Input.GetButton("LB"))
+            {
+                azimuthalAngle += 3;
+            }
+            else if (Input.GetButton("RB"))
+            {
+                azimuthalAngle -= 3;
+            }
+
+            Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
+            //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
+            //updateDistance(Input.GetAxis("Mouse ScrollWheel"));
+
+            var lookAtPos = target.transform.position + offset;
+            updatePosition(lookAtPos);
+            transform.LookAt(lookAtPos);
+
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                _mode = Mode.Clear;
+                _star._flag = true;
+            }
         }
-        else if(Input.GetButton("RB"))
+        else
         {
-            azimuthalAngle -= 3;
+            _time += Time.deltaTime;
+
+            distance = Mathf.Lerp(distance, 7, _time / 10);
+            polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
+            azimuthalAngle += 0.5f;
+            var lookAtPos = target.transform.position + offset;
+            updatePosition(lookAtPos);
+            transform.LookAt(lookAtPos);
+
+            if(_time >= 5)
+            {
+                SceneManager.LoadScene("ClearScene");
+            }
         }
-
-        Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
-        //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
-        updateDistance(Input.GetAxis("Mouse ScrollWheel"));
-
-        var lookAtPos = target.transform.position + offset;
-        updatePosition(lookAtPos);
-        transform.LookAt(lookAtPos);
     }
 
     void updateAngle(float x, float y)
