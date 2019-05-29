@@ -304,7 +304,7 @@ MonoBehaviour:
   _stageFileName: StageData
   _stageNumber: 0
   _mGameObj:
-  - {fileID: 3125565203938628340, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
+  - {fileID: 1807043589894651712, guid: 247aee7dee701b44fa108d314de9f009, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
   - {fileID: 706072572, guid: a9b2dc9a48c33834fa275ca05f092af3, type: 3}
@@ -325,12 +325,14 @@ MonoBehaviour:
   - {fileID: 122693422056335406, guid: fd1e42d281776a942a8722a95f9b5ae4, type: 3}
   _iGameObj:
   - {fileID: 1785415376, guid: 40009b997dde09843a0b654e5a693935, type: 3}
-  - {fileID: 390917293714913340, guid: 15abc9dc19ccef44fb10cbad1febdcd2, type: 3}
-  - {fileID: 4727752628824407677, guid: 0fff8edebe6227241ada58c704cfa100, type: 3}
+  - {fileID: 6693555641527815104, guid: cb8297338664a7d40884c888897740ab, type: 3}
+  - {fileID: 8557733243028708944, guid: 270a6c1f73610aa459fbfef2790f26c8, type: 3}
+  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
+  - {fileID: 5685497712061086363, guid: 476265c496e490846841dc35803a0bba, type: 3}
   - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
   - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
-  - {fileID: 3980092647271079163, guid: a19c7581360e0704b8c5366b44283188, type: 3}
+  - {fileID: 5521290183823807932, guid: 75bed0d03c532e04d8f892a49e6a37b3, type: 3}
+  - {fileID: 395383153264227493, guid: 8438deac50900924c9f06ecd6cdda18c, type: 3}
   _floorObj:
   - {fileID: 8918041294818745074, guid: 03d96dc20a4626e4daddce2557acf70e, type: 3}
   - {fileID: 3016171406873385175, guid: 279cd660161ef244a9889a7271144759, type: 3}
@@ -391,9 +393,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 734544465}
-  m_Layer: 0
-  m_Name: StageGene
+  - component: {fileID: 649002921}
+  - component: {fileID: 649002922}
+  m_Layer: 5
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,45 +442,31 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377011736}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1377011738
+  m_CullTransparentMesh: 0
+--- !u!1 &734544464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734544465}
+  m_Layer: 0
+  m_Name: StageGene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734544465
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377011736}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_GameObject: {fileID: 734544464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -559,8 +548,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693806009}
   m_CullTransparentMesh: 0
---- !u!114 &1693806013
-MonoBehaviour:
+--- !u!1 &1377011736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1377011738}
+  - component: {fileID: 1377011737}
+  - component: {fileID: 649002923}
+  m_Layer: 0
+  m_Name: MapLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1377011737
+Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

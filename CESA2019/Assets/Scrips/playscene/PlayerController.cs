@@ -141,6 +141,8 @@ namespace Momoya
         [SerializeField, Header("HPゲージマネージャー")]
         private Makoto.HPGaugeManager _hpGaugeManager;
         public DistanceIndicate _distance;
+        [SerializeField]
+        private Image _buttonImage;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -165,6 +167,11 @@ namespace Momoya
         private float _hor;
         private float _ver;
         public float _top, _left, _down, _right; //移動制限
+
+        private float _frontTime = 0.0f;
+        [SerializeField]
+        private float _floatSpan = 0.0f;
+
         [SerializeField]
         private float _speed = 1.0f;
         // Use this for initialization
@@ -223,7 +230,14 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(Input.GetAxis("LT"));
+            if(_strikeMode)
+            {
+                _buttonImage.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                _buttonImage.color = new Color(1, 1, 1, 0);
+            }
             current = this.transform;
             _currentAngle = _playerAngle;
             PlayerCtrl();
@@ -692,9 +706,15 @@ namespace Momoya
         public void Strike()
         {
             _dashSpeed = Speedlimit;
-            // Move();//歩く
-            if (_starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false || _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == true)
+            if (_strikeMode == true)
             {
+                _anime.FrontSwing();
+                //trueなら箱を壊すステートへ
+                _stateProcessor.State = _stateBreakBox;
+
+            }
+            // Move();//歩く
+
                 //ハンマーパワーをチャージ
                 ChargeHammerPower();
 
@@ -712,23 +732,18 @@ namespace Momoya
                     if (_strikeMode == false)
                     {
                         _anime.Masturbation();
+                    if( _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false)
+                    {
                         HammerDamage();//HPを減らす
+                    }
+                        
                         _stateProcessor.State = _stateDefault;
                     }
-                    else
-                    {
-                        _anime.FrontSwing();
-                        //trueなら箱を壊すステートへ
-                        _stateProcessor.State = _stateBreakBox;
-                    }
+
 
                 }  
 
-                //_stateProcessor.State = _stateDefault;
-            }else
-            {
-                _stateProcessor.State = _stateDefault;
-            }
+
 
             //if (_decisionHammerState != (int)HammerState.NONE)
             //{
@@ -741,10 +756,16 @@ namespace Momoya
         //箱を壊す
         public void BreakBox()
         {
+            _frontTime += Time.deltaTime;
+            if(_frontTime > _floatSpan)
+            {
                 crushableBox.GetComponent<CrushableBox>().DethCall(10);
                 _strikeMode = false;
                 //デフォルト状態へ  
+                _frontTime = 0.0f;
                 _stateProcessor.State = _stateDefault;
+            }
+
         }
 
         public void Confusion()
@@ -963,6 +984,11 @@ namespace Momoya
             }
         }
 
+        void waitTimer(float breakTime)
+        {
+            
+        }
+
         //たたき状態を分けるプロパティ
         public bool StrikeMode
         {
@@ -996,6 +1022,14 @@ namespace Momoya
             _hpGaugeManager.HPDown(_playerHP, lastHP, _playerMaxHP);
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == "Enemy")
+            {
+                GhostDamage();
+            }
+        }
+
         // Actor: Tamamura Shuuki
         // Add: プロパティ項目の追加
         #region プロパティ
@@ -1006,7 +1040,12 @@ namespace Momoya
         #endregion
         public void SubHP(int subNum = 10)
         {
-            _playerHP -= subNum;
+            if(Time.timeScale == 1)
+            {
+                _playerHP -= subNum;
+            }
+
+
         }
 
     }
