@@ -24,7 +24,7 @@ static public class SharedData
     static public int _stageNum = 0;
 
     // 共有ステージのクリア番号
-    static public int _stageMaxNum = 10;
+    static public int _stageMaxNum = 15;
 
     //  共有ステージ番号の取得
     static public int GetStageNum() { return _stageNum; }
