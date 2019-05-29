@@ -14,6 +14,8 @@ public class GameDirector : MonoBehaviour
 
     private ActorManager _actorManager;
     private PlayCamera _playCamera;
+    [SerializeField]
+    private TutorialManager _tutorialManager = null;
 
 
     private void Start()
@@ -53,6 +55,18 @@ public class GameDirector : MonoBehaviour
         else
         {
             _playCamera.Exit();
+        }
+
+        // チュートリアル状態ならアクターに停止命令を与える
+        if (_tutorialManager.Tutorial)
+        {
+            //_actorManager.GetActor(ActorType.PLAYER).gameObject.SetActive(false);
+            _actorManager.GetActor(ActorType.PLAYER).GetComponent<Momoya.PlayerController>()._isActive = false;
+        }
+        else
+        {
+            //_actorManager.GetActor(ActorType.PLAYER).gameObject.SetActive(true);
+            _actorManager.GetActor(ActorType.PLAYER).GetComponent<Momoya.PlayerController>()._isActive = true;
         }
     }
 

@@ -176,11 +176,16 @@ namespace Momoya
         private float _speed = 1.0f;
         // Use this for initialization
         private bool _canBreakFlag = false; //叩くことができるフラグ
+
+        // Add: オーディオ
+        private AudioSource _hammerSE;
+        public bool _isActive;
+
         void Start()
         {
             _playerHP = _playerMaxHP;
             _playerAngle = -180;
-            Debug.Log(_playerAngle);
+            //Debug.Log(_playerAngle);
             //プレイヤーの初期設定
             _rg = GetComponent<Rigidbody>(); //リジットボディの取得
             _startPos = _rg.position;        //初期位置の設定
@@ -225,6 +230,9 @@ namespace Momoya
             _stateFall.execDelegate = Fall;
             _stateGameOver.execDelegate = GameOver;
             _stateGoal.execDelegate = StageGoal;
+
+            _hammerSE = GetComponent<AudioSource>();
+            _isActive = true;
         }
 
         // Update is called once per frame
@@ -266,7 +274,7 @@ namespace Momoya
                 _beforeStateName = _stateProcessor.State.GetStateName();
 
             }
-            Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
+            //Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
        
             _stateProcessor.Execute();//実行関数
         }
@@ -421,6 +429,7 @@ namespace Momoya
             if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
             {
                 _hammerPower += Time.deltaTime * _hammerChargSpeed;
+
             }
             //Debug.Log(_hammerPower.ToString());
             //ハンマーパワーを上限を越させない
@@ -437,6 +446,13 @@ namespace Momoya
                     _nowHammerState = (int)HammerState.STRENGTH;
                 if (_hammerPower > 15)
                     _nowHammerState = (int)HammerState.STRENGTH;
+
+                // 活動状態で効果音を再生する
+                if(_isActive)
+                {
+                    _hammerSE.Play();
+                }
+                
             }
             else
             {
