@@ -78,4 +78,9 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
+
+    public bool Tutorial
+    {
+        get { return tutorial; }
+    }
 }

@@ -28,9 +28,12 @@ public class SelectButton : MonoBehaviour
     public string _titleSceneName; // タイトルシーンの名前
     public string _playSceneName; // プレイシーンの名前
     
+    
     // 初期化処理
     void Start()
     {
+        //_audio = GetComponent<AudioSource>();
+
         if (SharedData._stageMaxNum > 1)
         {
             _stage1Line.GetComponent<Image>().color = Color.yellow;

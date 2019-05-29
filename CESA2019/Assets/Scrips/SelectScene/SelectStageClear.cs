@@ -43,6 +43,14 @@ public class SelectStageClear : MonoBehaviour
     bool _hummerFlag; // ハンマーのフラグ
     float _horizontal, _horizontalTrigger; // コントローラーの横
     float _vertical, _verticalTrigger; // コントローラーの縦
+
+    private AudioSource _audio;
+    [SerializeField]
+    private AudioClip _selectSE = null;
+    [SerializeField]
+    private AudioClip _cancelSE = null;
+    [SerializeField]
+    private AudioClip _decisionSE = null;
     // セレクトの状態
     enum SeletState
     {
@@ -59,6 +67,8 @@ public class SelectStageClear : MonoBehaviour
     // 初期化処理
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
+
         // コントローラーの初期化
         _horizontal = 0.0f;
         _horizontalTrigger = 0.0f;
@@ -232,6 +242,8 @@ public class SelectStageClear : MonoBehaviour
             _selectButton.transform.GetChild(0).GetComponent<Text>().text =
                 _satgeButton[num].transform.GetChild(0).GetComponent<Text>().text;
         }
+
+        
     }
     // タイトルに戻る処理 
     public void BackTitle()
@@ -278,6 +290,9 @@ public class SelectStageClear : MonoBehaviour
                 // 増量する
                 _selectNum++;
             }
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
         // 左キーを押したら
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || (_horizontal == -1 && _horizontalTrigger == 0))
@@ -295,6 +310,9 @@ public class SelectStageClear : MonoBehaviour
                 // 減量する
                 _selectNum--;
             }
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
         // スペースキーを押したら
         else if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
@@ -307,12 +325,18 @@ public class SelectStageClear : MonoBehaviour
                 // フラグを変える
                 _hummerFlag = true;
             }
+
+            _audio.clip = _decisionSE;
+            _audio.Play();
         }
         // 上キーを押したら
         else if (Input.GetKeyDown(KeyCode.UpArrow) || (_vertical == 1 && _verticalTrigger == 0))
         {
             //  セレクトの状態を変える
             _selectState = SeletState.BackTitle;
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
 
         // ハンマーの位置を更新する
@@ -335,6 +359,9 @@ public class SelectStageClear : MonoBehaviour
             _selectTmp = SeletState.StartScene;
             // フラグを変える
             _hummerFlag = true;
+
+            _audio.clip = _decisionSE;
+            _audio.Play();
         }
         // 上キーもしくは左を押したら
         else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow)
@@ -342,6 +369,9 @@ public class SelectStageClear : MonoBehaviour
         {
             // 状態を変える
             _selectState = SeletState.BackSelect;
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
     }
 
@@ -358,12 +388,19 @@ public class SelectStageClear : MonoBehaviour
             _selectTmp = SeletState.TitleScene;
             // フラグを変える
             _hummerFlag = true;
+
+            // 効果音を鳴らす
+            _audio.clip = _cancelSE;
+            _audio.Play();
         }
         // 下キーを押した
         else if (Input.GetKeyDown(KeyCode.DownArrow) || (_vertical == -1 && _verticalTrigger == 0))
         {
             // セレクトの状態を変える
             _selectState = SeletState.StageSelect;
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
 
     }
@@ -381,6 +418,10 @@ public class SelectStageClear : MonoBehaviour
             _selectTmp = SeletState.StageSelect;
             // フラグを変える
             _hummerFlag = true;
+
+            // 効果音を鳴らす
+            _audio.clip = _cancelSE;
+            _audio.Play();
         }
         // 下キーもしくは右を押したら
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow)
@@ -388,6 +429,9 @@ public class SelectStageClear : MonoBehaviour
         {
             // 状態を変える
             _selectState = SeletState.StartSelect;
+
+            _audio.clip = _selectSE;
+            _audio.Play();
         }
     }
 }
