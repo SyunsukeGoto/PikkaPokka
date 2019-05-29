@@ -5972,6 +5972,7 @@ MonoBehaviour:
   _right: 0
   _floatSpan: 0.8
   _speed: 1
+  _isActive: 0
 --- !u!54 &1807043589894651771
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7591,6 +7592,7 @@ MonoBehaviour:
   mouseYSensitivity: 5
   scrollSensitivity: 5
   _rotationSpped: 3
+  _star: {fileID: 1807043590412865981}
 --- !u!114 &1807043590320521136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7958,12 +7960,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807043590412865983}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f45d30701a0ff743a7672bbb43bf40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 2578148503860108335, guid: a7f84799410090a43ae546255181a0eb, type: 3}
+  _flag: 0
+  _interval: 0.5
 --- !u!1 &1807043590452378865
 GameObject:
   m_ObjectHideFlags: 0
