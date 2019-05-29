@@ -1040,7 +1040,12 @@ namespace Momoya
         #endregion
         public void SubHP(int subNum = 10)
         {
-            _playerHP -= subNum;
+            if(Time.timeScale == 1)
+            {
+                _playerHP -= subNum;
+            }
+
+
         }
 
     }
