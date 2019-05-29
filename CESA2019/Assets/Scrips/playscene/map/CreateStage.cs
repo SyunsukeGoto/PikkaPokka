@@ -434,17 +434,15 @@ namespace Momoya
             for (int i = _iObjectDataList.Count - 1; i >= 0; i--)
             {
 
-                
-
                 if (_iObjectDataList[i] != -1 )
                 {
                     GameObject go = _iGameObj[_iObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
-                    if (_iObjectDataList[i] == 1)
+                    if (_iObjectDataList[i] == 1|| _iObjectDataList[i] == 2)
                     {
                         _checkStartPos = go.transform.position;
                     }
 
-                    if (_iObjectDataList[i] == 2)
+                    if (_iObjectDataList[i] == 7 || _iObjectDataList[i] == 8)
                     {
                         _checkFnishPos = go.transform.position;
                     }

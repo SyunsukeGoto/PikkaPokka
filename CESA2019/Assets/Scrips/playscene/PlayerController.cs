@@ -708,7 +708,10 @@ namespace Momoya
             _dashSpeed = Speedlimit;
             if (_strikeMode == true)
             {
-                _anime.FrontSwing();
+                if (crushableBox != null)
+                {
+                    _anime.FrontSwing();
+                }
                 //trueなら箱を壊すステートへ
                 _stateProcessor.State = _stateBreakBox;
 
@@ -759,7 +762,12 @@ namespace Momoya
             _frontTime += Time.deltaTime;
             if(_frontTime > _floatSpan)
             {
-                crushableBox.GetComponent<CrushableBox>().DethCall(10);
+                if( crushableBox != null)
+                {
+                    crushableBox.GetComponent<CrushableBox>().DethCall(10);
+      
+                }
+
                 _strikeMode = false;
                 //デフォルト状態へ  
                 _frontTime = 0.0f;
