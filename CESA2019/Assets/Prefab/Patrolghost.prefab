@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c630a16d81a98f047820a2f5adcfb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 1
   _player: {fileID: 0}
   _starMove: {fileID: 0}
-  _searchRange: 7
-  _searchAngle: 100
+  _searchRange: 5
+  _searchAngle: 120
   _nma: {fileID: 706072575}
   _patrolPointA: []
   _patrolPointB: []
@@ -313,7 +313,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100002, guid: c45da7b99d97f06409a2132950b397e1, type: 3}
+  - {fileID: 2100000, guid: b35fc67852d69fb4bbd0b2e5a924f628, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
