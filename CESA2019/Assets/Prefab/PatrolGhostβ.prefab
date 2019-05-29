@@ -159,11 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c630a16d81a98f047820a2f5adcfb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 1
   _player: {fileID: 0}
   _starMove: {fileID: 0}
-  _searchRange: 7
-  _searchAngle: 100
+  _searchRange: 5
+  _searchAngle: 120
   _nma: {fileID: 424426944437048941}
   _patrolPointA: []
   _patrolPointB: []
