@@ -6,6 +6,14 @@ namespace Momoya
 
     public class CrushableBox : MonoBehaviour
     {
+        enum CrushableMode
+        {
+            Crushable,//壊せる
+            NonCrushable,//壊せない
+        }
+        [SerializeField]
+        private CrushableMode _mode = CrushableMode.Crushable; //初期は壊せる
+
         private int _createNum; //生成する個数
         public GameObject _star;
         private float _createZone = 1.0f;
@@ -37,14 +45,24 @@ namespace Momoya
                     go.transform.position = this.transform.position + new Vector3(0, 1.0f, 0);
                     go.transform.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-_createZone, _createZone), Random.Range(-_createZone, _createZone), Random.Range(-_createZone, _createZone)) * _addPower);
                 }
+                //壊せる場合
+                if(_mode == CrushableMode.Crushable)
+                {
+                    // Actor: Tamamura Shuuki
+                    // Add: コーンの破壊処理を追加
+                    // カラーコーンを壊すエフェクトを発動し、コライダとリジッドボディを削除します。
+                    // オブジェクトは破棄しません
+                    _colorCone.Destruction();
+                    Destroy(GetComponent<Rigidbody>());
+                    Destroy(GetComponent<BoxCollider>());
+                    Destroy(GetComponent<CapsuleCollider>());
+                }
+                else
+                {
+                  //壊せない場合
+                  //何もしない
+                }
 
-                // Actor: Tamamura Shuuki
-                // Add: コーンの破壊処理を追加
-                // カラーコーンを壊すエフェクトを発動し、コライダとリジッドボディを削除します。
-                // オブジェクトは破棄しません
-                _colorCone.Destruction();
-                Destroy(GetComponent<Rigidbody>());
-                Destroy(GetComponent<BoxCollider>());
 
                 _dethflag = false;
             }
