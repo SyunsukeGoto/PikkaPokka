@@ -91,9 +91,9 @@ public class SelectStageClear : MonoBehaviour
         NailStart();
         // ボードの初期化
         _board.transform.localPosition = new Vector3(
-            _satgeButton[SharedData._stageMaxNum - 1].transform.localPosition.x,
-            _satgeButton[SharedData._stageMaxNum - 1].transform.localPosition.y,
-            _satgeButton[SharedData._stageMaxNum - 1].transform.localPosition.z);
+            _satgeButton[SharedData._stageMaxNum].transform.localPosition.x,
+            _satgeButton[SharedData._stageMaxNum].transform.localPosition.y,
+            _satgeButton[SharedData._stageMaxNum].transform.localPosition.z);
     }
 
     // 更新処理
@@ -201,7 +201,7 @@ public class SelectStageClear : MonoBehaviour
             for (int i = 1; i < _satgeButton.Length; i++)
             {
                 // クリアしている釘のステージ
-                if (int.Parse(_satgeButton[i].name) + 1 < SharedData._stageMaxNum)
+                if (int.Parse(_satgeButton[i].name) < SharedData._stageMaxNum)
                 {
                     // 画像を変える
                     _satgeButton[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/nail2");
@@ -300,7 +300,7 @@ public class SelectStageClear : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown("joystick button 1")))
         {
             // できるステージだったら
-            if (SharedData._stageMaxNum >= _selectNum+1)
+            if (SharedData._stageMaxNum >= _selectNum)
             {
                 //  セレクトの状態を変える
                 _selectTmp = SeletState.StartSelect;
