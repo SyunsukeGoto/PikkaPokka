@@ -106,12 +106,10 @@ namespace Makoto
             
         }
 
-      
-
         // Update is called once per frame
         void Update()
         {
-            if(_moveFlag == false)
+            if (_moveFlag == false)
             {
                 _nma.enabled = true;
             }
@@ -131,11 +129,11 @@ namespace Makoto
                     {
                         case State.Patrol:
                             Patrol();
-                            Debug.Log("Patrol");
+                            //Debug.Log("Patrol");
                             break;
                         case State.Chase:
                             Chase();
-                            Debug.Log("Chase");
+                            //Debug.Log("Chase");
                             break;
                     }
                 }
@@ -149,9 +147,6 @@ namespace Makoto
         // 巡回
         private void Patrol()
         {
-          
-                //navMeshAgentの操作
-
                 Vector3 v;
                 if (!_bFlag)
                 {
@@ -246,7 +241,7 @@ namespace Makoto
 
             if (v.magnitude <= _searchRange)
             {
-                float r = (transform.rotation.y + 45) * Mathf.Deg2Rad;
+                float r = (transform.rotation.eulerAngles.y + 90) * Mathf.Deg2Rad;
 
                 Vector3 v2 = new Vector3(Mathf.Cos(r), 0, Mathf.Sin(r));
 
