@@ -54,6 +54,7 @@ public class GameDirector : MonoBehaviour
             if (this.gameObject.GetComponent<AudioSource>().time == 0.0f && !this.gameObject.GetComponent<AudioSource>().isPlaying)
             {
                 this.gameObject.GetComponent<AudioSource>().PlayOneShot(this.gameObject.GetComponent<AudioSource>().clip);
+                
             }
         }
         else

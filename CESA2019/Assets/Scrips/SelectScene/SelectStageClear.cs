@@ -82,14 +82,32 @@ public class SelectStageClear : MonoBehaviour
         // セレクトの状態の初期化
         _selectState = SeletState.StageSelect;
         _selectTmp = SeletState.StageSelect;
-        // ステージの面の初期化
-        _stageSurfaceNum = 0;
+        
+        // 選択ステージが5以上
+        if (SharedData._stageNum > 5)
+        {
+            // ステージの面の初期化
+            _stageSurfaceNum = 1;
+            // 選択ステージが10以上
+            if (SharedData._stageNum > 10)
+            {
+                // ステージの面の初期化
+                _stageSurfaceNum = 2;
+            }
+        }
+        else
+        {
+            // ステージの面の初期化
+            _stageSurfaceNum = 0;
+        }
+
         // 背景の方向の初期化
         _backGroundRDir = -803.0f;
         _backGroundLDir = 803.0f;
-        _backGroundMoveDirection = 0.0f;
+        _backGroundMoveDirection = _backGroundRDir* _stageSurfaceNum;
+
         // 選択している番号の初期化
-        _selectNum = SharedData._stageNum; ;
+        _selectNum = SharedData._stageNum; 
         // カウントの初期化
         _count = 1.0f;
         // 位置の初期化
