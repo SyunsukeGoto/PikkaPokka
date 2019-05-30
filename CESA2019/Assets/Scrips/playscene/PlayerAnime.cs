@@ -23,22 +23,34 @@ namespace Makoto
 
         public void Idle()
         {
-            _anime.SetTrigger("Idle");
+            _anime.SetBool("Idle", true);
+            _anime.SetBool("Walk", false);
+            _anime.SetBool("FrontSwing", false);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void Walk()
         {
-            _anime.SetTrigger("Walk");
+            _anime.SetBool("Idle", false);
+            _anime.SetBool("Walk",true);
+            _anime.SetBool("FrontSwing", false);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void FrontSwing()
         {
-            _anime.SetTrigger("FrontSwing");
+            _anime.SetBool("Idle", false);
+            _anime.SetBool("Walk", false);
+            _anime.SetBool("FrontSwing", true);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void Masturbation()
         {
-            _anime.SetTrigger("Masturbation");
+            _anime.SetBool("Idle", false);
+            _anime.SetBool("Walk", false);
+            _anime.SetBool("FrontSwing", false);
+            _anime.SetBool("Masturbation", true);
         }
     }
 }
