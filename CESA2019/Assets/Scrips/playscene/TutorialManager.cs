@@ -34,10 +34,12 @@ public class TutorialManager : MonoBehaviour
             tutorial = true;
             this.gameObject.SetActive(true);
             this.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(_texName + _count.ToString());
+            Debug.Log("通った！");
             Time.timeScale = 0;
         }
         else
         {
+            Debug.Log("おちんちんパラダイス");
             tutorial = false;
             this.gameObject.SetActive(false);
         }
@@ -69,7 +71,6 @@ public class TutorialManager : MonoBehaviour
 
                 }
             }
-
             else
             {
                 this.gameObject.SetActive(false);
