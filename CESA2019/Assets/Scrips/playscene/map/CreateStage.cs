@@ -91,12 +91,9 @@ namespace Momoya
         [SerializeField]
         private float span = 5.0f;
 
-
         bool enemyFlag;
         [SerializeField]    
         NavMeshSurface navMeshSurface; //ナビメッシュ
-        
-        
 
         List<Vector3> _enemyPosList = new List<Vector3>(); //エネミーのポジションを把握するリスト
 
@@ -127,6 +124,7 @@ namespace Momoya
         Vector3 _checkStartPos;
         Vector3 _checkFnishPos;//終始ポイント
 
+        private Vector3 _middlePoint;//中間ポイント
         // Start is called before the first frame update
         void Start()
         {
@@ -172,7 +170,7 @@ namespace Momoya
 
             enemyFlag = false;
             navMeshSurface.BuildNavMesh();
- 
+            
         }
 
         // Update is called once per frame
@@ -195,8 +193,6 @@ namespace Momoya
                 _setPlayer.GetComponent<PlayerController>()._top = _top;
                 _setPlayer.GetComponent<PlayerController>()._down = _down;
               
-
-       
             }
 
             if(time > span + 0.5f && enemyFlag == false)
@@ -434,17 +430,15 @@ namespace Momoya
             for (int i = _iObjectDataList.Count - 1; i >= 0; i--)
             {
 
-                
-
                 if (_iObjectDataList[i] != -1 )
                 {
                     GameObject go = _iGameObj[_iObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
-                    if (_iObjectDataList[i] == 1)
+                    if (_iObjectDataList[i] == 1|| _iObjectDataList[i] == 2)
                     {
                         _checkStartPos = go.transform.position;
                     }
 
-                    if (_iObjectDataList[i] == 2)
+                    if (_iObjectDataList[i] == 7 || _iObjectDataList[i] == 8)
                     {
                         _checkFnishPos = go.transform.position;
                     }
@@ -488,7 +482,7 @@ namespace Momoya
                     GameObject go = _mGameObj[_mObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
                     //go.transform.position = this.transform.position;
                     //プレイヤーの位置とオブジェクトを記憶
-                    if(_mObjectDataList[i] == 0)
+                    if(_mObjectDataList[i] == 0 || _mObjectDataList[i] == 19 || _mObjectDataList[i] == 20)
                     {
                         
                         player = go;
@@ -501,7 +495,7 @@ namespace Momoya
                         ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Player>());
                     }
 
-                    if(_mObjectDataList[i] > 9)//チェックポイントの場合入れる
+                    if(_mObjectDataList[i] > 9 && _mObjectDataList[i] <18)//チェックポイントの場合入れる
                     {
                         Debug.Log("obj" + _mObjectDataList[i]);
                         switch (_mObjectDataList[i])
@@ -555,8 +549,16 @@ namespace Momoya
         //床を作る関数
         public void BuildFloor()
         {
+            int middleCount = _stageDataList.Count / 2;
+
             for (int i = _stageDataList.Count - 1; i >= 0; i--)
             {
+                //真ん中をゲット
+                if(middleCount == i)
+                {
+                    _middlePoint = transform.position;
+                }
+
                 if (_stageDataList[i] != -1)
                 {
                     GameObject go = Instantiate(_floorObj[_stageDataList[i]]);
@@ -601,6 +603,13 @@ namespace Momoya
         {
             get { return _stageNumber; }
         }
+
+        public Vector3 GetMiddle
+        {
+            get { return _middlePoint; }
+        }
+
+
     }
 
 

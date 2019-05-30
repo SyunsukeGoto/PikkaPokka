@@ -162,7 +162,7 @@ namespace Momoya
         //////////デバッグ用
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
-        private float _playerAngle ;
+        public float _playerAngle ;
         private float _currentAngle;//前のframeアングル
         private float _hor;
         private float _ver;
@@ -184,7 +184,7 @@ namespace Momoya
         void Start()
         {
             _playerHP = _playerMaxHP;
-            _playerAngle = -180;
+
             //Debug.Log(_playerAngle);
             //プレイヤーの初期設定
             _rg = GetComponent<Rigidbody>(); //リジットボディの取得
@@ -426,11 +426,11 @@ namespace Momoya
         void ChargeHammerPower()
         {
             //ハンアーキーを押されたら
-            if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
-            {
-                _hammerPower += Time.deltaTime * _hammerChargSpeed;
+            //if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
+            //{
+            //    _hammerPower += Time.deltaTime * _hammerChargSpeed;
 
-            }
+            //}
             //Debug.Log(_hammerPower.ToString());
             //ハンマーパワーを上限を越させない
             if(_hammerPower > _hammerPowerLimit)
@@ -440,7 +440,7 @@ namespace Momoya
 
             if(_strikeMode == false)
             {
-                if (_hammerPower > 0)
+                if (_hammerPower >= 0)
                     _nowHammerState = (int)HammerState.STRENGTH;
                 if (_hammerPower > 10)
                     _nowHammerState = (int)HammerState.STRENGTH;
@@ -592,6 +592,8 @@ namespace Momoya
             transform.GetComponent<Rigidbody>().velocity = _camera.Angle * _vec * _speed;
             _vec *= 0.8f;
 
+            transform.position = new Vector3(this.transform.position.x, 0.9f, this.transform.position.z);
+
         }
 
         //止まっているかチェックする関数
@@ -724,7 +726,10 @@ namespace Momoya
             _dashSpeed = Speedlimit;
             if (_strikeMode == true)
             {
-                _anime.FrontSwing();
+                if (crushableBox != null)
+                {
+                    _anime.FrontSwing();
+                }
                 //trueなら箱を壊すステートへ
                 _stateProcessor.State = _stateBreakBox;
 
@@ -735,8 +740,8 @@ namespace Momoya
                 ChargeHammerPower();
 
                 //ハンマーキーを離したら
-                if (Input.GetButtonUp("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
-                {
+                //if (Input.GetButtonUp("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
+                //{
               
                 
                     _hammerLevel = LevelCheck(_importantPoint, (int)_hammerPower);
@@ -752,12 +757,18 @@ namespace Momoya
                     {
                         HammerDamage();//HPを減らす
                     }
-                        
-                        _stateProcessor.State = _stateDefault;
+
+                    _frontTime += Time.deltaTime;
+                    if(_frontTime > _floatSpan)
+                    {
+                    _frontTime = 0.0f;
+                    _stateProcessor.State = _stateDefault;
+                    }
+               
                     }
 
 
-                }  
+               // }  
 
 
 
@@ -775,7 +786,12 @@ namespace Momoya
             _frontTime += Time.deltaTime;
             if(_frontTime > _floatSpan)
             {
-                crushableBox.GetComponent<CrushableBox>().DethCall(10);
+                if( crushableBox != null)
+                {
+                    crushableBox.GetComponent<CrushableBox>().DethCall(10);
+      
+                }
+
                 _strikeMode = false;
                 //デフォルト状態へ  
                 _frontTime = 0.0f;
@@ -892,7 +908,7 @@ namespace Momoya
         {
 
             //ステージとステージ到達数が一緒ならステージ到達数を1追加
-            if(SharedData.GetStageNum() + 1 == SharedData.GetStageMaxNum())
+            if(SharedData.GetStageNum()  == SharedData.GetStageMaxNum())
             {
                 SharedData.AddStageMaxNum();
             }
