@@ -124,7 +124,7 @@ public class FollowingCamera : MonoBehaviour
             distance = Mathf.Lerp(distance, 30, _time / 10);
             polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
             azimuthalAngle += 0.5f;
-            var lookAtPos = _middle.transform.position + offset;
+            var lookAtPos = _middle.transform.position;
             updatePosition(lookAtPos);
             transform.LookAt(lookAtPos);
 
