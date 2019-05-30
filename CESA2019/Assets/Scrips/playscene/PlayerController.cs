@@ -912,8 +912,10 @@ namespace Momoya
             {
                 SharedData.AddStageMaxNum();
             }
+            _ghostDamage = 0;
+            _camera.MODE = FollowingCamera.Mode.Clear;
 
-            SceneManager.LoadScene(_gameClearSceneName);
+
         }
 
         public float SetAngle()

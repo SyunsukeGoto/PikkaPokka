@@ -36,7 +36,14 @@ public class FollowingCamera : MonoBehaviour
 
     public Mode MODE
     {
-        set { _mode = value; }
+        set
+        {
+            _mode = value;
+
+            _star._flag = true;
+            _middle = new GameObject();
+            _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
+        }
     }
 
     public Quaternion Angle
