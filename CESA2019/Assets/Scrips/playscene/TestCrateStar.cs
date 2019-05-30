@@ -10,10 +10,11 @@ public class TestCrateStar : MonoBehaviour
     private float _interval = 0.5f;
     int num = 5;
     float _time;
+    private List<GameObject> _star;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _star = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -26,14 +27,26 @@ public class TestCrateStar : MonoBehaviour
             if (_time >= _interval)
             {
                 _time = 0f;
+                for (int i = 0; i < _star.Count; i++)
+                {
+                    _star[i].SetActive(true);
+                    _star[i].GetComponent<Light>().range = 2;
+                }
+            }
+
+        }
+        else
+        {
+            if (Time.frameCount % 60 == 0)
+            {
                 for (int i = 0; i < num; i++)
                 {
                     GameObject go = Instantiate(star) as GameObject;
                     go.transform.position = this.transform.position + new Vector3(0, 1.0f, 0);
-                    go.transform.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)) * 200);
+                    go.SetActive(false);
+                    _star.Add(go);
                 }
             }
-
         }
     }
 }
