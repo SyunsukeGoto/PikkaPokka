@@ -29,8 +29,6 @@ public class Terribly : MonoBehaviour
 
     private Func<bool> _terribly;   // どきどき関数
 
-    private float _time;
-
 
     private void Start()
     {
@@ -39,21 +37,11 @@ public class Terribly : MonoBehaviour
         _calmDown = false;
         _iteration = 0;
 
-        _time = 0;
-
         _terribly = (() => {return true;});
     }
 
     private void Update()
     {
-        // 5秒ごとに落着き状態に移行する
-        _time = Time.deltaTime;
-        if (_time >= 5)
-        {
-            Stop();
-            _time = 0;
-        }
-
         _terribly();    // ドキドキする
     }
 

@@ -57,6 +57,10 @@ public class ActorManager
             {
                 _onChasing = true;
             }
+            else
+            {
+                _onChasing = false;
+            }
         }
     }
 
