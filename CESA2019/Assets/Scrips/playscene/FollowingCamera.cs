@@ -68,6 +68,13 @@ public class FollowingCamera : MonoBehaviour
 
     private float _time = 0.0f;
 
+    private void Start()
+    {
+
+            azimuthalAngle = target.GetComponent<Momoya.PlayerController>()._playerAngle;
+
+    }
+
     void LateUpdate()
     {
         if (_mode == Mode.Default)
