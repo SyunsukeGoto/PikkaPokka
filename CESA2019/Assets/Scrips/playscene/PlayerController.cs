@@ -426,11 +426,11 @@ namespace Momoya
         void ChargeHammerPower()
         {
             //ハンアーキーを押されたら
-            if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
-            {
-                _hammerPower += Time.deltaTime * _hammerChargSpeed;
+            //if (Input.GetButton("Z") || Input.GetAxis("LT") == 1 || Input.GetAxis("RT") == 1)
+            //{
+            //    _hammerPower += Time.deltaTime * _hammerChargSpeed;
 
-            }
+            //}
             //Debug.Log(_hammerPower.ToString());
             //ハンマーパワーを上限を越させない
             if(_hammerPower > _hammerPowerLimit)
@@ -440,7 +440,7 @@ namespace Momoya
 
             if(_strikeMode == false)
             {
-                if (_hammerPower > 0)
+                if (_hammerPower >= 0)
                     _nowHammerState = (int)HammerState.STRENGTH;
                 if (_hammerPower > 10)
                     _nowHammerState = (int)HammerState.STRENGTH;
@@ -757,8 +757,14 @@ namespace Momoya
                     {
                         HammerDamage();//HPを減らす
                     }
-                        
-                        _stateProcessor.State = _stateDefault;
+
+                    _frontTime += Time.deltaTime;
+                    if(_frontTime > _floatSpan)
+                    {
+                    _frontTime = 0.0f;
+                    _stateProcessor.State = _stateDefault;
+                    }
+               
                     }
 
 

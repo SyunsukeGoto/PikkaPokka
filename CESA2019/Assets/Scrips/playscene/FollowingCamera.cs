@@ -68,12 +68,15 @@ public class FollowingCamera : MonoBehaviour
 
     private float _time = 0.0f;
 
+
     private void Start()
     {
 
             azimuthalAngle = target.GetComponent<Momoya.PlayerController>()._playerAngle;
 
     }
+
+    private GameObject _middle;
 
     void LateUpdate()
     {
@@ -103,6 +106,8 @@ public class FollowingCamera : MonoBehaviour
             {
                 _mode = Mode.Clear;
                 _star._flag = true;
+                _middle = new GameObject();
+                _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
             }
         }
         else
@@ -112,7 +117,7 @@ public class FollowingCamera : MonoBehaviour
             distance = Mathf.Lerp(distance, 30, _time / 10);
             polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
             azimuthalAngle += 0.5f;
-            var lookAtPos = target.transform.position + offset;
+            var lookAtPos = _middle.transform.position + offset;
             updatePosition(lookAtPos);
             transform.LookAt(lookAtPos);
 
