@@ -79,7 +79,7 @@ public class FollowingCamera : MonoBehaviour
     private void Start()
     {
 
-            azimuthalAngle = target.GetComponent<Momoya.PlayerController>()._playerAngle;
+            //azimuthalAngle = target.GetComponent<Momoya.PlayerController>()._playerAngle;
 
     }
 
