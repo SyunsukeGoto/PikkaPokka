@@ -495,7 +495,7 @@ namespace Momoya
                         ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Player>());
                     }
 
-                    if(_mObjectDataList[i] > 9 && _mObjectDataList[i] <18)//チェックポイントの場合入れる
+                    if(_mObjectDataList[i] > 9 && _mObjectDataList[i] <=18)//チェックポイントの場合入れる
                     {
                         Debug.Log("obj" + _mObjectDataList[i]);
                         switch (_mObjectDataList[i])
