@@ -597,7 +597,7 @@ namespace Momoya
             transform.GetComponent<Rigidbody>().velocity = _camera.Angle * _vec * _speed;
             _vec *= 0.8f;
 
-            transform.position = new Vector3(this.transform.position.x, 0.9f, this.transform.position.z);
+            transform.position = new Vector3(this.transform.position.x, 0.8299999f, this.transform.position.z);
 
         }
 
