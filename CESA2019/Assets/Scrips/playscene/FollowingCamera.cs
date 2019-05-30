@@ -102,7 +102,7 @@ public class FollowingCamera : MonoBehaviour
         {
             _time += Time.deltaTime;
 
-            distance = Mathf.Lerp(distance, 7, _time / 10);
+            distance = Mathf.Lerp(distance, 30, _time / 10);
             polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
             azimuthalAngle += 0.5f;
             var lookAtPos = target.transform.position + offset;
