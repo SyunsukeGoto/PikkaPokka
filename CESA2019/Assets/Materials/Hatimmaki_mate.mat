@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ribbon_mate
+  m_Name: Hatimmaki_mate
   m_Shader: {fileID: 4800000, guid: e0391c078f8f47c44acfd3378df0b151, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

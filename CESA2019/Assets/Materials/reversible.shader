@@ -2,8 +2,8 @@
 {
 	Properties
 	{
-		_MainTex("Texture", 2D) = "red" {}
-	_MainTex2("Texture2", 2D) = "red"{}
+		_MainTex("Texture", 2D) = "white" {}
+	_MainTex2("Texture2", 2D) = "white"{}
 	}
 		SubShader
 	{
