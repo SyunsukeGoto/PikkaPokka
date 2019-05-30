@@ -238,45 +238,49 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
-            if(_strikeMode)
+            //タイムスケールが1だったら動かす
+            if (Time.timeScale == 1)
             {
-                _buttonImage.color = new Color(1, 1, 1, 1);
-            }
-            else
-            {
-                _buttonImage.color = new Color(1, 1, 1, 0);
-            }
-            current = this.transform;
-            _currentAngle = _playerAngle;
-            PlayerCtrl();
-            //DebugCtrl(); //デバッグ用
-            if(_playerHP <= 0)
-            {
-                _stateProcessor.State = _stateGameOver;
-            }
-            //Debug.Log(_nowHammerState.ToString());
-        //    Debug.Log(_decisionHammerState.ToString());
-            if (_nowHammerState == (int)HammerState.NONE)
-            {
-                _decisionHammerState = (int)HammerState.NONE;
-            }
-            
-            //ステートの値が変更されたら実行処理を行う
-            if (_stateProcessor.State == null)
-            {
-                return;
-            }
+                if (_strikeMode)
+                {
+                    _buttonImage.color = new Color(1, 1, 1, 1);
+                }
+                else
+                {
+                    _buttonImage.color = new Color(1, 1, 1, 0);
+                }
+                current = this.transform;
+                _currentAngle = _playerAngle;
+                PlayerCtrl();
+                //DebugCtrl(); //デバッグ用
+                if (_playerHP <= 0)
+                {
+                    _stateProcessor.State = _stateGameOver;
+                }
+                //Debug.Log(_nowHammerState.ToString());
+                //    Debug.Log(_decisionHammerState.ToString());
+                if (_nowHammerState == (int)HammerState.NONE)
+                {
+                    _decisionHammerState = (int)HammerState.NONE;
+                }
 
-            //現在どのステートか確認するためのデバッグ処理
-            if (_stateProcessor.State.GetStateName() != _beforeStateName)
-            {
-               
-                _beforeStateName = _stateProcessor.State.GetStateName();
+                //ステートの値が変更されたら実行処理を行う
+                if (_stateProcessor.State == null)
+                {
+                    return;
+                }
 
+                //現在どのステートか確認するためのデバッグ処理
+                if (_stateProcessor.State.GetStateName() != _beforeStateName)
+                {
+
+                    _beforeStateName = _stateProcessor.State.GetStateName();
+
+                }
+                //Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
+
+                _stateProcessor.Execute();//実行関数
             }
-            //Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
-       
-            _stateProcessor.Execute();//実行関数
         }
 
         public bool FallCheck()
