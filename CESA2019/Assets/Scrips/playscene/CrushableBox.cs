@@ -39,6 +39,11 @@ namespace Momoya
         {
             if (_dethflag == true)
             {
+                if (this.gameObject.GetComponent<AudioSource>().time == 0.0f && !this.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    this.gameObject.GetComponent<AudioSource>().PlayOneShot(this.gameObject.GetComponent<AudioSource>().clip);
+
+                }
                 for (int i = 0; i < _createNum; i++)
                 {
                     GameObject go = Instantiate(_star) as GameObject;
