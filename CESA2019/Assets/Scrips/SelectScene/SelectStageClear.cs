@@ -127,90 +127,95 @@ public class SelectStageClear : MonoBehaviour
     // 更新処理
     void Update()
     {
-        _verticalTrigger = _vertical;
-        _horizontalTrigger = _horizontal;
-        _vertical = (int)-Input.GetAxisRaw("Vertical");
-        _horizontal = (int)Input.GetAxisRaw("Horizontal");
-        // カウントが2以下だったら
-        if (_count < 2.0f)
+        Debug.Log("アンッ" + Time.timeScale);
+
+        if (Time.timeScale == 1)
         {
-            // カウントを増量する
-            _count += 0.01f;
-        }
-        // カウントが1以上だったら
-        if (_count > 1.0f)
-        {
-            // フラグがfalseだったら
-            if (_hummerFlag == false)
+            _verticalTrigger = _vertical;
+            _horizontalTrigger = _horizontal;
+            _vertical = (int)-Input.GetAxisRaw("Vertical");
+            _horizontal = (int)Input.GetAxisRaw("Horizontal");
+            // カウントが2以下だったら
+            if (_count < 2.0f)
             {
-                // セレクトの状態
-                switch (_selectState)
+                // カウントを増量する
+                _count += 0.01f;
+            }
+            // カウントが1以上だったら
+            if (_count > 1.0f)
+            {
+                // フラグがfalseだったら
+                if (_hummerFlag == false)
                 {
-                    // ステージセレクト状態だったら
-                    case (SeletState.StageSelect):
-                        // ステージのセレクト処理
-                        StageSelectMode();
-                        break;
-                    // バックタイトル状態だったら
-                    case (SeletState.BackTitle):
-                        // バックタイトル処理
-                        BackTitleMode();
-                        break;
-                    // スタートセレクト状態だったら
-                    case (SeletState.StartSelect):
-                        // スタートセレクト処理
-                        StartSelectMode();
-                        break;
-                    // セレクトの戻る状態
-                    case (SeletState.BackSelect):
-                        // セレクトの戻る処理
-                        BackSelectMode();
-                        break;
-                    // スタートシーン状態だったら
-                    case (SeletState.StartScene):
-                        // プレイシーンに移動
-                        StartButton();
-                        break;
-                    // タイトルシーンだったら
-                    case (SeletState.TitleScene):
-                        // タイトルシーンに移動
-                        BackTitle();
-                        break;
+                    // セレクトの状態
+                    switch (_selectState)
+                    {
+                        // ステージセレクト状態だったら
+                        case (SeletState.StageSelect):
+                            // ステージのセレクト処理
+                            StageSelectMode();
+                            break;
+                        // バックタイトル状態だったら
+                        case (SeletState.BackTitle):
+                            // バックタイトル処理
+                            BackTitleMode();
+                            break;
+                        // スタートセレクト状態だったら
+                        case (SeletState.StartSelect):
+                            // スタートセレクト処理
+                            StartSelectMode();
+                            break;
+                        // セレクトの戻る状態
+                        case (SeletState.BackSelect):
+                            // セレクトの戻る処理
+                            BackSelectMode();
+                            break;
+                        // スタートシーン状態だったら
+                        case (SeletState.StartScene):
+                            // プレイシーンに移動
+                            StartButton();
+                            break;
+                        // タイトルシーンだったら
+                        case (SeletState.TitleScene):
+                            // タイトルシーンに移動
+                            BackTitle();
+                            break;
+                    }
                 }
             }
-        }
 
-        // フラグがtrueだったら
-        if(_hummerFlag)
-        {
-            // ハンマーの角度を変える
-            _hummer.transform.localRotation =
-                Quaternion.Euler(_hummer.transform.localRotation.x,
-                _hummer.transform.localRotation.y, 80.0f);
-            // ハンマーカウントを増量
-            _hummerCount++;
-            // 最大カウントを超えたら
-            if(_hummerCount > _hummerMaxCount)
+            // フラグがtrueだったら
+            if (_hummerFlag)
             {
-                // 状態を変える
-                _selectState = _selectTmp;
-                // カウントを戻す
-                _hummerCount = 0;
-                // フラグを変える
-                _hummerFlag = false;
+                // ハンマーの角度を変える
+                _hummer.transform.localRotation =
+                    Quaternion.Euler(_hummer.transform.localRotation.x,
+                    _hummer.transform.localRotation.y, 80.0f);
+                // ハンマーカウントを増量
+                _hummerCount++;
+                // 最大カウントを超えたら
+                if (_hummerCount > _hummerMaxCount)
+                {
+                    // 状態を変える
+                    _selectState = _selectTmp;
+                    // カウントを戻す
+                    _hummerCount = 0;
+                    // フラグを変える
+                    _hummerFlag = false;
+                }
             }
-        }
-        else
-        {
-            // ハンマーの角度を変える
-            _hummer.transform.localRotation =
-                Quaternion.Euler(_hummer.transform.localRotation.x,
-                _hummer.transform.localRotation.y, 20.0f);
-        }
+            else
+            {
+                // ハンマーの角度を変える
+                _hummer.transform.localRotation =
+                    Quaternion.Euler(_hummer.transform.localRotation.x,
+                    _hummer.transform.localRotation.y, 20.0f);
+            }
 
-        // 背景をずらす
-        _backGround.transform.localPosition = Vector3.Lerp(
-            _backGroundPos, _backGroundPos + new Vector3(_backGroundMoveDirection, 0, 0), _count);
+            // 背景をずらす
+            _backGround.transform.localPosition = Vector3.Lerp(
+                _backGroundPos, _backGroundPos + new Vector3(_backGroundMoveDirection, 0, 0), _count);
+        }
     }
     // 釘の初期化処理
     private void NailStart()
