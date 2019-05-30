@@ -25,6 +25,10 @@ public class PlayerEffect : MonoBehaviour
 
     private void Update()
     {
+
+        if(Time.timeScale == 1)
+        {
+
         // ヒットエフェクトを再生
         // 0はHammerStateのNONE
         // ハンマーの先端からエフェクトが出るようになっています
@@ -33,5 +37,8 @@ public class PlayerEffect : MonoBehaviour
         {
             _hitEffect.Play(_playerController.DecisionHammerState);
         }
+
+        }
+
     }
 }

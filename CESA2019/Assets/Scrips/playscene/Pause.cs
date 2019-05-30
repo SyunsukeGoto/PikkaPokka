@@ -56,6 +56,10 @@ public class Pause : MonoBehaviour
         set
         {
             _state = value;
+            if(value == State.NONE)
+            {
+                Time.timeScale = 1;
+            }
         }
     }
 
@@ -68,6 +72,7 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("ちんちん" + _state);
         if (_state == State.DISPLAY)
         {
             Color color = _image.color;
@@ -94,8 +99,8 @@ public class Pause : MonoBehaviour
             _image.color = color;
             _hammer.color = color;
 
-            Time.timeScale = 1;
-
+            //Time.timeScale = 1;
+    
             if(Input.GetButtonDown("Start"))
             {
                 _state = State.DISPLAY;
@@ -171,7 +176,7 @@ public class Pause : MonoBehaviour
                     SceneManager.LoadScene(name);
                     break;
                 case Choice.Return:
-                    _state = State.NONE;
+                    STATE = State.NONE;
                     break;
             }
         }
