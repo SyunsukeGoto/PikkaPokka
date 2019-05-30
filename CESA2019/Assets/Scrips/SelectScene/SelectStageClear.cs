@@ -89,7 +89,7 @@ public class SelectStageClear : MonoBehaviour
         _backGroundLDir = 803.0f;
         _backGroundMoveDirection = 0.0f;
         // 選択している番号の初期化
-        _selectNum = 0;
+        _selectNum = SharedData._stageNum; ;
         // カウントの初期化
         _count = 1.0f;
         // 位置の初期化
