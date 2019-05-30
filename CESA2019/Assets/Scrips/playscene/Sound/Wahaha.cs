@@ -1,5 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//
+// Wahaha.cs
+// Actor: Tamamura Shuuki
+//
+
 using UnityEngine;
 
 // わはははははははははｈ
