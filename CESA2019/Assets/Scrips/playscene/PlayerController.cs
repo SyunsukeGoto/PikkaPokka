@@ -162,7 +162,7 @@ namespace Momoya
         //////////デバッグ用
         public Text _chargeText;     //現在のパワーを表示するデバッグ用変数
         public Text _levelText;      //現在のレベルを表示するデバッグ用変数
-        private float _playerAngle ;
+        public float _playerAngle ;
         private float _currentAngle;//前のframeアングル
         private float _hor;
         private float _ver;
@@ -184,7 +184,7 @@ namespace Momoya
         void Start()
         {
             _playerHP = _playerMaxHP;
-            _playerAngle = -180;
+
             //Debug.Log(_playerAngle);
             //プレイヤーの初期設定
             _rg = GetComponent<Rigidbody>(); //リジットボディの取得

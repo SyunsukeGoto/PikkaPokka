@@ -5872,7 +5872,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807043589894651712}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5889,7 +5889,7 @@ Transform:
   - {fileID: 1807043590545988198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1807043589894651768
 Animator:
   serializedVersion: 3
@@ -5966,6 +5966,7 @@ MonoBehaviour:
   _createStage: {fileID: 0}
   _chargeText: {fileID: 0}
   _levelText: {fileID: 0}
+  _playerAngle: 0
   _top: 0
   _left: 0
   _down: 0
@@ -7485,15 +7486,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807043590320521139}
-  m_LocalRotation: {x: -0.21643956, y: 0.000000021337627, z: -0.0000000047304365,
-    w: -0.976296}
-  m_LocalPosition: {x: 0.00000004555837, y: 1.0760108, z: -1.042254}
+  m_LocalRotation: {x: 0.1530459, y: -0.6903455, z: 0.1530459, w: 0.6903455}
+  m_LocalPosition: {x: 1.042254, y: 1.0760108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1807043590247267793}
   m_Father: {fileID: 1807043589894651767}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 23, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.000002, y: 0, z: 0}
 --- !u!20 &1807043590320521133
 Camera:
   m_ObjectHideFlags: 0
@@ -7582,7 +7582,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.59, z: 0}
   distance: 1.15
   polarAngle: 65
-  azimuthalAngle: 90
+  azimuthalAngle: 0
   player: {fileID: 1807043589894651770}
   minDistance: 1.15
   maxDistance: 1.15

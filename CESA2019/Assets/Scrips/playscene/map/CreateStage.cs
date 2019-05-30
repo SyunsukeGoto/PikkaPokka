@@ -482,7 +482,7 @@ namespace Momoya
                     GameObject go = _mGameObj[_mObjectDataList[i]].GetComponent<MapObjectBace>().InstanceObject(transform.position);
                     //go.transform.position = this.transform.position;
                     //プレイヤーの位置とオブジェクトを記憶
-                    if(_mObjectDataList[i] == 0)
+                    if(_mObjectDataList[i] == 0 || _mObjectDataList[i] == 19 || _mObjectDataList[i] == 20)
                     {
                         
                         player = go;
@@ -495,7 +495,7 @@ namespace Momoya
                         ActorInstantiateListener.Instance.OnInstantiate(go.GetComponent<Player>());
                     }
 
-                    if(_mObjectDataList[i] > 9)//チェックポイントの場合入れる
+                    if(_mObjectDataList[i] > 9 && _mObjectDataList[i] <18)//チェックポイントの場合入れる
                     {
                         Debug.Log("obj" + _mObjectDataList[i]);
                         switch (_mObjectDataList[i])
