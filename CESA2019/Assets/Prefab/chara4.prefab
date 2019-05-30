@@ -17308,8 +17308,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6559612261830869419}
-  m_LocalRotation: {x: -0.15304591, y: -0.6903455, z: 0.15304591, w: -0.6903455}
-  m_LocalPosition: {x: -1.042254, y: 1.076011, z: 0}
+  m_LocalRotation: {x: 0.21643959, y: -0.000000021337627, z: 0.0000000047304374, w: 0.976296}
+  m_LocalPosition: {x: 0.00000004555837, y: 1.076011, z: -1.042254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7669747637815083091}
@@ -17404,7 +17404,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.59, z: 0}
   distance: 1.15
   polarAngle: 65
-  azimuthalAngle: 0
+  azimuthalAngle: 90
   player: {fileID: 1293411572067965970}
   minDistance: 1.15
   maxDistance: 1.15
