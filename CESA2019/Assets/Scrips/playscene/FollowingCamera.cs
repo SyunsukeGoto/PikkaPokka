@@ -135,24 +135,9 @@ public class FollowingCamera : MonoBehaviour
             transform.LookAt(lookAtPos);
 
             if(_time >= 5)
-
-            else
-
             {
-                _time += Time.deltaTime;
-
-                distance = Mathf.Lerp(distance, 30, _time / 10);
-                polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
-                azimuthalAngle += 0.5f;
-                var lookAtPos = _middle.transform.position + offset;
-                updatePosition(lookAtPos);
-                transform.LookAt(lookAtPos);
-
-                if (_time >= 5)
-                {
-                    SceneManager.LoadScene("ClearScene");
-                }
-            }
+                SceneManager.LoadScene("ClearScene");
+            } 
         }
     }
 
