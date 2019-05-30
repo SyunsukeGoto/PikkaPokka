@@ -79,9 +79,13 @@ namespace Goto
         /// </summary>
         void Update()
         {
-            SetStarInformation();
+            if(Time.timeScale == 1)
+            {
+                SetStarInformation();
 
-            StarMovement();
+                StarMovement();
+            }
+
         }
 
         /// <summary>

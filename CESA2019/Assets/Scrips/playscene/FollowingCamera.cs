@@ -87,35 +87,41 @@ public class FollowingCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_mode == Mode.Default)
+        if (Time.timeScale == 1)
         {
-            azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
 
-            if (Input.GetButton("LB"))
+
+            if (_mode == Mode.Default)
             {
-                azimuthalAngle += 3;
-            }
-            else if (Input.GetButton("RB"))
-            {
-                azimuthalAngle -= 3;
+                azimuthalAngle += -Input.GetAxis("Turn") * _rotationSpped;
+
+                if (Input.GetButton("LB"))
+                {
+                    azimuthalAngle += 3;
+                }
+                else if (Input.GetButton("RB"))
+                {
+                    azimuthalAngle -= 3;
+                }
+
+                Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
+                //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
+                //updateDistance(Input.GetAxis("Mouse ScrollWheel"));
+
+                var lookAtPos = target.transform.position + offset;
+                updatePosition(lookAtPos);
+                transform.LookAt(lookAtPos);
+
+                // テスト用
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    _mode = Mode.Clear;
+                    _star._flag = true;
+                    _middle = new GameObject();
+                    _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
+                }
             }
 
-            Debug.Log("確認しまーす" + Input.GetAxis("Turn"));
-            //polarAngle = Mathf.Clamp(0, minPolarAngle, maxPolarAngle);
-            //updateDistance(Input.GetAxis("Mouse ScrollWheel"));
-
-            var lookAtPos = target.transform.position + offset;
-            updatePosition(lookAtPos);
-            transform.LookAt(lookAtPos);
-
-            // テスト用
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _mode = Mode.Clear;
-                _star._flag = true;
-                _middle = new GameObject();
-                _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
-            }
         }
         else
         {
@@ -129,8 +135,23 @@ public class FollowingCamera : MonoBehaviour
             transform.LookAt(lookAtPos);
 
             if(_time >= 5)
+
+            else
+
             {
-                SceneManager.LoadScene("ClearScene");
+                _time += Time.deltaTime;
+
+                distance = Mathf.Lerp(distance, 30, _time / 10);
+                polarAngle = Mathf.Lerp(polarAngle, 25, _time / 10);
+                azimuthalAngle += 0.5f;
+                var lookAtPos = _middle.transform.position + offset;
+                updatePosition(lookAtPos);
+                transform.LookAt(lookAtPos);
+
+                if (_time >= 5)
+                {
+                    SceneManager.LoadScene("ClearScene");
+                }
             }
         }
     }
