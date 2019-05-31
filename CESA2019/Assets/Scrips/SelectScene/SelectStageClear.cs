@@ -268,7 +268,9 @@ public class SelectStageClear : MonoBehaviour
             int num = int.Parse(name);
             // ホームに戻るボタンの非表示
             _backTitleButton.SetActive(false);
-            Hoge(SharedData._stageNum);
+            
+            // ステージ名を変更する
+            ChangeStageNameImage(SharedData._stageNum);
             // セレクトボタンの表示
             _selectButton.SetActive(true);
             // 選択されたステージデータの番号の取得
@@ -478,10 +480,10 @@ public class SelectStageClear : MonoBehaviour
         }
     }
 
-    private void Hoge(int stageID)
+    // ステージ名画像を変更する
+    private void ChangeStageNameImage(int stageID)
     {
-        string resourceName;
-        resourceName = "Texture/stageText";
+        string resourceName = "Texture/stageText";
 
         if (stageID + 1 < 10)
         {
