@@ -145,6 +145,12 @@ namespace Momoya
         private GameObject _buttonImage;
         [SerializeField]
         private Fade _fade;
+        [SerializeField]
+        private Command _command;
+        [SerializeField]
+        private GameObject _chin;
+        [SerializeField]
+        private GameObject _hammer;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -190,6 +196,7 @@ namespace Momoya
             _fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
             _fade.SetFadeIn();
             _playerHP = _playerMaxHP;
+            _command.SetAction(ChinOn);
 
             //Debug.Log(_playerAngle);
             //プレイヤーの初期設定
@@ -1092,6 +1099,11 @@ namespace Momoya
             {
                 GhostDamage();
             }
+        }
+
+        public void ChinOn()
+        {
+            _chin.SetActive(true);
         }
 
         // Actor: Tamamura Shuuki
