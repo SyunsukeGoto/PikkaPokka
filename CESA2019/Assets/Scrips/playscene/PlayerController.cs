@@ -142,7 +142,7 @@ namespace Momoya
         private Makoto.HPGaugeManager _hpGaugeManager;
         public DistanceIndicate _distance;
         [SerializeField]
-        private Image _buttonImage;
+        private GameObject _buttonImage;
         [SerializeField]
         private Fade _fade;
 
@@ -252,12 +252,13 @@ namespace Momoya
                 {
                     if (_strikeMode)
                     {
-                        _buttonImage.color = new Color(1, 1, 1, 1);
+                        _buttonImage.SetActive(true);
                     }
                     else
                     {
-                        _buttonImage.color = new Color(1, 1, 1, 0);
+                        _buttonImage.SetActive(false);
                     }
+
                     current = this.transform;
                     _currentAngle = _playerAngle;
                     PlayerCtrl();
