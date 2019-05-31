@@ -74,7 +74,6 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("ちんちん" + _state);
         if (_state == State.DISPLAY)
         {
             Color color = _image.color;
