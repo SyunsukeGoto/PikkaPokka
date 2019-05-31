@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -802,7 +802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -277, y: 0}
+  m_AnchoredPosition: {x: -424.4, y: -53.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &562708925
@@ -1369,6 +1369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FadeCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946027489168398, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6693946027489168627, guid: 7af8afb5788f41248bc602f1b65b2108,
         type: 3}
@@ -2303,7 +2308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: -33.999977}
+  m_AnchoredPosition: {x: 247, y: -39}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984363224
@@ -3717,6 +3722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8572317692105199380, guid: 33597ee506b04ed42a8dd1aec0f136eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8572317692105199376, guid: 33597ee506b04ed42a8dd1aec0f136eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4095,8 +4105,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 803, y: 0}
-  m_SizeDelta: {x: 2411.7, y: 592.93}
+  m_AnchoredPosition: {x: 673, y: 0}
+  m_SizeDelta: {x: 2413.9, y: 603.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567070113
 MonoBehaviour:
@@ -4686,7 +4696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 95, y: -92.99998}
+  m_AnchoredPosition: {x: 92, y: -94}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1785229759
@@ -5199,7 +5209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -333, y: 228}
+  m_AnchoredPosition: {x: -469, y: 228}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1927328598
@@ -5415,7 +5425,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -5522,6 +5532,7 @@ MonoBehaviour:
   _titleSceneName: Scenes/TitleScene
   _playSceneName: Scenes/Goto
   _hummerMaxCount: 15
+  _hummerDistance: {x: 720, y: 46, z: 0}
   _selectSE: {fileID: 8300000, guid: ea88d5d064a65b34aaa835e37b8eba43, type: 3}
   _cancelSE: {fileID: 8300000, guid: 7334eb2ab1a38024a834bb4b7ebeabb9, type: 3}
   _decisionSE: {fileID: 8300000, guid: 024057a5b0930f94cabf6b9655ae6cc4, type: 3}
