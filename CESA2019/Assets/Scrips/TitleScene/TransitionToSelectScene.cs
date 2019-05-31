@@ -40,11 +40,10 @@ namespace Goto
         {
             if (Time.timeScale == 1)
             {
-                //SceneManager.LoadScene(_selectSceneName);
-                _fade.SetFadeOut(_selectSceneName);
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 1"))
                 {
-                    SceneManager.LoadScene(_selectSceneName);
+                    //SceneManager.LoadScene(_selectSceneName);
+                    _fade.SetFadeOut(_selectSceneName);
                 }
             }
         }
