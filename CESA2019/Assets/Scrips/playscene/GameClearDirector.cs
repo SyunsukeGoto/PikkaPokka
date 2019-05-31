@@ -40,11 +40,16 @@ public class GameClearDirector : MonoBehaviour
     [SerializeField, Header("星の数")]
     private int _starNum;
 
+    [SerializeField]
+    private Fade _fade;
+
     // 現在の状態
     private State _currentState;
 
     // タイム
     private float _time;
+
+    private bool _flag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -120,9 +125,10 @@ public class GameClearDirector : MonoBehaviour
             _time += _timeLimit;
         }
 
-        if (_time > _timeLimit)
+        if (_time > _timeLimit && !_flag)
         {
-            SceneManager.LoadScene(_nextSceneName);
+            _fade.SetFadeOut(_nextSceneName);
+            _flag = true;
         }
 
         Debug.Log("walk");

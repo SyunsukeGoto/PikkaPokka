@@ -26,6 +26,8 @@ public class FollowingCamera : MonoBehaviour
     [SerializeField]
     private Momoya.PlayerController player;
 
+    public Fade _fade;
+
     public enum Mode
     {
         Default,    // 通常
@@ -74,6 +76,8 @@ public class FollowingCamera : MonoBehaviour
     private TestCrateStar _star;
 
     private float _time = 0.0f;
+
+    private bool _flag = false;
 
 
     private void Start()
@@ -130,9 +134,10 @@ public class FollowingCamera : MonoBehaviour
                 updatePosition(lookAtPos);
                 transform.LookAt(lookAtPos);
 
-                if (_time >= 5)
+                if (_time >= 5 && !_flag)
                 {
-                    SceneManager.LoadScene("ClearScene");
+                    _fade.SetFadeOut("ClearScene");
+                    _flag = true;
                 }
             }
         }
