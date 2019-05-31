@@ -13,6 +13,11 @@ namespace Makoto
         [SerializeField, Header("赤のゲージ")]
         private Image _hpRed;
 
+        public Image RED
+        {
+            get { return _hpRed; }
+        }
+
         [SerializeField, Header("何回に分けて赤のゲージを減らすか")]
         private int _count;
 
