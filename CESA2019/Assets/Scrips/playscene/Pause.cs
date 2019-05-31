@@ -24,6 +24,8 @@ public class Pause : MonoBehaviour
     [SerializeField]
     private Image _hammer;
 
+    private float _lastTrigger;
+
     public enum Mode
     {
         Exit,
@@ -98,8 +100,6 @@ public class Pause : MonoBehaviour
             color.a = 0;
             _image.color = color;
             _hammer.color = color;
-
-            //Time.timeScale = 1;
     
             if(Input.GetButtonDown("Start"))
             {
@@ -132,7 +132,7 @@ public class Pause : MonoBehaviour
                     Application.Quit();
                     break;
                 case Choice.Return:
-                    _state = State.NONE;
+                    STATE = State.NONE;
                     break;
             }
         }
@@ -154,14 +154,20 @@ public class Pause : MonoBehaviour
         {
             if (_choice != (int)Choice.Decision)
             {
-                _choice--;
+                if (_lastTrigger > -1)
+                {
+                    _choice--;
+                }
             }
         }
         else if (Input.GetAxis("Vertical") >= 1)
         {
             if (_choice != (int)Choice.Return)
             {
-                _choice++;
+                if (_lastTrigger < 1)
+                {
+                    _choice++;
+                }
             }
         }
         else if (Input.GetButtonDown("Z"))
@@ -193,6 +199,8 @@ public class Pause : MonoBehaviour
                 _hammer.GetComponent<RectTransform>().localPosition = _selectPos[2];
                 break;
         }
+
+        _lastTrigger = Input.GetAxis("Vertical");
     }
 
 
