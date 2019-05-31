@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Fade : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Fade : MonoBehaviour
 
     [SerializeField, Range(1, 10)]
     private float _fadeTime;
+
+    private string _nextSceneName;
 
     private float _time= 0f;
 
@@ -22,7 +25,7 @@ public class Fade : MonoBehaviour
 
     private Mode _mode;
 
-    public Mode MODE
+    private Mode MODE
     {
         set
         {
@@ -45,28 +48,27 @@ public class Fade : MonoBehaviour
         }
     }
 
+    public void SetFadeIn()
+    {
+        MODE = Mode.IN;
+    }
+
+    public void SetFadeOut(string sceneName)
+    {
+        MODE = Mode.OUT;
+        _nextSceneName = sceneName;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        _mode = Mode.NONE;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            MODE = Mode.NONE;
-        }
-        else if(Input.GetKeyDown(KeyCode.E))
-        {
-            MODE = Mode.IN;
-        }
-        else if(Input.GetKeyDown(KeyCode.R))
-        {
-            MODE = Mode.OUT;
-        }
-        Debug.Log("時間" + Time.deltaTime);
+        Debug.Log("時間" + Time.timeScale);
         switch(_mode)
         {
             case Mode.IN:
@@ -81,6 +83,7 @@ public class Fade : MonoBehaviour
 
     private void FadeIn()
     {
+        Debug.Log("aaaaa" + Time.timeScale);
         _time += Time.deltaTime;
         float a = Mathf.Cos(_time / _fadeTime * 90 * Mathf.Deg2Rad);
         Color color = _fade.color;
@@ -108,6 +111,7 @@ public class Fade : MonoBehaviour
             color.a = 1;
             _fade.color = color;
             _mode = Mode.NONE;
+            SceneManager.LoadScene(_nextSceneName);
         }
     }
 }
