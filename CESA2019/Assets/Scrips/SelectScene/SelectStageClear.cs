@@ -45,6 +45,7 @@ public class SelectStageClear : MonoBehaviour
     bool _hummerFlag; // ハンマーのフラグ
     float _horizontal, _horizontalTrigger; // コントローラーの横
     float _vertical, _verticalTrigger; // コントローラーの縦
+    public Vector3 _hummerDistance;
 
     private AudioSource _audio;
     [SerializeField]
@@ -92,12 +93,12 @@ public class SelectStageClear : MonoBehaviour
         _selectTmp = SeletState.StageSelect;
 
         // 選択ステージが5以上
-        if (SharedData._stageNum > 5)
+        if (SharedData._stageNum > 6)
         {
             // ステージの面の初期化
             _stageSurfaceNum = 1;
             // 選択ステージが10以上
-            if (SharedData._stageNum > 10)
+            if (SharedData._stageNum > 11)
             {
                 // ステージの面の初期化
                 _stageSurfaceNum = 2;
@@ -110,9 +111,9 @@ public class SelectStageClear : MonoBehaviour
         }
 
         // 背景の方向の初期化
-        _backGroundRDir = -803.0f;
-        _backGroundLDir = 803.0f;
-        _backGroundMoveDirection = _backGroundRDir * _stageSurfaceNum;
+        _backGroundRDir = -673.0f;
+        _backGroundLDir = 673.0f;
+        _backGroundMoveDirection = _backGroundRDir* _stageSurfaceNum;
 
         // 選択している番号の初期化
         _selectNum = SharedData._stageNum;
@@ -122,7 +123,7 @@ public class SelectStageClear : MonoBehaviour
         _backGroundPos = _backGround.transform.localPosition;
         // トンカチの位置の初期化
         _hummer.transform.localPosition = _satgeButton[_selectNum].transform.localPosition
-            + new Vector3(861, 38, 0);
+            + _hummerDistance;
         // 釘の初期化
         NailStart();
         // ボードの初期化
@@ -319,7 +320,7 @@ public class SelectStageClear : MonoBehaviour
         // 右キーを押したら
         if (Input.GetKeyDown(KeyCode.RightArrow) || (_horizontal == 1 && _horizontalTrigger == 0))
         {
-            if (_selectNum == 5 || _selectNum == 10)
+            if (_selectNum == 6 || _selectNum == 11)
             {
                 _count = 0;
                 _backGroundPos = _backGround.transform.localPosition;
@@ -339,7 +340,7 @@ public class SelectStageClear : MonoBehaviour
         // 左キーを押したら
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || (_horizontal == -1 && _horizontalTrigger == 0))
         {
-            if (_selectNum == 6 || _selectNum == 11)
+            if (_selectNum == 7 || _selectNum == 12)
             {
                 _count = 0;
                 _backGroundPos = _backGround.transform.localPosition;
@@ -383,7 +384,7 @@ public class SelectStageClear : MonoBehaviour
 
         // ハンマーの位置を更新する
         _hummer.transform.localPosition = _satgeButton[_selectNum].transform.localPosition
-        + new Vector3(861 + (_stageSurfaceNum * _backGroundRDir), 38, 0);
+        + new Vector3(_hummerDistance.x + (_stageSurfaceNum * _backGroundRDir), _hummerDistance.y, 0);
     }
 
     // スタートセレクト状態の処理
