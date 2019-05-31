@@ -111,13 +111,13 @@ public class FollowingCamera : MonoBehaviour
                 transform.LookAt(lookAtPos);
 
                 // テスト用
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    _mode = Mode.Clear;
-                    _star._flag = true;
-                    _middle = new GameObject();
-                    _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
-                }
+                //if (Input.GetKeyDown(KeyCode.Q))
+                //{
+                //    _mode = Mode.Clear;
+                //    _star._flag = true;
+                //    _middle = new GameObject();
+                //    _middle.transform.position = target.GetComponent<Momoya.PlayerController>()._createStage.GetMiddle;
+                //}
             }
             else
             {
