@@ -110,14 +110,14 @@ public class Pause : MonoBehaviour
 
     private void Exit()
     {
-        if (Input.GetAxis("Vertical") <= -1)
+        if (Input.GetAxis("Vertical") <= -1 || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (_choice != (int)Choice.Decision)
             {
                 _choice -= 2;
             }
         }
-        else if (Input.GetAxis("Vertical") >= 1)
+        else if (Input.GetAxis("Vertical") >= 1 || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (_choice != (int)Choice.Return)
             {
@@ -150,7 +150,7 @@ public class Pause : MonoBehaviour
 
     private void Select()
     {
-        if (Input.GetAxis("Vertical") <= -1)
+        if (Input.GetAxis("Vertical") <= -1 || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (_choice != (int)Choice.Decision)
             {
@@ -160,7 +160,7 @@ public class Pause : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetAxis("Vertical") >= 1)
+        else if (Input.GetAxis("Vertical") >= 1 || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (_choice != (int)Choice.Return)
             {
