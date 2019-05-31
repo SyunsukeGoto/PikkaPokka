@@ -111,8 +111,8 @@ public class SelectStageClear : MonoBehaviour
         }
 
         // 背景の方向の初期化
-        _backGroundRDir = -673.0f;
-        _backGroundLDir = 673.0f;
+        _backGroundRDir = -1079.0f;
+        _backGroundLDir = 1079.0f;
         _backGroundMoveDirection = _backGroundRDir* _stageSurfaceNum;
 
         // 選択している番号の初期化
@@ -320,7 +320,7 @@ public class SelectStageClear : MonoBehaviour
         // 右キーを押したら
         if (Input.GetKeyDown(KeyCode.RightArrow) || (_horizontal == 1 && _horizontalTrigger == 0))
         {
-            if (_selectNum == 6 || _selectNum == 11)
+            if (_selectNum == 5 || _selectNum == 10)
             {
                 _count = 0;
                 _backGroundPos = _backGround.transform.localPosition;
@@ -340,7 +340,7 @@ public class SelectStageClear : MonoBehaviour
         // 左キーを押したら
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || (_horizontal == -1 && _horizontalTrigger == 0))
         {
-            if (_selectNum == 7 || _selectNum == 12)
+            if (_selectNum == 6 || _selectNum == 11)
             {
                 _count = 0;
                 _backGroundPos = _backGround.transform.localPosition;
