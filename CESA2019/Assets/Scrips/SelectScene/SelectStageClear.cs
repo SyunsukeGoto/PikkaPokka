@@ -471,7 +471,7 @@ public class SelectStageClear : MonoBehaviour
         string resourceName;
         resourceName = "Texture/stageText";
 
-        if (stageID < 10)
+        if (stageID + 1 < 10)
         {
             resourceName += "0";
         }
