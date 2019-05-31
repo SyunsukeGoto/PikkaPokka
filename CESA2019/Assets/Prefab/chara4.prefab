@@ -997,6 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3525578987915864279}
   - component: {fileID: 4469306073200601742}
+  - component: {fileID: 9081272425804515135}
   - component: {fileID: 8021541244778571950}
   - component: {fileID: 1293411572067965970}
   - component: {fileID: 3115114196448372874}
@@ -1005,7 +1006,6 @@ GameObject:
   - component: {fileID: 5655069761485430170}
   - component: {fileID: 884086536574071804}
   - component: {fileID: 4894861188413589307}
-  - component: {fileID: 9081272425804515135}
   m_Layer: 0
   m_Name: chara4
   m_TagString: Hammer
@@ -1057,6 +1057,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9081272425804515135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2235049963764866299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4976b84afccc9a0448faff22c18e4da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: fullchinonline
 --- !u!114 &8021541244778571950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1102,7 @@ MonoBehaviour:
   - 1
   _speedMagnification: 0.8
   _normalJumpPower: 300
+  _rg: {fileID: 3115114196448372874}
   _moveKey: 11010000120100001401000013010000
   _dashKey: 0
   _jumpKey: 32
@@ -1291,19 +1305,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9081272425804515135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235049963764866299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4976b84afccc9a0448faff22c18e4da5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  command: fullchinonline
 --- !u!1 &2518014250869679222
 GameObject:
   m_ObjectHideFlags: 0

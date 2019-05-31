@@ -20,7 +20,7 @@ public class Command : MonoBehaviour
     void Start()
     {
         ue = new UnityEvent();
-        SetAction(Message);
+     //   SetAction(Message);
 
         commandLenght = command.Length;
 

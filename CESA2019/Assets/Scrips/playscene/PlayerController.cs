@@ -65,7 +65,7 @@ namespace Momoya
         private float _nowJumpPower;  //現在のジャンプパワー
         [SerializeField]
         private float _normalJumpPower; //ノーマルジャンプ
-
+        [SerializeField]
         private Rigidbody _rg;        //リジットボディ
 
         [SerializeField]
