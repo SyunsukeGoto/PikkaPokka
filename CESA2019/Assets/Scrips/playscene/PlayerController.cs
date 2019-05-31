@@ -289,7 +289,17 @@ namespace Momoya
                 }
                 else
                 {
-                    _stateProcessor.State = _stateGameOver;
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                    if(_hpGaugeManager.RED.fillAmount == 0)
+                    {
+                        _stateProcessor.State = _stateGameOver;
+                    }
+                    else
+                    {
+                        _stateProcessor.State = _stateDefault;
+                    }
+                    _stateProcessor.Execute();//実行関数
                 }
             }
         }
