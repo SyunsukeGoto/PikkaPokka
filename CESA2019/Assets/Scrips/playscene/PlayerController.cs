@@ -148,9 +148,13 @@ namespace Momoya
         [SerializeField]
         private Command _command;
         [SerializeField]
-        private GameObject _chin;
+        private GameObject[] _chin;
         [SerializeField]
         private GameObject _hammer;
+        [SerializeField]
+        private GameObject _playerModel;
+        [SerializeField]
+        private Material _mat;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -1103,7 +1107,10 @@ namespace Momoya
 
         public void ChinOn()
         {
-            _chin.SetActive(true);
+            _chin[0].SetActive(true);
+            _chin[1].SetActive(true);
+            _hammer.SetActive(false);
+            _playerModel.GetComponent<Renderer>().material = _mat;
         }
 
         // Actor: Tamamura Shuuki
