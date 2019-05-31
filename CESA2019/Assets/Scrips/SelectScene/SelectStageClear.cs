@@ -29,6 +29,8 @@ public class SelectStageClear : MonoBehaviour
     public UnityEngine.GameObject _board; // 看板
     public UnityEngine.GameObject _backGround; // 背景
     public UnityEngine.GameObject _hummer; // トンカチ
+    public UnityEngine.GameObject _name; // ステージテキスト
+
     Vector3 _backGroundPos; // 背景のの位置
     int _selectNum; // 選択してる番号
     float _count; // カウント
@@ -86,7 +88,7 @@ public class SelectStageClear : MonoBehaviour
         // セレクトの状態の初期化
         _selectState = SeletState.StageSelect;
         _selectTmp = SeletState.StageSelect;
-        
+
         // 選択ステージが5以上
         if (SharedData._stageNum > 5)
         {
@@ -108,10 +110,10 @@ public class SelectStageClear : MonoBehaviour
         // 背景の方向の初期化
         _backGroundRDir = -803.0f;
         _backGroundLDir = 803.0f;
-        _backGroundMoveDirection = _backGroundRDir* _stageSurfaceNum;
+        _backGroundMoveDirection = _backGroundRDir * _stageSurfaceNum;
 
         // 選択している番号の初期化
-        _selectNum = SharedData._stageNum; 
+        _selectNum = SharedData._stageNum;
         // カウントの初期化
         _count = 1.0f;
         // 位置の初期化
@@ -126,13 +128,13 @@ public class SelectStageClear : MonoBehaviour
             _satgeButton[SharedData._stageMaxNum].transform.localPosition.x,
             _satgeButton[SharedData._stageMaxNum].transform.localPosition.y,
             _satgeButton[SharedData._stageMaxNum].transform.localPosition.z);
+
+        // ステージ
     }
 
     // 更新処理
     void Update()
     {
-        Debug.Log("アンッ" + Time.timeScale);
-
         if (Time.timeScale == 1)
         {
             _verticalTrigger = _vertical;
@@ -263,6 +265,7 @@ public class SelectStageClear : MonoBehaviour
             int num = int.Parse(name);
             // ホームに戻るボタンの非表示
             _backTitleButton.SetActive(false);
+            Hoge(SharedData._stageNum);
             // セレクトボタンの表示
             _selectButton.SetActive(true);
             // 選択されたステージデータの番号の取得
@@ -270,7 +273,6 @@ public class SelectStageClear : MonoBehaviour
                 _satgeButton[num].transform.GetChild(0).GetComponent<Text>().text;
         }
 
-        
     }
     // タイトルに戻る処理 
     public void BackTitle()
@@ -462,5 +464,19 @@ public class SelectStageClear : MonoBehaviour
             _audio.clip = _selectSE;
             _audio.Play();
         }
+    }
+
+    private void Hoge(int stageID)
+    {
+        string resourceName;
+        resourceName = "Texture/stageText";
+
+        if (stageID < 10)
+        {
+            resourceName += "0";
+        }
+
+        resourceName += (stageID + 1).ToString();
+        _name.GetComponent<Image>().sprite = Resources.Load<Sprite>(resourceName);
     }
 }
