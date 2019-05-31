@@ -54,6 +54,8 @@ public class SelectStageClear : MonoBehaviour
 
     [SerializeField]
     private Fade _fade;
+
+    private bool _flag = false;
     // セレクトの状態
     enum SeletState
     {
@@ -182,7 +184,7 @@ public class SelectStageClear : MonoBehaviour
                         // タイトルシーンだったら
                         case (SeletState.TitleScene):
                             // タイトルシーンに移動
-                            BackTitle();
+                            BackTitleFade();
                             break;
                     }
                 }
@@ -273,11 +275,15 @@ public class SelectStageClear : MonoBehaviour
         
     }
     // タイトルに戻る処理 
-    public void BackTitle()
+    public void BackTitleFade()
     {
         // タイトルシーンに移動
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_titleSceneName);
-        //_fade.SetFadeOut(_titleSceneName);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(_titleSceneName);
+        if (!_flag)
+        {
+            _fade.SetFadeOut(_titleSceneName);
+            _flag = true;
+        }
     }
 
     // セレクトの戻るボタンを押した時の処理
@@ -294,8 +300,13 @@ public class SelectStageClear : MonoBehaviour
     private void StartButton()
     {
         // プレイシーンに移動
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_playSceneName);
-        //_fade.SetFadeOut(_playSceneName);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(_playSceneName);
+
+        if (!_flag)
+        {
+            _fade.SetFadeOut(_playSceneName);
+            _flag = true;
+        }
     }
 
     // ステージのセレクト処理

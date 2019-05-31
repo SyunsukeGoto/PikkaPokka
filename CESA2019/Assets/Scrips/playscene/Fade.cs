@@ -107,6 +107,7 @@ public class Fade : MonoBehaviour
         Color color = _fade.color;
         color.a = a;
         _fade.color = color;
+        Debug.Log("フェードアウト"+ a);
 
         if (_fade.color.a >= 0.99f)
         {
