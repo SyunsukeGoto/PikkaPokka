@@ -51,6 +51,9 @@ public class SelectStageClear : MonoBehaviour
     private AudioClip _cancelSE = null;
     [SerializeField]
     private AudioClip _decisionSE = null;
+
+    [SerializeField]
+    private Fade _fade;
     // セレクトの状態
     enum SeletState
     {
@@ -67,6 +70,7 @@ public class SelectStageClear : MonoBehaviour
     // 初期化処理
     void Start()
     {
+        _fade.SetFadeIn();
         _audio = GetComponent<AudioSource>();
 
         // コントローラーの初期化
@@ -273,6 +277,7 @@ public class SelectStageClear : MonoBehaviour
     {
         // タイトルシーンに移動
         UnityEngine.SceneManagement.SceneManager.LoadScene(_titleSceneName);
+        //_fade.SetFadeOut(_titleSceneName);
     }
 
     // セレクトの戻るボタンを押した時の処理
@@ -290,6 +295,7 @@ public class SelectStageClear : MonoBehaviour
     {
         // プレイシーンに移動
         UnityEngine.SceneManagement.SceneManager.LoadScene(_playSceneName);
+        //_fade.SetFadeOut(_playSceneName);
     }
 
     // ステージのセレクト処理

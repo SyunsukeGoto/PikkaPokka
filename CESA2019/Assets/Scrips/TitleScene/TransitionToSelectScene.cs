@@ -22,13 +22,15 @@ namespace Goto
         [SerializeField]
         private string _selectSceneName;
 
+        [SerializeField]
+        private Fade _fade;
 
         /// <summary>
         /// 初期化処理
         /// </summary>
         void Start()
         {
-
+            _fade.SetFadeIn();
         }
 
         /// <summary>
@@ -38,6 +40,8 @@ namespace Goto
         {
             if (Time.timeScale == 1)
             {
+                //SceneManager.LoadScene(_selectSceneName);
+                _fade.SetFadeOut(_selectSceneName);
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 1"))
                 {
                     SceneManager.LoadScene(_selectSceneName);
