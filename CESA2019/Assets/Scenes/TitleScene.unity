@@ -1907,7 +1907,32 @@ PrefabInstance:
     - target: {fileID: 6693946028863084589, guid: 7af8afb5788f41248bc602f1b65b2108,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946027489168397, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946027489168397, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946027489168397, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946028863084563, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946028863084563, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7af8afb5788f41248bc602f1b65b2108, type: 3}

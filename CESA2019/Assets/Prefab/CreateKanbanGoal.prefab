@@ -61,7 +61,7 @@ MonoBehaviour:
   - {fileID: 1705298673411523497, guid: baf8dc10bb8190548970e38f86db752d, type: 3}
   - {fileID: 1705298673411523497, guid: b58f010260e88b945a7de1fb51b40ea1, type: 3}
   - {fileID: 1705298673411523497, guid: 4f74a88782d50c4429eb716354a5eacc, type: 3}
-  - {fileID: 6131468751090235454, guid: f7a91737e081d634ebfc4835a6f50406, type: 3}
+  - {fileID: 8301921382464658369, guid: f6e680bc8a06b3a4bb089aca910798f1, type: 3}
 --- !u!65 &2946566100669507605
 BoxCollider:
   m_ObjectHideFlags: 0
