@@ -17,11 +17,17 @@ public class GameOverDirector : MonoBehaviour
     [SerializeField]
     private float _nextSceneTime;
 
+    [SerializeField]
+    private Fade _fade;
+
     private float _time;
+
+    private bool _flag = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        _fade.SetFadeIn();
         for(int i = 0; i < 8; i++)
         {
             //_gameOver[i].transform.position += _startPos[i];
@@ -39,9 +45,10 @@ public class GameOverDirector : MonoBehaviour
             _time += _nextSceneTime;
         }
 
-        if(_time > _nextSceneTime)
+        if(_time > _nextSceneTime && !_flag)
         {
-            SceneManager.LoadScene(_nextSceneName);
+            _fade.SetFadeOut(_nextSceneName);
+            _flag = true;
         }
     }
 }

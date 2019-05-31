@@ -142,7 +142,9 @@ namespace Momoya
         private Makoto.HPGaugeManager _hpGaugeManager;
         public DistanceIndicate _distance;
         [SerializeField]
-        private GameObject _buttonImage;
+        private Image _buttonImage;
+        [SerializeField]
+        private Fade _fade;
 
         //ステートの宣言
         public StateDefault _stateDefault = new StateDefault();                 //デフォルト状態
@@ -181,8 +183,12 @@ namespace Momoya
         private AudioSource _hammerSE;
         public bool _isActive;
 
+        private bool _makotoFlag;
+
         void Start()
         {
+            _fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
+            _fade.SetFadeIn();
             _playerHP = _playerMaxHP;
 
             //Debug.Log(_playerAngle);
@@ -242,45 +248,48 @@ namespace Momoya
             //タイムスケールが1だったら動かす
             if (Time.timeScale == 1)
             {
-                if (_strikeMode)
+                if (_playerHP > 0)
                 {
-                    _buttonImage.SetActive(true);
+                    if (_strikeMode)
+                    {
+                        _buttonImage.color = new Color(1, 1, 1, 1);
+                    }
+                    else
+                    {
+                        _buttonImage.color = new Color(1, 1, 1, 0);
+                    }
+                    current = this.transform;
+                    _currentAngle = _playerAngle;
+                    PlayerCtrl();
+                    //DebugCtrl(); //デバッグ用
+                    //Debug.Log(_nowHammerState.ToString());
+                    //    Debug.Log(_decisionHammerState.ToString());
+                    if (_nowHammerState == (int)HammerState.NONE)
+                    {
+                        _decisionHammerState = (int)HammerState.NONE;
+                    }
+
+                    //ステートの値が変更されたら実行処理を行う
+                    if (_stateProcessor.State == null)
+                    {
+                        return;
+                    }
+
+                    //現在どのステートか確認するためのデバッグ処理
+                    if (_stateProcessor.State.GetStateName() != _beforeStateName)
+                    {
+
+                        _beforeStateName = _stateProcessor.State.GetStateName();
+
+                    }
+                    //Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
+
+                    _stateProcessor.Execute();//実行関数
                 }
                 else
                 {
-                    _buttonImage.SetActive(false);
-                }
-                current = this.transform;
-                _currentAngle = _playerAngle;
-                PlayerCtrl();
-                //DebugCtrl(); //デバッグ用
-                if (_playerHP <= 0)
-                {
                     _stateProcessor.State = _stateGameOver;
                 }
-                //Debug.Log(_nowHammerState.ToString());
-                //    Debug.Log(_decisionHammerState.ToString());
-                if (_nowHammerState == (int)HammerState.NONE)
-                {
-                    _decisionHammerState = (int)HammerState.NONE;
-                }
-
-                //ステートの値が変更されたら実行処理を行う
-                if (_stateProcessor.State == null)
-                {
-                    return;
-                }
-
-                //現在どのステートか確認するためのデバッグ処理
-                if (_stateProcessor.State.GetStateName() != _beforeStateName)
-                {
-
-                    _beforeStateName = _stateProcessor.State.GetStateName();
-
-                }
-                //Debug.Log(_beforeStateName = _stateProcessor.State.GetStateName());
-
-                _stateProcessor.Execute();//実行関数
             }
         }
 
@@ -904,7 +913,11 @@ namespace Momoya
         /// </summary>
         public void GameOver()
         {
-            SceneManager.LoadScene(_gameOverSceneName);
+            if (!_makotoFlag)
+            {
+                _fade.SetFadeOut("GameOverScene");
+                _makotoFlag = true;
+            }
         }
         /// <summary>
         /// ゴールの関数
@@ -918,6 +931,7 @@ namespace Momoya
                 SharedData.AddStageMaxNum();
             }
             _ghostDamage = 0;
+            _camera._fade = _fade;
             _camera.MODE = FollowingCamera.Mode.Clear;
 
 
