@@ -79,7 +79,9 @@ public class SelectStageClear : MonoBehaviour
     void Start()
     {
         _fade.SetFadeIn();
+
         _command.SetAction(AllStageOpen);
+
         _audio = GetComponent<AudioSource>();
 
         // コントローラーの初期化
@@ -124,7 +126,7 @@ public class SelectStageClear : MonoBehaviour
         // カウントの初期化
         _count = 1.0f;
         // 位置の初期化
-        _backGroundPos = _backGround.transform.localPosition = new Vector3(1070, 0, 0);
+        _backGroundPos = _backGround.transform.localPosition;
         //_backGroundPos = new Vector3(1079, 0, 0);
         // トンカチの位置の初期化
         _hummer.transform.localPosition = _satgeButton[_selectNum].transform.localPosition
@@ -138,15 +140,16 @@ public class SelectStageClear : MonoBehaviour
             _satgeButton[SharedData._stageMaxNum].transform.localPosition.z);
 
         // ステージ
+        
     }
 
     // 更新処理
     void Update()
     {
-
-        Debug.Log("*****" + _backGroundRDir);
-        Debug.Log(_backGroundLDir);
-        Debug.Log(_backGround.transform.localPosition);
+        //Debug.Log("*****" + _backGroundRDir);
+        //Debug.Log(_backGroundLDir);
+        //Debug.Log(_backGround.transform.localPosition);
+        Debug.Log("shareData" + SharedData.GetStageMaxNum());
 
         if (Time.timeScale == 1)
         {
@@ -506,6 +509,7 @@ public class SelectStageClear : MonoBehaviour
 
     public void AllStageOpen()
     {
-        SharedData._stageMaxNum = 15;
+        SharedData.SetStageMaxNum(15);
+        Debug.Log("全ステージ解放！！");
     }
 }

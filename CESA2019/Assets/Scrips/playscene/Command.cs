@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,10 +17,10 @@ public class Command : MonoBehaviour
     private UnityEvent ue;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         ue = new UnityEvent();
-     //   SetAction(Message);
+        //ue.AddListener(Message);
 
         commandLenght = command.Length;
 
@@ -30,10 +30,17 @@ public class Command : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(command[currentNum].ToString()))
-        {
-            currentNum++;
-        }
+		if(Input.anyKeyDown)
+		{
+        		if(Input.GetKeyDown(command[currentNum].ToString()))
+        		{
+        		    currentNum++;
+        		}
+			else
+			{
+				currentNum = 0;
+			}
+		}
 
         if(currentNum == commandLenght)
         {
