@@ -18879,6 +18879,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 547267518, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 547267518, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 547267518, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 547267518, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByCollisionAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 547267517, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
+      propertyPath: m_TagString
+      value: Attack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e94ca7e6007ccd046abe15617d515fed, type: 3}
 --- !u!1001 &5574964212543070605

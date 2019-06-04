@@ -68,7 +68,7 @@ public class Fade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("時間" + Time.timeScale);
+        //Debug.Log("時間" + Time.timeScale);
         switch(_mode)
         {
             case Mode.IN:
@@ -83,8 +83,8 @@ public class Fade : MonoBehaviour
 
     private void FadeIn()
     {
-        Debug.Log("フェードイン");
-        Debug.Log("aaaaa" + Time.timeScale);
+        //Debug.Log("フェードイン");
+        //Debug.Log("aaaaa" + Time.timeScale);
         _time += Time.deltaTime;
         float a = Mathf.Cos(_time / _fadeTime * 90 * Mathf.Deg2Rad);
         Color color = _fade.color;
@@ -101,13 +101,13 @@ public class Fade : MonoBehaviour
 
     private void FadeOut()
     {
-        Debug.Log("フェードアウト");
+       // Debug.Log("フェードアウト");
         _time += Time.deltaTime;
         float a = Mathf.Sin(_time / _fadeTime * 90 * Mathf.Deg2Rad);
         Color color = _fade.color;
         color.a = a;
         _fade.color = color;
-        Debug.Log("フェードアウト"+ a);
+        //Debug.Log("フェードアウト"+ a);
 
         if (_fade.color.a >= 0.99f)
         {

@@ -86,10 +86,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3363830505615895560}
+  - component: {fileID: 4030164735693862840}
   - component: {fileID: 424426944437048941}
   - component: {fileID: 8314682794962249338}
+  - component: {fileID: 2725947797943384485}
   - component: {fileID: 8560857330221159400}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "PatrolGhost\u03B2"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -112,6 +114,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4030164735693862840
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583740524281362527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5b1efe25a6d051488192e8357640d76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!195 &424426944437048941
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -148,6 +169,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0.003480643, y: 0.50817037, z: 0.059170544}
+--- !u!136 &2725947797943384485
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583740524281362527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.17982486
+  m_Height: 0.99346566
+  m_Direction: 1
+  m_Center: {x: 0.009801328, y: 0.50326717, z: 0.06207478}
 --- !u!114 &8560857330221159400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,11 +204,15 @@ MonoBehaviour:
   _patrolPointA: []
   _patrolPointB: []
   _isChase: 1
-  _isAttack: 0
+  _isAttack: 1
   _isCounterAttack: 1
   _active: 0
   _penis: 0
   _stateReturnTime: 2
+  _anime: {fileID: 4030164735693862840}
+  _col:
+  - {fileID: 8314682794962249338}
+  - {fileID: 2725947797943384485}
 --- !u!1 &6094185572797358362
 GameObject:
   m_ObjectHideFlags: 0

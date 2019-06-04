@@ -255,7 +255,7 @@ namespace Momoya
         // Update is called once per frame
         void Update()
         {
-            Debug.Log("TimeScale" + Time.timeScale);
+            //Debug.Log("TimeScale" + Time.timeScale);
             //タイムスケールが1だったら動かす
             if (Time.timeScale == 1)
             {

@@ -15,6 +15,7 @@ TagManager:
   - Hammer
   - Enemy
   - Mosaic
+  - Attack
   layers:
   - Default
   - TransparentFX

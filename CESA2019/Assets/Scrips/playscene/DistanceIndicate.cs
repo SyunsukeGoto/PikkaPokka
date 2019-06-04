@@ -97,9 +97,9 @@ public class DistanceIndicate : MonoBehaviour
 
         _slider.value = _slider.maxValue - _currentDirectDistance / _startDirectDistance;
 
-        Debug.Log(_currentDirectDistance);
-        Debug.Log(_startDirectDistance);
-        Debug.Log((_currentDirectDistance / _startDirectDistance));
+        //Debug.Log(_currentDirectDistance);
+        //Debug.Log(_startDirectDistance);
+        //Debug.Log((_currentDirectDistance / _startDirectDistance));
     }
 
     private void MovingDistance()
