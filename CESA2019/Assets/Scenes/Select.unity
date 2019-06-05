@@ -1103,7 +1103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &593099456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3304,7 +3304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1267631456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5532,6 +5532,7 @@ GameObject:
   - component: {fileID: 2070684822}
   - component: {fileID: 2070684821}
   - component: {fileID: 2070684820}
+  - component: {fileID: 2070684827}
   - component: {fileID: 2070684824}
   - component: {fileID: 2070684825}
   - component: {fileID: 2070684826}
@@ -5688,6 +5689,7 @@ MonoBehaviour:
   _cancelSE: {fileID: 8300000, guid: 7334eb2ab1a38024a834bb4b7ebeabb9, type: 3}
   _decisionSE: {fileID: 8300000, guid: 024057a5b0930f94cabf6b9655ae6cc4, type: 3}
   _fade: {fileID: 1765226325}
+  _command: {fileID: 2070684827}
 --- !u!82 &2070684826
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5784,6 +5786,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2070684827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070684819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4976b84afccc9a0448faff22c18e4da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: allstage
 --- !u!1 &2108931772
 GameObject:
   m_ObjectHideFlags: 0

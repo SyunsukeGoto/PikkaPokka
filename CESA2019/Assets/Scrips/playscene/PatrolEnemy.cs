@@ -11,6 +11,7 @@ namespace Makoto
         {
             Patrol, // 巡回
             Chase,  // 追跡
+            Death,  // 死亡
         }
 
         [SerializeField, Range(0.0f, 100.0f), Header("移動速度")]
@@ -60,6 +61,12 @@ namespace Makoto
         [SerializeField, Range(0.0f, 10.0f), Header("巡回状態に戻るまでの時間")]
         private float _stateReturnTime;
 
+        [SerializeField, Header("アニメーター")]
+        private Animator _anime;
+
+        [SerializeField, Header("コライダー")]
+        private CapsuleCollider[] _col = new CapsuleCollider[2];
+
         private bool _bFlag;
 
         private bool _moveFlag = false;
@@ -101,7 +108,7 @@ namespace Makoto
 
             for(int i = 0; i< _patrolPointA.Length;i++)
             {
-                Debug.Log("入ったやつ" +_patrolPointA[i].transform.position);
+                //Debug.Log("入ったやつ" +_patrolPointA[i].transform.position);
             }
             
         }
@@ -134,6 +141,9 @@ namespace Makoto
                         case State.Chase:
                             Chase();
                             //Debug.Log("Chase");
+                            break;
+                        case State.Death:
+                            Death();
                             break;
                     }
                 }
@@ -285,6 +295,26 @@ namespace Makoto
         {
             _currentPoint = Random.Range(0, _patrolPointA.Length);
             _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
+        }
+
+        public void DeathOn()
+        {
+            _currentState = State.Death;
+            _anime.SetBool("Death", true);
+            _time = 0;
+            _nma.SetDestination(transform.position);
+            _col[0].enabled = false;
+            _col[1].enabled = false;
+        }
+
+        private void Death()
+        {
+            _time += Time.deltaTime;
+
+            if(_time >= 1)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
