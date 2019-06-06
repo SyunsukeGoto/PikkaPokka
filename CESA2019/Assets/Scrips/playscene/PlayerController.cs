@@ -794,7 +794,7 @@ namespace Momoya
                     //たたき状態フラグがfalseならdefault状態へ
                     if (_strikeMode == false)
                     {
-                        _anime.Masturbation();
+                        _anime.SelfHarm();
                     if( _starMove.GetStarFlag().IsFlag((uint)Goto.StarMove.StarFlag.GENERATE_STATE) == false)
                     {
                         HammerDamage();//HPを減らす

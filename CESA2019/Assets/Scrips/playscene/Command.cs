@@ -16,6 +16,13 @@ public class Command : MonoBehaviour
 
     private UnityEvent ue;
 
+    private bool isInvoke = false;
+
+    public bool IsInvoke
+    {
+        get { return isInvoke; }
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -46,6 +53,7 @@ public class Command : MonoBehaviour
         {
             ue.Invoke();
             currentNum = 0;
+            isInvoke = true;
         }
     }
 

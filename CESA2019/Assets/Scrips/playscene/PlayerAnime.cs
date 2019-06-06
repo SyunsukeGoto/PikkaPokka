@@ -26,8 +26,9 @@ namespace Makoto
             _anime.SetBool("Idle", true);
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", false);
-            _anime.SetBool("Masturbation", false);
+            _anime.SetBool("SelfHarm", false);
             _anime.SetBool("Death", false);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void Walk()
@@ -35,8 +36,9 @@ namespace Makoto
             _anime.SetBool("Idle", false);
             _anime.SetBool("Walk",true);
             _anime.SetBool("FrontSwing", false);
-            _anime.SetBool("Masturbation", false);
+            _anime.SetBool("SelfHarm", false);
             _anime.SetBool("Death", false);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void FrontSwing()
@@ -44,17 +46,19 @@ namespace Makoto
             _anime.SetBool("Idle", false);
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", true);
-            _anime.SetBool("Masturbation", false);
+            _anime.SetBool("SelfHarm", false);
             _anime.SetBool("Death", false);
+            _anime.SetBool("Masturbation", false);
         }
 
-        public void Masturbation()
+        public void SelfHarm()
         {
             _anime.SetBool("Idle", false);
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", false);
-            _anime.SetBool("Masturbation", true);
+            _anime.SetBool("SelfHarm", true);
             _anime.SetBool("Death", false);
+            _anime.SetBool("Masturbation", false);
         }
 
         public void Death()
@@ -62,8 +66,19 @@ namespace Makoto
             _anime.SetBool("Idle", false);
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", false);
-            _anime.SetBool("Masturbation", false);
+            _anime.SetBool("SelfHarm", false);
             _anime.SetBool("Death", true);
+            _anime.SetBool("Masturbation", false);
+        }
+
+        public void Masturbation()
+        {
+            _anime.SetBool("Idle", false);
+            _anime.SetBool("Walk", false);
+            _anime.SetBool("FrontSwing", false);
+            _anime.SetBool("SelfHarm", false);
+            _anime.SetBool("Death", false);
+            _anime.SetBool("Masturbation", true);
         }
     }
 }
