@@ -1046,6 +1046,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6693946028863084589, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946028863084589, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693946028863084589, guid: 7af8afb5788f41248bc602f1b65b2108,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6693946027489168626, guid: 7af8afb5788f41248bc602f1b65b2108,
         type: 3}
       propertyPath: m_SortingOrder

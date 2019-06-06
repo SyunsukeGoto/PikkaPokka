@@ -104,8 +104,6 @@ namespace Makoto
 
             _active = true;
 
-            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
-
             for(int i = 0; i< _patrolPointA.Length;i++)
             {
                 //Debug.Log("入ったやつ" +_patrolPointA[i].transform.position);
