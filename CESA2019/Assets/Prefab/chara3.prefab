@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5480886408881757837}
   - component: {fileID: 3381243214114943383}
   - component: {fileID: 6154458514390761873}
+  - component: {fileID: 1833750496168390736}
   - component: {fileID: 2949964497571061553}
   - component: {fileID: 8299021483660460586}
   - component: {fileID: 1673628645587004579}
@@ -207,6 +208,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   command: fullchinonline
+--- !u!114 &1833750496168390736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544591708422750546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4976b84afccc9a0448faff22c18e4da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: muteki
 --- !u!114 &2949964497571061553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +277,8 @@ MonoBehaviour:
   _distance: {fileID: 6164167247996727458}
   _buttonImage: {fileID: 2143990376229786491}
   _fade: {fileID: 0}
-  _command: {fileID: 6154458514390761873}
+  _chinCommand: {fileID: 6154458514390761873}
+  _invincibleCommand: {fileID: 1833750496168390736}
   _chin:
   - {fileID: 3591887182027154609}
   - {fileID: 1110221508788151208}

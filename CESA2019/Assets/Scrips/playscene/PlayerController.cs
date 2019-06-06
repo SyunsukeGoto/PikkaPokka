@@ -146,7 +146,9 @@ namespace Momoya
         [SerializeField]
         private Fade _fade;
         [SerializeField]
-        private Command _command;
+        private Command _chinCommand;
+        [SerializeField]
+        private Command _invincibleCommand;
         [SerializeField]
         private GameObject[] _chin;
         [SerializeField]
@@ -200,7 +202,8 @@ namespace Momoya
             _fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
             _fade.SetFadeIn();
             _playerHP = _playerMaxHP;
-            _command.SetAction(ChinOn);
+            _chinCommand.SetAction(ChinOn);
+            _invincibleCommand.SetAction(Invincible);
 
             //Debug.Log(_playerAngle);
             //プレイヤーの初期設定
@@ -1111,6 +1114,12 @@ namespace Momoya
             _chin[1].SetActive(true);
             _hammer.SetActive(false);
             _playerModel.GetComponent<Renderer>().material = _mat;
+        }
+
+        private void Invincible()
+        {
+            _ghostDamage = 0;
+            _hammerDamage = 0;
         }
 
         // Actor: Tamamura Shuuki

@@ -998,6 +998,7 @@ GameObject:
   - component: {fileID: 3525578987915864279}
   - component: {fileID: 4469306073200601742}
   - component: {fileID: 9081272425804515135}
+  - component: {fileID: 8172041949895642242}
   - component: {fileID: 8021541244778571950}
   - component: {fileID: 1293411572067965970}
   - component: {fileID: 3115114196448372874}
@@ -1071,6 +1072,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   command: fullchinonline
+--- !u!114 &8172041949895642242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2235049963764866299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4976b84afccc9a0448faff22c18e4da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  command: muteki
 --- !u!114 &8021541244778571950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,7 +1141,8 @@ MonoBehaviour:
   _distance: {fileID: 6350636836080102914}
   _buttonImage: {fileID: 8365560504715335397}
   _fade: {fileID: 0}
-  _command: {fileID: 9081272425804515135}
+  _chinCommand: {fileID: 9081272425804515135}
+  _invincibleCommand: {fileID: 8172041949895642242}
   _chin:
   - {fileID: 9094021813523563963}
   - {fileID: 862758978369125978}
@@ -19122,15 +19137,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b445050f95eb5d44dbc8c664cc8d2c58, type: 3}
---- !u!1 &9094021813523563963 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3820732699313539575, guid: b445050f95eb5d44dbc8c664cc8d2c58,
-    type: 3}
-  m_PrefabInstance: {fileID: 5418266366655614028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9094021813523863963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3820732699313313239, guid: b445050f95eb5d44dbc8c664cc8d2c58,
+    type: 3}
+  m_PrefabInstance: {fileID: 5418266366655614028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9094021813523563963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3820732699313539575, guid: b445050f95eb5d44dbc8c664cc8d2c58,
     type: 3}
   m_PrefabInstance: {fileID: 5418266366655614028}
   m_PrefabAsset: {fileID: 0}

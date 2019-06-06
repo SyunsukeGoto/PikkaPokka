@@ -38,6 +38,7 @@ public class Fade : MonoBehaviour
                     color = _fade.color;
                     color.a = 1;
                     _fade.color = color;
+                    Debug.Log(color);
                     break;
                 case Mode.OUT:
                     color = _fade.color;
@@ -83,7 +84,7 @@ public class Fade : MonoBehaviour
 
     private void FadeIn()
     {
-        //Debug.Log("フェードイン");
+        Debug.Log("フェードイン");
         //Debug.Log("aaaaa" + Time.timeScale);
         _time += Time.deltaTime;
         float a = Mathf.Cos(_time / _fadeTime * 90 * Mathf.Deg2Rad);
@@ -101,13 +102,12 @@ public class Fade : MonoBehaviour
 
     private void FadeOut()
     {
-       // Debug.Log("フェードアウト");
+        Debug.Log("フェードアウト");
         _time += Time.deltaTime;
         float a = Mathf.Sin(_time / _fadeTime * 90 * Mathf.Deg2Rad);
         Color color = _fade.color;
         color.a = a;
         _fade.color = color;
-        //Debug.Log("フェードアウト"+ a);
 
         if (_fade.color.a >= 0.99f)
         {
