@@ -170,6 +170,7 @@ namespace Momoya
         public StateGameOver _stateGameOver = new StateGameOver();              //ゲームオーバー状態
         public StateGoal _stateGoal = new StateGoal();                          //ゴール状態
         public StateBreakBox _stateBreakBox = new StateBreakBox();              //箱を壊す状態
+        public StateDeath _stateDeath = new StateDeath();
         public CreateStage _createStage;                                        //クリエイトステージ
 
         //////////デバッグ用
@@ -196,6 +197,7 @@ namespace Momoya
         public bool _isActive;
 
         private bool _makotoFlag;
+        private bool _deathAnimeFlag = false;
 
         void Start()
         {
@@ -250,6 +252,7 @@ namespace Momoya
             _stateFall.execDelegate = Fall;
             _stateGameOver.execDelegate = GameOver;
             _stateGoal.execDelegate = StageGoal;
+            _stateDeath.execDelegate = PlayerDeath;
 
             _hammerSE = GetComponent<AudioSource>();
             _isActive = true;
@@ -303,15 +306,15 @@ namespace Momoya
                 }
                 else
                 {
+                    Debug.Log("死んでます");
                     GetComponent<Rigidbody>().velocity = Vector3.zero;
-
                     if(_hpGaugeManager.RED.fillAmount == 0)
                     {
                         _stateProcessor.State = _stateGameOver;
                     }
                     else
                     {
-                        _stateProcessor.State = _stateDefault;
+                        _stateProcessor.State = _stateDeath;
                     }
                     _stateProcessor.Execute();//実行関数
                 }
@@ -958,8 +961,11 @@ namespace Momoya
             _ghostDamage = 0;
             _camera._fade = _fade;
             _camera.MODE = FollowingCamera.Mode.Clear;
+        }
 
-
+        public void PlayerDeath()
+        {
+            _anime.Death();
         }
 
         public float SetAngle()
@@ -1105,6 +1111,7 @@ namespace Momoya
             if(other.tag == "Enemy")
             {
                 GhostDamage();
+                other.GetComponent<Makoto.PatrolEnemy>().DeathOn();
             }
         }
 

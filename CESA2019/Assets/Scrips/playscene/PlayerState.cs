@@ -147,5 +147,13 @@ namespace Momoya
             }
         }
 
+        public class StateDeath:PlayerState
+        {
+            public override string GetStateName()
+            {
+                return "Player Is Death";
+            }
+        }
+
     }
 }

@@ -65,7 +65,7 @@ namespace Makoto
         private Animator _anime;
 
         [SerializeField, Header("コライダー")]
-        private CapsuleCollider[] _col = new CapsuleCollider[2];
+        public CapsuleCollider[] _col = new CapsuleCollider[2];
 
         private bool _bFlag;
 

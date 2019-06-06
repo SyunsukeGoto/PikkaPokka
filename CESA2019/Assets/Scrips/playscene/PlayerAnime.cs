@@ -27,6 +27,7 @@ namespace Makoto
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", false);
             _anime.SetBool("Masturbation", false);
+            _anime.SetBool("Death", false);
         }
 
         public void Walk()
@@ -35,6 +36,7 @@ namespace Makoto
             _anime.SetBool("Walk",true);
             _anime.SetBool("FrontSwing", false);
             _anime.SetBool("Masturbation", false);
+            _anime.SetBool("Death", false);
         }
 
         public void FrontSwing()
@@ -43,6 +45,7 @@ namespace Makoto
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", true);
             _anime.SetBool("Masturbation", false);
+            _anime.SetBool("Death", false);
         }
 
         public void Masturbation()
@@ -51,6 +54,16 @@ namespace Makoto
             _anime.SetBool("Walk", false);
             _anime.SetBool("FrontSwing", false);
             _anime.SetBool("Masturbation", true);
+            _anime.SetBool("Death", false);
+        }
+
+        public void Death()
+        {
+            _anime.SetBool("Idle", false);
+            _anime.SetBool("Walk", false);
+            _anime.SetBool("FrontSwing", false);
+            _anime.SetBool("Masturbation", false);
+            _anime.SetBool("Death", true);
         }
     }
 }
