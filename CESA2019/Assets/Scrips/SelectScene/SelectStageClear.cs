@@ -78,6 +78,7 @@ public class SelectStageClear : MonoBehaviour
     // 初期化処理
     void Start()
     {
+        Debug.Log("SelectStart");
         _fade.SetFadeIn();
 
         _command.SetAction(AllStageOpen);
@@ -149,7 +150,7 @@ public class SelectStageClear : MonoBehaviour
         //Debug.Log("*****" + _backGroundRDir);
         //Debug.Log(_backGroundLDir);
         //Debug.Log(_backGround.transform.localPosition);
-        Debug.Log("shareData" + SharedData.GetStageMaxNum());
+        //Debug.Log("shareData" + SharedData.GetStageMaxNum());
 
         if (Time.timeScale == 1)
         {

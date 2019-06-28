@@ -65,7 +65,7 @@ namespace Makoto
         private Animator _anime;
 
         [SerializeField, Header("コライダー")]
-        private CapsuleCollider[] _col = new CapsuleCollider[2];
+        public CapsuleCollider[] _col = new CapsuleCollider[2];
 
         private bool _bFlag;
 
@@ -103,8 +103,6 @@ namespace Makoto
             _currentState = State.Patrol;
 
             _active = true;
-
-            _nma.SetDestination(_patrolPointA[_currentPoint].transform.position);
 
             for(int i = 0; i< _patrolPointA.Length;i++)
             {

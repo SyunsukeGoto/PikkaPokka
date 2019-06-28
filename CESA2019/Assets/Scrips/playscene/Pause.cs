@@ -174,9 +174,11 @@ public class Pause : MonoBehaviour
             switch ((Choice)_choice)
             {
                 case Choice.Decision:
+                    Time.timeScale = 1;
                     SceneManager.LoadScene("Select");
                     break;
                 case Choice.ReStart:
+                    Time.timeScale = 1;
                     string name = SceneManager.GetActiveScene().name;
                     SceneManager.LoadScene(name);
                     break;

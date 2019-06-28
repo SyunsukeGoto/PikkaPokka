@@ -45,6 +45,9 @@ public class DistanceIndicate : MonoBehaviour
     [SerializeField, Header("モード")]
     private Mode _mode;
 
+    [SerializeField]
+    private Command _command;
+
     // 最初の直線距離
     private float _startDirectDistance;
 
@@ -70,11 +73,7 @@ public class DistanceIndicate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 直線距離を求める
-        _startDirectDistance = (_goalPos - _startPos).magnitude;
-
-        // 移動距離を求める
-        _startMovingDistance = GetMovingDistance(_startPos, _goalPos);
+        _command.SetAction(Navi);
     }
 
     // Update is called once per frame
@@ -93,6 +92,9 @@ public class DistanceIndicate : MonoBehaviour
 
     private void DirectDistance()
     {
+        // 直線距離を求める
+        _startDirectDistance = (_goalPos - _startPos).magnitude;
+
         _currentDirectDistance = (_goalPos - _player.transform.position).magnitude;
 
         _slider.value = _slider.maxValue - _currentDirectDistance / _startDirectDistance;
@@ -104,6 +106,9 @@ public class DistanceIndicate : MonoBehaviour
 
     private void MovingDistance()
     {
+        // 移動距離を求める
+        _startMovingDistance = GetMovingDistance(_startPos, _goalPos);
+
         _currentMovingDistance = GetMovingDistance(_player.transform.position, _goalPos);
 
         _slider.value = _slider.maxValue - _currentMovingDistance / _startMovingDistance;
@@ -130,5 +135,10 @@ public class DistanceIndicate : MonoBehaviour
         }
 
         return dis;
+    }
+
+    private void Navi()
+    {
+        _mode = Mode.MovingDistance;
     }
 }
